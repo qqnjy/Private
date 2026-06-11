@@ -6,7 +6,7 @@ import {
 } from 'recharts';
 import { Users, TrendingUp, Activity, Globe, Camera, Video, Hash, Download } from 'lucide-react';
 
-const API_BASE = 'http://localhost:8000/api';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
 
 const COLORS = {
   fb: '#3b5998',
