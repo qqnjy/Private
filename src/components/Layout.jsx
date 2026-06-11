@@ -17,7 +17,7 @@ export default function Layout({ children }) {
       <aside className="w-64 bg-slate-800/50 border-r border-slate-700/50 hidden md:flex flex-col backdrop-blur-xl">
         <div className="p-6">
           <h1 className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500 tracking-tight">
-            IGS社群平台數據觀測站
+            IGS社群數據觀測站
           </h1>
           <p className="text-xs text-slate-400 mt-1 uppercase tracking-widest font-semibold">Social Media Analytics</p>
         </div>
@@ -62,7 +62,7 @@ export default function Layout({ children }) {
         {/* Mobile Header */}
         <header className="md:hidden bg-slate-800/80 backdrop-blur-md border-b border-slate-700 p-4 flex items-center justify-between">
           <h1 className="text-xl font-black bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
-            IGS社群平台數據觀測站
+            IGS社群數據觀測站
           </h1>
         </header>
 

@@ -1,7 +1,6 @@
 import os
 import asyncio
-from sqlalchemy.orm import Session
-from models import get_db, Target, Record
+from models import supabase
 from scraper import parse_followers
 from datetime import datetime
 
@@ -31,24 +30,23 @@ def run_all_scrapes():
         asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
         
     print(f"開始自動排程抓取數據: {datetime.now()}")
-    db = next(get_db())
-    targets = db.query(Target).all()
+    
+    targets_res = supabase.table("targets").select("*").execute()
+    targets = targets_res.data
     
     for t in targets:
-        print(f"正在抓取: {t.name} ({t.platform})")
+        print(f"正在抓取: {t['name']} ({t['platform']})")
         try:
-            followers = asyncio.run(parse_followers(t.platform, t.url))
+            followers = asyncio.run(parse_followers(t['platform'], t['url']))
             if followers >= 0:
-                record = Record(target_id=t.id, followers=followers)
-                db.add(record)
-                db.commit()
-                update_obsidian_note(t.platform, t.name, followers)
+                record_data = {"target_id": t['id'], "followers": followers}
+                supabase.table("records").insert(record_data).execute()
+                update_obsidian_note(t['platform'], t['name'], followers)
             else:
-                print(f"抓取失敗: {t.name}")
+                print(f"抓取失敗: {t['name']}")
         except Exception as e:
-            print(f"Scrape error for {t.name}: {e}")
+            print(f"Scrape error for {t['name']}: {e}")
             
-    db.close()
     print(f"自動排程抓取結束: {datetime.now()}")
 
 if __name__ == "__main__":
