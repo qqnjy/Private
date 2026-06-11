@@ -145,7 +145,11 @@ export default function ManageList() {
                         {t.platform}
                       </span>
                     </td>
-                    <td className="py-3 px-4 font-medium text-white">{t.name}</td>
+                    <td className="py-3 px-4 font-medium text-white">
+                      <a href={t.url} target="_blank" rel="noopener noreferrer" className="hover:text-purple-400 hover:underline transition-colors">
+                        {t.name}
+                      </a>
+                    </td>
                     <td className="py-3 px-4">{t.latest_followers?.toLocaleString() || '--'}</td>
                     <td className="py-3 px-4">
                       {t.status === 'scraping' ? (

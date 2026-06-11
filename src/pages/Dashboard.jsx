@@ -256,17 +256,35 @@ export default function Dashboard() {
               <h3 className="text-4xl font-black text-white">{(summary?.total_followers || 0).toLocaleString()}</h3>
             </div>
 
-            {Object.entries(safePlatformStats).map(([platform, count]) => (
-              <div key={platform} className="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm flex items-center justify-between">
-                <div>
-                  <p className="text-slate-400 text-sm font-medium mb-1 flex items-center gap-2 uppercase">
-                    <span style={{color: COLORS[platform]}}>{PLATFORM_ICONS[platform]}</span>
-                    {platform} 總數
-                  </p>
-                  <h3 className="text-2xl font-bold text-white">{(count || 0).toLocaleString()}</h3>
+            {Object.entries(safePlatformStats).map(([platform, count]) => {
+              const platformTarget = targets.find(t => 
+                t.platform === platform && 
+                (t.name || '').replace('粉絲團', '').replace('_IG', '').trim() === selectedGame
+              );
+              
+              return (
+                <div key={platform} className="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm flex items-center justify-between group">
+                  <div>
+                    <p className="text-slate-400 text-sm font-medium mb-1 flex items-center gap-2 uppercase">
+                      <span style={{color: COLORS[platform]}}>{PLATFORM_ICONS[platform]}</span>
+                      {platform} 總數
+                    </p>
+                    <h3 className="text-2xl font-bold text-white">{(count || 0).toLocaleString()}</h3>
+                  </div>
+                  {platformTarget?.url && (
+                    <a 
+                      href={platformTarget.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-slate-500 hover:text-purple-400 transition-colors opacity-0 group-hover:opacity-100 p-2"
+                      title={`前往 ${platformTarget.name}`}
+                    >
+                      <Globe size={20} />
+                    </a>
+                  )}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
