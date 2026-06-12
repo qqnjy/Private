@@ -11,7 +11,7 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api
 const COLORS = {
   fb: '#3b5998',
   ig: '#e1306c',
-  threads: '#000000',
+  threads: '#ffffff',
   yt: '#ff0000',
   primary: '#c084fc',
   secondary: '#38bdf8'

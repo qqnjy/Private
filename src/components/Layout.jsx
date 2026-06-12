@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Users, Settings, Activity } from 'lucide-react';
+import { LayoutDashboard, Users, Settings, Activity, CalendarDays, PieChart } from 'lucide-react';
 
 export default function Layout({ children }) {
   const location = useLocation();
@@ -7,6 +7,8 @@ export default function Layout({ children }) {
   const navItems = [
     { name: '總覽儀表板', path: '/', icon: <LayoutDashboard size={20} /> },
     { name: '單一帳號分析', path: '/platforms', icon: <Activity size={20} /> },
+    { name: '競品分析', path: '/competitors', icon: <PieChart size={20} /> },
+    { name: '小編行事曆', path: '/calendar', icon: <CalendarDays size={20} /> },
     { name: '追蹤清單管理', path: '/manage', icon: <Users size={20} /> },
     { name: '系統設定', path: '/settings', icon: <Settings size={20} /> },
   ];

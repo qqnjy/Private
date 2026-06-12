@@ -34,14 +34,23 @@ def run_all_scrapes():
     targets_res = supabase.table("targets").select("*").execute()
     targets = targets_res.data
     
+    # 找出目前 records 中最大的 ID
+    try:
+        max_id_res = supabase.table("records").select("id").order("id", desc=True).limit(1).execute()
+        next_id = max_id_res.data[0]["id"] + 1 if max_id_res.data else 1
+    except Exception as e:
+        print(f"無法取得 MAX(id): {e}")
+        next_id = 999999
+    
     for t in targets:
         print(f"正在抓取: {t['name']} ({t['platform']})")
         try:
             followers = asyncio.run(parse_followers(t['platform'], t['url']))
             if followers >= 0:
-                record_data = {"target_id": t['id'], "followers": followers}
+                record_data = {"id": next_id, "target_id": t['id'], "followers": followers}
                 supabase.table("records").insert(record_data).execute()
                 update_obsidian_note(t['platform'], t['name'], followers)
+                next_id += 1
             else:
                 print(f"抓取失敗: {t['name']}")
         except Exception as e:

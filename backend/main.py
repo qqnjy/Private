@@ -76,7 +76,11 @@ def get_targets():
 
 @app.post("/api/targets")
 def add_target(target: TargetCreate):
-    data = {"name": target.name, "url": target.url, "platform": target.platform}
+    # Fix sequence out of sync issue by finding max id manually
+    max_id_res = supabase.table("targets").select("id").order("id", desc=True).limit(1).execute()
+    new_id = (max_id_res.data[0]["id"] + 1) if max_id_res.data else 1
+    
+    data = {"id": new_id, "name": target.name, "url": target.url, "platform": target.platform}
     supabase.table("targets").insert(data).execute()
     return {"status": "ok"}
 
@@ -97,8 +101,24 @@ def scrape_task_sync(target_id: int, platform: str, url: str, name: str):
     try:
         followers = asyncio.run(parse_followers(platform, url))
         if followers >= 0:
-            record_data = {"target_id": target_id, "followers": followers}
-            supabase.table("records").insert(record_data).execute()
+            inserted = False
+            retry_count = 0
+            while not inserted and retry_count < 10:
+                try:
+                    max_id_res = supabase.table("records").select("id").order("id", desc=True).limit(1).execute()
+                    new_id = (max_id_res.data[0]["id"] + 1) if max_id_res.data else 1
+                    
+                    record_data = {"id": new_id, "target_id": target_id, "followers": followers}
+                    supabase.table("records").insert(record_data).execute()
+                    inserted = True
+                except Exception as ex:
+                    if '23505' in str(ex):
+                        retry_count += 1
+                        import time
+                        time.sleep(0.5)
+                    else:
+                        raise ex
+            
             update_obsidian_note(platform, name, followers)
             scraping_status[target_id] = "idle"
         else:
@@ -216,3 +236,18 @@ def get_stats_trend(days: int = 30, target_ids: str = None, start_date: str = No
         chart_data.append(entry)
         
     return chart_data
+
+@app.post("/api/competitors/fetch")
+def fetch_competitors():
+    import subprocess
+    import sys
+    try:
+        script_path = os.path.join(os.path.dirname(__file__), "fetch_competitors.py")
+        result = subprocess.run([sys.executable, script_path], capture_output=True, text=True, cwd=os.path.dirname(__file__))
+        if result.returncode == 0:
+            return {"status": "success", "message": "資料更新成功", "output": result.stdout}
+        else:
+            raise HTTPException(status_code=500, detail=f"更新失敗: {result.stderr}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
