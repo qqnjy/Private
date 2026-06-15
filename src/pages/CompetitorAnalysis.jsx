@@ -14,10 +14,30 @@ const TAG_COLORS = [
   'bg-amber-100 text-amber-700',
   'bg-rose-100 text-rose-700',
   'bg-sky-100 text-sky-700',
-  'bg-fuchsia-100 text-fuchsia-700'
+  'bg-fuchsia-100 text-fuchsia-700',
+  'bg-orange-100 text-orange-700',
+  'bg-teal-100 text-teal-700',
+  'bg-purple-100 text-purple-700',
+  'bg-pink-100 text-pink-700'
 ];
 
+// Predefined colors for common tags to avoid collisions
+const TAG_COLOR_MAP = {
+  '限時活動': 'bg-indigo-100 text-indigo-700',
+  '抽獎活動': 'bg-fuchsia-100 text-fuchsia-700',
+  '下載推廣': 'bg-sky-100 text-sky-700',
+  '課金促銷': 'bg-rose-100 text-rose-700',
+  '聯名合作': 'bg-amber-100 text-amber-700',
+  '社群互動': 'bg-emerald-100 text-emerald-700',
+  '節慶活動': 'bg-orange-100 text-orange-700',
+  '改版更新': 'bg-teal-100 text-teal-700',
+  '系統公告': 'bg-slate-100 text-slate-700'
+};
+
 const getTagColor = (tag) => {
+  if (TAG_COLOR_MAP[tag]) {
+    return TAG_COLOR_MAP[tag];
+  }
   let hash = 0;
   for (let i = 0; i < tag.length; i++) {
     hash = tag.charCodeAt(i) + ((hash << 5) - hash);
