@@ -22,7 +22,9 @@ rows = list(reader)
 brand_map = {
     '808online': '包你發',
     'xinstarsonline': '星城',
-    '08online': '老子有錢'
+    '08online': '老子有錢',
+    'star.partygo': '玩星派對',
+    'HSCasino': '豪神'
 }
 
 data = []
@@ -85,7 +87,7 @@ if data:
     for i in range(0, len(data), batch_size):
         batch = data[i:i+batch_size]
         # Insert/update based on url
-        res = supabase.table("competitor_posts").upsert(batch).execute()
+        res = supabase.table("competitor_posts").upsert(batch, on_conflict="url").execute()
         print(f"Upserted batch {i} to {i+len(batch)}")
 
 print(f"Successfully processed {len(data)} competitor posts.")
