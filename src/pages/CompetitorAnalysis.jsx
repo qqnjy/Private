@@ -428,25 +428,25 @@ const CompetitorAnalysis = () => {
           <table className="w-full text-left">
             <thead>
               <tr className="border-b border-[var(--border-color)] text-[var(--text-secondary)] text-sm">
-                <th className="pb-3 font-medium px-4">品牌</th>
-                <th className="pb-3 font-medium px-4 cursor-pointer hover:text-indigo-400" onClick={() => requestSort('post_date')}>發文日期 {sortConfig.key === 'post_date' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</th>
+                <th className="pb-3 font-medium px-4 whitespace-nowrap">品牌</th>
+                <th className="pb-3 font-medium px-4 whitespace-nowrap cursor-pointer hover:text-indigo-400" onClick={() => requestSort('post_date')}>發文日期 {sortConfig.key === 'post_date' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</th>
                 <th className="pb-3 font-medium px-4 w-1/3">貼文內容 (前60字)</th>
                 <th className="pb-3 font-medium px-4">標籤</th>
-                <th className="pb-3 font-medium px-4 text-right cursor-pointer hover:text-indigo-400" onClick={() => requestSort('engagement')}>總互動 {sortConfig.key === 'engagement' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</th>
-                <th className="pb-3 font-medium px-4 text-right cursor-pointer hover:text-indigo-400" onClick={() => requestSort('likes')}>讚 {sortConfig.key === 'likes' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</th>
-                <th className="pb-3 font-medium px-4 text-right cursor-pointer hover:text-indigo-400" onClick={() => requestSort('comments')}>留言 {sortConfig.key === 'comments' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</th>
-                <th className="pb-3 font-medium px-4 text-center">連結</th>
+                <th className="pb-3 font-medium px-4 whitespace-nowrap text-right cursor-pointer hover:text-indigo-400" onClick={() => requestSort('engagement')}>總互動 {sortConfig.key === 'engagement' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</th>
+                <th className="pb-3 font-medium px-4 whitespace-nowrap text-right cursor-pointer hover:text-indigo-400" onClick={() => requestSort('likes')}>讚 {sortConfig.key === 'likes' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</th>
+                <th className="pb-3 font-medium px-4 whitespace-nowrap text-right cursor-pointer hover:text-indigo-400" onClick={() => requestSort('comments')}>留言 {sortConfig.key === 'comments' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</th>
+                <th className="pb-3 font-medium px-4 whitespace-nowrap text-center">連結</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[var(--border-color)]">
               {filteredData.map((item, index) => (
                 <tr key={index} className="hover:bg-[var(--bg-base)] transition-colors group">
-                  <td className="py-4 px-4">
+                  <td className="py-4 px-4 whitespace-nowrap">
                     <span className="font-medium" style={{ color: BRAND_COLORS[item.brand] || BRAND_COLORS['預設'] }}>
                       {item.brand}
                     </span>
                   </td>
-                  <td className="py-4 px-4 text-sm text-[var(--text-secondary)]">
+                  <td className="py-4 px-4 text-sm text-[var(--text-secondary)] whitespace-nowrap">
                     {new Date(item.post_date).toLocaleDateString()}
                   </td>
                   <td className="py-4 px-4 text-sm text-[var(--text-secondary)] max-w-xs truncate" title={item.content}>
@@ -461,10 +461,10 @@ const CompetitorAnalysis = () => {
                       ))}
                     </div>
                   </td>
-                  <td className="py-4 px-4 text-right text-indigo-400 font-semibold">{item.engagement.toLocaleString()}</td>
-                  <td className="py-4 px-4 text-right text-[var(--text-secondary)]">{item.likes.toLocaleString()}</td>
-                  <td className="py-4 px-4 text-right text-[var(--text-secondary)]">{item.comments.toLocaleString()}</td>
-                  <td className="py-4 px-4 text-center">
+                  <td className="py-4 px-4 text-right text-indigo-400 font-semibold whitespace-nowrap">{item.engagement.toLocaleString()}</td>
+                  <td className="py-4 px-4 text-right text-[var(--text-secondary)] whitespace-nowrap">{item.likes.toLocaleString()}</td>
+                  <td className="py-4 px-4 text-right text-[var(--text-secondary)] whitespace-nowrap">{item.comments.toLocaleString()}</td>
+                  <td className="py-4 px-4 text-center whitespace-nowrap">
                     <a href={item.url} target="_blank" rel="noopener noreferrer" className="inline-block p-2 text-[var(--text-secondary)] hover:text-indigo-400 hover:bg-indigo-500/10 rounded-lg transition-colors">
                       <ExternalLink size={18} />
                     </a>
