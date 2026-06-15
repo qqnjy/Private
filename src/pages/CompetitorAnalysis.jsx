@@ -9,16 +9,26 @@ import { useEffect } from 'react';
 const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff7300', '#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 const TAG_COLORS = [
-  'bg-indigo-100 text-indigo-700',
-  'bg-emerald-100 text-emerald-700',
-  'bg-amber-100 text-amber-700',
-  'bg-rose-100 text-rose-700',
-  'bg-sky-100 text-sky-700',
-  'bg-fuchsia-100 text-fuchsia-700',
+  'bg-red-100 text-red-700',
   'bg-orange-100 text-orange-700',
+  'bg-amber-100 text-amber-700',
+  'bg-yellow-100 text-yellow-700',
+  'bg-lime-100 text-lime-700',
+  'bg-green-100 text-green-700',
+  'bg-emerald-100 text-emerald-700',
   'bg-teal-100 text-teal-700',
+  'bg-cyan-100 text-cyan-700',
+  'bg-sky-100 text-sky-700',
+  'bg-blue-100 text-blue-700',
+  'bg-indigo-100 text-indigo-700',
+  'bg-violet-100 text-violet-700',
   'bg-purple-100 text-purple-700',
-  'bg-pink-100 text-pink-700'
+  'bg-fuchsia-100 text-fuchsia-700',
+  'bg-pink-100 text-pink-700',
+  'bg-rose-100 text-rose-700',
+  'bg-slate-100 text-slate-700',
+  'bg-gray-100 text-gray-700',
+  'bg-zinc-100 text-zinc-700'
 ];
 
 // Predefined colors for common tags to avoid collisions
@@ -30,20 +40,12 @@ const TAG_COLOR_MAP = {
   '聯名合作': 'bg-amber-100 text-amber-700',
   '社群互動': 'bg-emerald-100 text-emerald-700',
   '節慶活動': 'bg-orange-100 text-orange-700',
+  '節日時事': 'bg-orange-100 text-orange-700',
+  '短影片': 'bg-red-100 text-red-700',
   '改版更新': 'bg-teal-100 text-teal-700',
   '系統公告': 'bg-slate-100 text-slate-700'
 };
 
-const getTagColor = (tag) => {
-  if (TAG_COLOR_MAP[tag]) {
-    return TAG_COLOR_MAP[tag];
-  }
-  let hash = 0;
-  for (let i = 0; i < tag.length; i++) {
-    hash = tag.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  return TAG_COLORS[Math.abs(hash) % TAG_COLORS.length];
-};
 const BRAND_COLORS = {
   '包你發': '#5d7a8c',
   '星城': '#8a9fae',
@@ -59,9 +61,30 @@ const CompetitorAnalysis = () => {
   const [dateRangeType, setDateRangeType] = useState('30');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-
   const [competitorData, setCompetitorData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Dynamically assign unique colors to all tags that are not in the predefined map
+  const dynamicTagColorMap = useMemo(() => {
+    const map = { ...TAG_COLOR_MAP };
+    let colorIndex = 0;
+    
+    const allTags = new Set();
+    competitorData.forEach(item => {
+      if (item.tags) {
+        item.tags.forEach(tag => allTags.add(tag));
+      }
+    });
+
+    Array.from(allTags).forEach(tag => {
+      if (!map[tag]) {
+        map[tag] = TAG_COLORS[colorIndex % TAG_COLORS.length];
+        colorIndex++;
+      }
+    });
+    
+    return map;
+  }, [competitorData]);
 
   const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
 
@@ -455,7 +478,11 @@ const CompetitorAnalysis = () => {
                   <td className="py-4 px-4">
                     <div className="flex flex-wrap gap-1">
                       {item.tags.map((tag, i) => (
-                        <span key={i} className={`text-xs px-2 py-0.5 rounded-full ${getTagColor(tag)}`}>
+                        <span 
+                          key={i} 
+                          onClick={() => setSearchTerm(tag)}
+                          className={`text-xs px-2 py-0.5 rounded-full cursor-pointer hover:opacity-80 transition-opacity ${dynamicTagColorMap[tag] || 'bg-gray-100 text-gray-700'}`}
+                        >
                           {tag}
                         </span>
                       ))}
