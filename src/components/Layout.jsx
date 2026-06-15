@@ -4,6 +4,7 @@ import { LayoutDashboard, Users, Settings, Activity, CalendarDays, PieChart } fr
 export default function Layout({ children }) {
   const location = useLocation();
 
+  const navItems = [
     { name: '總覽儀表板', path: '/', icon: <LayoutDashboard size={20} /> },
     { name: '單一帳號分析', path: '/platforms', icon: <Activity size={20} /> },
     { name: '競品分析', path: '/competitors', icon: <PieChart size={20} /> },
