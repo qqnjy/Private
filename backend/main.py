@@ -237,6 +237,14 @@ def get_stats_trend(days: int = 30, target_ids: str = None, start_date: str = No
         
     return chart_data
 
+@app.get("/api/competitors")
+def get_competitors():
+    try:
+        res = supabase.table("competitor_posts").select("*").order("post_date", desc=True).execute()
+        return res.data
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 @app.post("/api/competitors/fetch")
 def fetch_competitors():
     import subprocess

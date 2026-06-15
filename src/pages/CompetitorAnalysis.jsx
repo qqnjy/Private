@@ -4,7 +4,7 @@ import {
   PieChart, Pie, Cell
 } from 'recharts';
 import { Search, ExternalLink, Filter, TrendingUp, MessageCircle, ThumbsUp, Share2, RefreshCw } from 'lucide-react';
-import competitorData from '../data/competitors.json';
+import { useEffect } from 'react';
 
 const COLORS = ['#5d7a8c', '#8a9fae', '#79a69e', '#d2a154', '#c87a7a', '#897bb8'];
 const BRAND_COLORS = {
@@ -23,14 +23,36 @@ const CompetitorAnalysis = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
+  const [competitorData, setCompetitorData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fetchCompetitorsData = async () => {
+    try {
+      // Use full URL if backend is running on different port in dev
+      const res = await fetch('http://localhost:8000/api/competitors');
+      if (res.ok) {
+        const data = await res.json();
+        setCompetitorData(data);
+      }
+    } catch (e) {
+      console.error('Failed to fetch competitors data', e);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCompetitorsData();
+  }, []);
+
   const handleUpdate = async () => {
     try {
       setIsUpdating(true);
       const res = await fetch('http://localhost:8000/api/competitors/fetch', { method: 'POST' });
       const data = await res.json();
       if (data.status === 'success') {
-        alert('資料更新成功！請重新整理網頁以載入最新資料。');
-        window.location.reload();
+        alert('資料更新成功！畫面已同步為最新資料。');
+        await fetchCompetitorsData();
       } else {
         alert('更新失敗：' + data.detail);
       }
@@ -72,7 +94,7 @@ const CompetitorAnalysis = () => {
 
     if (filterStart || filterEnd) {
       result = result.filter(item => {
-        const itemDate = new Date(item.date);
+        const itemDate = new Date(item.post_date);
         if (filterStart && itemDate < filterStart) return false;
         if (filterEnd && itemDate > filterEnd) return false;
         return true;
@@ -368,7 +390,7 @@ const CompetitorAnalysis = () => {
             <thead>
               <tr className="border-b border-[var(--border-color)] text-[var(--text-secondary)] text-sm">
                 <th className="pb-3 font-medium px-4">品牌</th>
-                <th className="pb-3 font-medium px-4 cursor-pointer hover:text-indigo-400" onClick={() => requestSort('date')}>發文日期 {sortConfig.key === 'date' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</th>
+                <th className="pb-3 font-medium px-4 cursor-pointer hover:text-indigo-400" onClick={() => requestSort('post_date')}>發文日期 {sortConfig.key === 'post_date' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</th>
                 <th className="pb-3 font-medium px-4 w-1/3">貼文內容 (前60字)</th>
                 <th className="pb-3 font-medium px-4">標籤</th>
                 <th className="pb-3 font-medium px-4 text-right cursor-pointer hover:text-indigo-400" onClick={() => requestSort('engagement')}>總互動 {sortConfig.key === 'engagement' && (sortConfig.direction === 'asc' ? '↑' : '↓')}</th>
@@ -386,7 +408,7 @@ const CompetitorAnalysis = () => {
                     </span>
                   </td>
                   <td className="py-4 px-4 text-sm text-[var(--text-secondary)]">
-                    {new Date(item.date).toLocaleDateString()}
+                    {new Date(item.post_date).toLocaleDateString()}
                   </td>
                   <td className="py-4 px-4 text-sm text-[var(--text-secondary)] max-w-xs truncate" title={item.content}>
                     {item.content.substring(0, 60)}{item.content.length > 60 ? '...' : ''}

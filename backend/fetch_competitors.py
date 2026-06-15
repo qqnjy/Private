@@ -3,6 +3,7 @@ import csv
 import io
 import json
 import os
+from models import supabase
 
 url = 'https://docs.google.com/spreadsheets/d/10E_qaLyqIudNeJmDRzj9JtoXaCwGyAMbbLzxUznP0Vs/export?format=csv'
 req = urllib.request.Request(url)
@@ -63,7 +64,7 @@ for row in rows:
     item = {
         'content': row[0].strip(),
         'url': row[1].strip(),
-        'date': row[2].strip(),
+        'post_date': row[2].strip(),
         'brand': brand_display,
         'likes': likes,
         'comments': comments,
@@ -74,14 +75,17 @@ for row in rows:
     }
     data.append(item)
 
-# Sort data by date descending (assuming ISO date strings)
-data.sort(key=lambda x: x['date'], reverse=True)
+# Sort data by date descending
+data.sort(key=lambda x: x['post_date'], reverse=True)
 
-# Write to JSON
-output_path = '../src/data/competitors.json'
-os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
-with open(output_path, 'w', encoding='utf-8') as f:
-    json.dump(data, f, ensure_ascii=False, indent=2)
+# Write to Supabase
+if data:
+    print(f"Upserting {len(data)} competitor posts to Supabase...")
+    batch_size = 500
+    for i in range(0, len(data), batch_size):
+        batch = data[i:i+batch_size]
+        # Insert/update based on url
+        res = supabase.table("competitor_posts").upsert(batch).execute()
+        print(f"Upserted batch {i} to {i+len(batch)}")
 
 print(f"Successfully processed {len(data)} competitor posts.")
