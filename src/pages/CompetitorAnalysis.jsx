@@ -69,7 +69,7 @@ const CompetitorAnalysis = () => {
 
   // Filter and sort logic
   const filteredData = useMemo(() => {
-    let result = competitorData;
+    let result = [...competitorData];
 
     // Date Range Filter
     const today = new Date();
@@ -126,7 +126,7 @@ const CompetitorAnalysis = () => {
     });
 
     return result;
-  }, [searchTerm, selectedBrand, sortConfig]);
+  }, [searchTerm, selectedBrand, sortConfig, dateRangeType, startDate, endDate, competitorData]);
 
   const requestSort = (key) => {
     let direction = 'desc';
@@ -222,7 +222,7 @@ const CompetitorAnalysis = () => {
             </div>
             <div>
               <p className="text-[var(--text-secondary)] text-sm">總貼文數</p>
-              <h3 className="text-2xl font-bold text-[var(--text-primary)]">{competitorData.length}</h3>
+              <h3 className="text-2xl font-bold text-[var(--text-primary)]">{filteredData.length}</h3>
             </div>
           </div>
         </div>
