@@ -7,7 +7,7 @@ import {
 const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
 
 const COLORS = [
-  '#c084fc', '#38bdf8', '#34d399', '#fbbf24', '#f87171', '#a78bfa'
+  '#5d7a8c', '#8a9fae', '#79a69e', '#d2a154', '#c87a7a', '#897bb8'
 ];
 
 export default function PlatformAnalysis() {
@@ -86,46 +86,46 @@ export default function PlatformAnalysis() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-3xl font-bold text-white">單一帳號分析與競品比較</h2>
-        <p className="text-slate-400 mt-1">勾選多個帳號可進行疊加比較</p>
+        <h2 className="text-3xl font-bold text-[var(--text-primary)]">單一帳號分析與競品比較</h2>
+        <p className="text-[var(--text-secondary)] mt-1">勾選多個帳號可進行疊加比較</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Selection Sidebar */}
-        <div className="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-4 backdrop-blur-sm max-h-[600px] overflow-y-auto">
-          <h3 className="font-bold text-white mb-4">選擇分析目標</h3>
+        <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-4  max-h-[600px] overflow-y-auto">
+          <h3 className="font-bold text-[var(--text-primary)] mb-4">選擇分析目標</h3>
           <div className="space-y-2">
             {targets.map(t => (
-              <label key={t.id} className="flex items-center gap-3 p-2 rounded hover:bg-slate-700/50 cursor-pointer transition-colors">
+              <label key={t.id} className="flex items-center gap-3 p-2 rounded hover:bg-[var(--bg-base)] cursor-pointer transition-colors">
                 <input 
                   type="checkbox" 
                   checked={selectedIds.includes(t.id)}
                   onChange={() => toggleSelection(t.id)}
-                  className="w-4 h-4 rounded border-slate-600 bg-slate-800 text-purple-500 focus:ring-purple-500 focus:ring-offset-slate-900"
+                  className="w-4 h-4 rounded border-[var(--border-color)] bg-[var(--bg-card)] text-purple-500 focus:ring-purple-500 focus:ring-offset-slate-900"
                 />
-                <span className="text-sm text-slate-300 flex-1 truncate">{t.name}</span>
-                <span className="text-xs text-slate-500 uppercase">{t.platform}</span>
+                <span className="text-sm text-[var(--text-secondary)] flex-1 truncate">{t.name}</span>
+                <span className="text-xs text-[var(--text-muted)] uppercase">{t.platform}</span>
               </label>
             ))}
           </div>
         </div>
 
         {/* Chart Area */}
-        <div className="lg:col-span-3 bg-slate-800/40 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm flex flex-col min-h-[500px]">
+        <div className="lg:col-span-3 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-6  flex flex-col min-h-[500px]">
           {loading ? (
-            <div className="flex-1 flex items-center justify-center text-slate-400">載入數據中...</div>
+            <div className="flex-1 flex items-center justify-center text-[var(--text-secondary)]">載入數據中...</div>
           ) : chartData.length === 0 ? (
-            <div className="flex-1 flex items-center justify-center text-slate-500">請從左側選擇要分析的目標，或目前尚無數據</div>
+            <div className="flex-1 flex items-center justify-center text-[var(--text-muted)]">請從左側選擇要分析的目標，或目前尚無數據</div>
           ) : (
             <div className="flex-1">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={chartData} margin={{ top: 10, right: 30, left: 20, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-                  <XAxis dataKey="date" stroke="#64748b" tick={{fill: '#64748b', fontSize: 12}} tickMargin={10} />
-                  <YAxis stroke="#64748b" tick={{fill: '#64748b', fontSize: 12}} 
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" vertical={false} />
+                  <XAxis dataKey="date" stroke="var(--text-secondary)" tick={{fill: 'var(--text-secondary)', fontSize: 12}} tickMargin={10} />
+                  <YAxis stroke="var(--text-secondary)" tick={{fill: 'var(--text-secondary)', fontSize: 12}} 
                          domain={['auto', 'auto']} />
                   <Tooltip 
-                    contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px' }}
+                    contentStyle={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '8px', color: 'var(--text-primary)' }}
                     itemStyle={{ fontWeight: 'medium' }}
                   />
                   <Legend verticalAlign="bottom" height={36}/>

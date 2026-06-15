@@ -4,24 +4,22 @@ import { LayoutDashboard, Users, Settings, Activity, CalendarDays, PieChart } fr
 export default function Layout({ children }) {
   const location = useLocation();
 
-  const navItems = [
     { name: '總覽儀表板', path: '/', icon: <LayoutDashboard size={20} /> },
     { name: '單一帳號分析', path: '/platforms', icon: <Activity size={20} /> },
     { name: '競品分析', path: '/competitors', icon: <PieChart size={20} /> },
     { name: '小編行事曆', path: '/calendar', icon: <CalendarDays size={20} /> },
     { name: '追蹤清單管理', path: '/manage', icon: <Users size={20} /> },
-    { name: '系統設定', path: '/settings', icon: <Settings size={20} /> },
   ];
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 flex font-sans dark">
+    <div className="min-h-screen bg-[var(--bg-base)] text-[var(--text-primary)] flex font-sans">
       {/* Sidebar */}
-      <aside className="w-64 bg-slate-800/50 border-r border-slate-700/50 hidden md:flex flex-col backdrop-blur-xl">
+      <aside className="w-64 bg-[var(--bg-card)] border-r border-[var(--border-color)] hidden md:flex flex-col">
         <div className="p-6">
-          <h1 className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500 tracking-tight">
+          <h1 className="text-2xl font-black text-[var(--accent)] tracking-tight">
             IGS社群數據觀測站
           </h1>
-          <p className="text-xs text-slate-400 mt-1 uppercase tracking-widest font-semibold">Social Media Analytics</p>
+          <p className="text-xs text-[var(--text-muted)] mt-1 uppercase tracking-widest font-semibold">Social Media Analytics</p>
         </div>
 
         <nav className="flex-1 px-4 space-y-2 mt-4">
@@ -33,11 +31,11 @@ export default function Layout({ children }) {
                 to={item.path}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isActive
-                    ? 'bg-purple-500/10 text-purple-400 font-medium'
-                    : 'text-slate-400 hover:bg-slate-700/30 hover:text-slate-200'
+                    ? 'bg-[var(--bg-base)] text-[var(--accent)] font-bold border border-[var(--border-color)]'
+                    : 'text-[var(--text-secondary)] hover:bg-[var(--bg-base)] hover:text-[var(--text-primary)]'
                 }`}
               >
-                <div className={`${isActive ? 'text-purple-400' : 'text-slate-500'}`}>
+                <div className={`${isActive ? 'text-[var(--accent)]' : 'text-[var(--text-secondary)]'}`}>
                   {item.icon}
                 </div>
                 {item.name}
@@ -46,14 +44,14 @@ export default function Layout({ children }) {
           })}
         </nav>
         
-        <div className="p-6 border-t border-slate-700/50">
+        <div className="p-6 border-t border-[var(--border-color)]">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 flex items-center justify-center font-bold text-sm">
+            <div className="w-8 h-8 rounded-full bg-[var(--accent)] text-[var(--text-primary)] flex items-center justify-center font-bold text-sm">
               I
             </div>
             <div>
-              <p className="text-sm font-medium">IGS Admin</p>
-              <p className="text-xs text-slate-500">v2.0 Beta</p>
+              <p className="text-sm font-bold text-[var(--text-primary)]">IGS Admin</p>
+              <p className="text-xs text-[var(--text-muted)]">v2.0 Beta</p>
             </div>
           </div>
         </div>
@@ -62,8 +60,8 @@ export default function Layout({ children }) {
       {/* Main Content */}
       <main className="flex-1 flex flex-col h-screen overflow-hidden">
         {/* Mobile Header */}
-        <header className="md:hidden bg-slate-800/80 backdrop-blur-md border-b border-slate-700 p-4 flex items-center justify-between">
-          <h1 className="text-xl font-black bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
+        <header className="md:hidden bg-[var(--bg-card)] border-b border-[var(--border-color)] p-4 flex items-center justify-between">
+          <h1 className="text-xl font-black text-[var(--accent)]">
             IGS社群數據觀測站
           </h1>
         </header>

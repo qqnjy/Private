@@ -11,10 +11,10 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api
 const COLORS = {
   fb: '#3b5998',
   ig: '#e1306c',
-  threads: '#ffffff',
+  threads: '#0f1419',
   yt: '#ff0000',
-  primary: '#c084fc',
-  secondary: '#38bdf8'
+  primary: '#5d7a8c',
+  secondary: '#b0c4de'
 };
 
 const PLATFORM_ICONS = {
@@ -120,7 +120,7 @@ export default function Dashboard() {
   }, [selectedGame, targets, startDate, endDate, dateRangeType]);
 
   if (loading && games.length === 0) {
-    return <div className="animate-pulse flex space-x-4 p-8 text-slate-400">載入數據中...</div>;
+    return <div className="animate-pulse flex space-x-4 p-8 text-[var(--text-secondary)]">載入數據中...</div>;
   }
 
   const safePlatformStats = summary?.platform_stats || {};
@@ -185,19 +185,19 @@ export default function Dashboard() {
       const diff = data[`${key}_diff`];
       
       return (
-        <div className="bg-slate-800 border border-slate-700 p-3 rounded-lg shadow-xl">
-          <p className="text-slate-300 font-bold mb-2">{label}</p>
-          <p className="text-white mb-1" style={{ color: COLORS[key] || COLORS.primary }}>
+        <div className="bg-[var(--bg-card)] border border-[var(--border-color)] p-3 rounded-lg shadow-xl">
+          <p className="text-[var(--text-secondary)] font-bold mb-2">{label}</p>
+          <p className="text-[var(--text-primary)] mb-1" style={{ color: COLORS[key] || COLORS.primary }}>
             <span className="uppercase font-bold">{key} : </span> 
             <span className="font-bold">{(value || 0).toLocaleString()}</span>
           </p>
           {diff !== undefined && diff !== 0 && (
             <p className={`text-sm font-bold flex items-center gap-1 ${diff > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-              {diff > 0 ? '▲' : '▼'} {Math.abs(diff).toLocaleString()} <span className="text-slate-500 font-normal text-xs ml-1">(較昨日)</span>
+              {diff > 0 ? '▲' : '▼'} {Math.abs(diff).toLocaleString()} <span className="text-[var(--text-muted)] font-normal text-xs ml-1">(較昨日)</span>
             </p>
           )}
           {diff === 0 && (
-            <p className="text-sm font-bold text-slate-500 flex items-center gap-1">
+            <p className="text-sm font-bold text-[var(--text-muted)] flex items-center gap-1">
               - 0 <span className="font-normal text-xs ml-1">(無增減)</span>
             </p>
           )}
@@ -211,29 +211,28 @@ export default function Dashboard() {
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-white">總覽儀表板</h2>
-          <p className="text-slate-400 mt-1">依照不同遊戲分開呈現數據表現</p>
+          <h2 className="text-3xl font-bold text-[var(--text-primary)]">總覽儀表板</h2>
+          <p className="text-[var(--text-secondary)] mt-1">依照不同遊戲分開呈現數據表現</p>
         </div>
         <button
           onClick={exportCSV}
-          className="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-bold transition-all shadow-lg shadow-emerald-600/20"
+          className="flex items-center gap-2 px-4 py-2 bg-[var(--accent)] hover:opacity-90 text-white rounded-lg font-bold transition-all shadow-sm"
         >
           <Download size={18} />
           匯出 CSV
         </button>
       </div>
 
-      {/* 遊戲分頁 Tabs */}
       {games.length > 0 && (
-        <div className="flex flex-wrap gap-2 border-b border-slate-700/50 pb-4">
+        <div className="flex flex-wrap gap-2 border-b border-[var(--border-color)] pb-4">
           {games.map(game => (
             <button
               key={game}
               onClick={() => setSelectedGame(game)}
               className={`px-4 py-2 rounded-lg font-medium transition-all ${
                 selectedGame === game 
-                  ? 'bg-purple-500 text-white shadow-lg shadow-purple-500/30' 
-                  : 'bg-slate-800/60 text-slate-400 hover:bg-slate-700/60 hover:text-white'
+                  ? 'bg-[var(--accent)] text-white' 
+                  : 'bg-[var(--bg-card)] text-[var(--text-secondary)] border border-[var(--border-color)] hover:border-[var(--accent)]'
               }`}
             >
               {game}
@@ -243,102 +242,56 @@ export default function Dashboard() {
       )}
 
       {loading && games.length > 0 ? (
-        <div className="animate-pulse flex space-x-4 p-8 text-slate-400">載入遊戲數據中...</div>
+        <div className="p-8 text-[var(--text-secondary)]">載入遊戲數據中...</div>
       ) : (
         <>
-          {/* KPI Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-6 relative overflow-hidden backdrop-blur-sm">
-              <div className="absolute top-0 right-0 p-4 opacity-10">
-                <Users size={64} />
-              </div>
-              <p className="text-slate-400 text-sm font-medium mb-1">{selectedGame} 總粉絲數</p>
-              <h3 className="text-4xl font-black text-white">{(summary?.total_followers || 0).toLocaleString()}</h3>
+            <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-6">
+              <p className="text-[var(--text-secondary)] text-sm font-medium mb-1">{selectedGame} 總粉絲數</p>
+              <h3 className="text-4xl font-black text-[var(--text-primary)]">{(summary?.total_followers || 0).toLocaleString()}</h3>
             </div>
 
-            {Object.entries(safePlatformStats).map(([platform, count]) => {
-              const platformTarget = targets.find(t => 
-                t.platform === platform && 
-                (t.name || '').replace('粉絲團', '').replace('_IG', '').trim() === selectedGame
-              );
-              
-              return (
-                <div key={platform} className="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm flex items-center justify-between group">
-                  <div>
-                    <p className="text-slate-400 text-sm font-medium mb-1 flex items-center gap-2 uppercase">
-                      <span style={{color: COLORS[platform]}}>{PLATFORM_ICONS[platform]}</span>
-                      {platform} 總數
-                    </p>
-                    <h3 className="text-2xl font-bold text-white">{(count || 0).toLocaleString()}</h3>
-                  </div>
-                  {platformTarget?.url && (
-                    <a 
-                      href={platformTarget.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-slate-500 hover:text-purple-400 transition-colors opacity-0 group-hover:opacity-100 p-2"
-                      title={`前往 ${platformTarget.name}`}
-                    >
-                      <Globe size={20} />
-                    </a>
-                  )}
+            {Object.entries(safePlatformStats).map(([platform, count]) => (
+              <div key={platform} className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-6 flex items-center justify-between">
+                <div>
+                  <p className="text-[var(--text-secondary)] text-sm font-medium mb-1 flex items-center gap-2 uppercase">
+                    <span style={{color: COLORS[platform]}}>{PLATFORM_ICONS[platform]}</span>
+                    {platform} 總數
+                  </p>
+                  <h3 className="text-2xl font-bold text-[var(--text-primary)]">{(count || 0).toLocaleString()}</h3>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Main Trend Chart */}
-            <div className="lg:col-span-2 bg-slate-800/40 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm flex flex-col">
+            <div className="lg:col-span-2 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-6 flex flex-col">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
-                <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                  <TrendingUp size={20} className="text-purple-400" />
+                <h3 className="text-lg font-bold text-[var(--text-primary)] flex items-center gap-2">
+                  <TrendingUp size={20} className="text-[var(--accent)]" />
                   平台趨勢
                 </h3>
                 <div className="flex flex-wrap items-center gap-4">
-                  <div className="flex items-center gap-2 text-sm">
-                    <select
-                      value={dateRangeType}
-                      onChange={(e) => setDateRangeType(e.target.value)}
-                      className="bg-slate-900 border border-slate-700 text-white rounded p-1.5 focus:outline-none focus:border-purple-500"
-                    >
-                      <option value="7">過去 7 天</option>
-                      <option value="30">過去 30 天</option>
-                      <option value="90">過去 90 天</option>
-                      <option value="this_year">今年</option>
-                      <option value="all">所有時間 (2025起)</option>
-                      <option value="custom">自訂</option>
-                    </select>
-
-                    {dateRangeType === 'custom' && (
-                      <>
-                        <input 
-                          type="date" 
-                          min="2025-01-01"
-                          value={startDate}
-                          onChange={(e) => setStartDate(e.target.value)}
-                          className="bg-slate-900 border border-slate-700 text-white rounded p-1.5 focus:outline-none focus:border-purple-500"
-                        />
-                        <span className="text-slate-400">至</span>
-                        <input 
-                          type="date" 
-                          min="2025-01-01"
-                          value={endDate}
-                          onChange={(e) => setEndDate(e.target.value)}
-                          className="bg-slate-900 border border-slate-700 text-white rounded p-1.5 focus:outline-none focus:border-purple-500"
-                        />
-                      </>
-                    )}
-                  </div>
-                  <div className="flex bg-slate-900/50 p-1 rounded-lg border border-slate-700/50">
+                  <select
+                    value={dateRangeType}
+                    onChange={(e) => setDateRangeType(e.target.value)}
+                    className="bg-[var(--bg-base)] border border-[var(--border-color)] text-[var(--text-primary)] rounded p-1.5 focus:outline-none"
+                  >
+                    <option value="7">過去 7 天</option>
+                    <option value="30">過去 30 天</option>
+                    <option value="90">過去 90 天</option>
+                    <option value="this_year">今年</option>
+                    <option value="all">所有時間</option>
+                  </select>
+                  <div className="flex bg-[var(--bg-base)] p-1 rounded-lg border border-[var(--border-color)]">
                     {['fb', 'ig', 'threads', 'yt'].map(p => (
                       <button
                         key={p}
                         onClick={() => setSelectedPlatformChart(p)}
                         className={`px-3 py-1.5 rounded-md text-sm font-bold uppercase transition-all ${
                           selectedPlatformChart === p 
-                            ? 'bg-slate-700 text-white shadow-sm' 
-                            : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                            ? 'bg-[var(--border-color)] text-[var(--text-primary)]' 
+                            : 'text-[var(--text-secondary)]'
                         }`}
                       >
                         {p}
@@ -347,63 +300,35 @@ export default function Dashboard() {
                   </div>
                 </div>
               </div>
-              <div className="h-[350px] flex-1">
+              <div className="h-[350px]">
                 {trendData && trendData.length > 0 ? (
                   <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={trendData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-                      <XAxis dataKey="date" stroke="#64748b" tick={{fill: '#64748b', fontSize: 12}} tickMargin={10} minTickGap={20} />
-                      <YAxis stroke="#64748b" tick={{fill: '#64748b', fontSize: 12}} tickFormatter={formatNum} domain={['dataMin', 'dataMax']} />
+                    <LineChart data={trendData}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" vertical={false} />
+                      <XAxis dataKey="date" stroke="var(--text-secondary)" fontSize={12} />
+                      <YAxis stroke="var(--text-secondary)" fontSize={12} domain={['dataMin', 'dataMax']} tickFormatter={formatNum} />
                       <Tooltip content={<CustomTooltip />} />
-                      <Line 
-                        type="monotone" 
-                        dataKey={selectedPlatformChart} 
-                        name={selectedPlatformChart} 
-                        stroke={COLORS[selectedPlatformChart] || COLORS.primary} 
-                        strokeWidth={3} 
-                        dot={false} 
-                      />
+                      <Line type="monotone" dataKey={selectedPlatformChart} stroke={COLORS[selectedPlatformChart]} strokeWidth={3} dot={false} />
                     </LineChart>
                   </ResponsiveContainer>
                 ) : (
-                  <div className="h-full flex items-center justify-center text-slate-500">尚無足夠數據</div>
+                  <div className="h-full flex items-center justify-center text-[var(--text-secondary)]">尚無足夠數據</div>
                 )}
               </div>
             </div>
 
-            {/* Platform Share Pie Chart */}
-            <div className="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm">
-              <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
-                <Activity size={20} className="text-pink-400" />
-                平台佔比分析
-              </h3>
+            <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-6">
+              <h3 className="text-lg font-bold text-[var(--text-primary)] mb-6">平台佔比分析</h3>
               <div className="h-[300px]">
-                {pieData && pieData.length > 0 ? (
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie
-                        data={pieData}
-                        cx="50%"
-                        cy="50%"
-                        innerRadius={60}
-                        outerRadius={100}
-                        paddingAngle={5}
-                        dataKey="value"
-                      >
-                        {pieData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
-                        ))}
-                      </Pie>
-                      <Tooltip 
-                        contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px' }}
-                        itemStyle={{ fontWeight: 'bold' }}
-                      />
-                      <Legend verticalAlign="bottom" height={36}/>
-                    </PieChart>
-                  </ResponsiveContainer>
-                ) : (
-                  <div className="h-full flex items-center justify-center text-slate-500">尚無足夠數據</div>
-                )}
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie data={pieData} innerRadius={60} outerRadius={100} dataKey="value">
+                      {pieData.map((entry, index) => <Cell key={index} fill={entry.color} />)}
+                    </Pie>
+                    <Tooltip />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
               </div>
             </div>
           </div>

@@ -8,26 +8,22 @@
 @custom-variant dark (&:is(.dark *));
 
 @layer base {
-  :root {
-    --bg-base: #f8fafc;
+  :root, html.dark :root {
+    --bg-base: #f0f4f8;
     --bg-card: #ffffff;
-    --text-primary: #0f172a;
-    --text-secondary: #64748b;
-    --border-color: #e2e8f0;
-    --accent: #aa3bff;
-  }
-  
-  html.dark :root, :root {
-    --bg-base: #0f172a;
-    --bg-card: #1e293b;
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --border-color: #334155;
-    --accent: #c084fc;
+    --text-primary: #334e68;
+    --text-secondary: #627d98;
+    --border-color: #b0c4de;
+    --accent: #5d7a8c;
   }
 
   body {
     background-color: var(--bg-base);
     color: var(--text-primary);
+    background-image: 
+      linear-gradient(var(--border-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-attachment: fixed;
   }
 }
