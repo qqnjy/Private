@@ -27,9 +27,9 @@ const Calendar = () => {
 
   const updateMovies = async () => {
     setIsUpdatingMovies(true);
+    const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
     try {
-      // Assume backend runs on port 8000. Use dynamic origin in production
-      const res = await fetch('http://localhost:8000/api/movies/yahoo');
+      const res = await fetch(`${API_BASE}/movies/yahoo`);
       if (res.ok) {
         const data = await res.json();
         setMovieEvents(data);

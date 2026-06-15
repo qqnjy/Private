@@ -26,10 +26,12 @@ const CompetitorAnalysis = () => {
   const [competitorData, setCompetitorData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
+
   const fetchCompetitorsData = async () => {
     try {
       // Use full URL if backend is running on different port in dev
-      const res = await fetch('http://localhost:8000/api/competitors');
+      const res = await fetch(`${API_BASE}/competitors`);
       if (res.ok) {
         const data = await res.json();
         setCompetitorData(data);
@@ -48,7 +50,7 @@ const CompetitorAnalysis = () => {
   const handleUpdate = async () => {
     try {
       setIsUpdating(true);
-      const res = await fetch('http://localhost:8000/api/competitors/fetch', { method: 'POST' });
+      const res = await fetch(`${API_BASE}/competitors/fetch`, { method: 'POST' });
       const data = await res.json();
       if (data.status === 'success') {
         alert('資料更新成功！畫面已同步為最新資料。');
