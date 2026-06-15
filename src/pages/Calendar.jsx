@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import calendarData from '../data/calendar2026.json';
 
 const Calendar = () => {
@@ -6,6 +6,8 @@ const Calendar = () => {
   const today = new Date();
   
   const [currentDate, setCurrentDate] = useState(new Date(today.getFullYear(), today.getMonth(), 1));
+  const [movieEvents, setMovieEvents] = useState([]);
+  const [isUpdatingMovies, setIsUpdatingMovies] = useState(false);
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -22,6 +24,27 @@ const Calendar = () => {
   const goToToday = () => {
     setCurrentDate(new Date(today.getFullYear(), today.getMonth(), 1));
   };
+
+  const updateMovies = async () => {
+    setIsUpdatingMovies(true);
+    try {
+      // Assume backend runs on port 8000. Use dynamic origin in production
+      const res = await fetch('http://localhost:8000/api/movies/yahoo');
+      if (res.ok) {
+        const data = await res.json();
+        setMovieEvents(data);
+      }
+    } catch (e) {
+      console.error('Failed to fetch movies', e);
+      // alert('更新失敗，請確認後端伺服器是否執行中');
+    }
+    setIsUpdatingMovies(false);
+  };
+
+  // 自動在畫面載入時抓取電影
+  useEffect(() => {
+    updateMovies();
+  }, []);
 
   // Extract events for the current displayed year/month
   // The data has a format where "events" contains "date": "M/D" or "M/D-M/D"
@@ -72,8 +95,29 @@ const Calendar = () => {
         }
       });
     });
+
+    // Merge movie events
+    movieEvents.forEach(movie => {
+      // movie.date is "YYYY-MM-DD"
+      if (movie && movie.date) {
+        const parts = movie.date.split('-');
+        if (parts.length === 3) {
+          const y = parseInt(parts[0], 10);
+          const m = parseInt(parts[1], 10);
+          const d = parseInt(parts[2], 10);
+          if (y === year) {
+            const key = `${y}-${m}-${d}`;
+            if (!map[key]) map[key] = [];
+            if (!map[key].includes(movie.name)) {
+              map[key].push(movie.name);
+            }
+          }
+        }
+      }
+    });
+
     return map;
-  }, [year]);
+  }, [year, movieEvents]);
 
   // Calendar logic
   const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -224,6 +268,8 @@ const Calendar = () => {
                 colorClasses = 'bg-[#eef5ee] text-[#5c8a5c] border-[#c2d6c2]';
               } else if (ev.includes('國際') || ev.includes('世界') || ev.includes('全球') || ev.includes('聯合國')) {
                 colorClasses = 'bg-[#fdf4e6] text-[#b3834d] border-[#e6cda8]';
+              } else if (ev.includes('🎬')) {
+                colorClasses = 'bg-[#fef3c7] text-[#92400e] border-[#fde68a]';
               } else {
                 colorClasses = 'bg-[var(--bg-card)] text-[#5d7a8c] border-[#b0c4de]';
               }
@@ -265,6 +311,12 @@ const Calendar = () => {
               {year} 年 {month + 1} 月
             </h2>
             <div className="flex items-center space-x-4">
+              <button 
+                onClick={updateMovies} 
+                disabled={isUpdatingMovies}
+                className="px-4 py-2 bg-[var(--bg-card)] border border-[var(--border-color)] hover:border-[#f59e0b] text-[#d97706] rounded-lg transition text-sm flex items-center gap-2">
+                {isUpdatingMovies ? '更新中...' : '🎬 更新電影檔期'}
+              </button>
               <button onClick={goToToday} className="px-4 py-2 bg-[var(--bg-card)] border border-[var(--border-color)] hover:border-[var(--accent)] text-[var(--text-primary)] rounded-lg transition text-sm">
                 回到今天
               </button>

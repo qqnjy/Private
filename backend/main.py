@@ -251,3 +251,34 @@ def fetch_competitors():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/api/movies/yahoo")
+async def get_yahoo_movies():
+    import httpx
+    import re
+    # We use atmovies since Yahoo has anti-scraping
+    url = "http://www.atmovies.com.tw/movie/next/0/"
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    
+    async with httpx.AsyncClient(follow_redirects=True) as client:
+        response = await client.get(url, headers=headers)
+        html = response.text
+
+    events = []
+    # Split by the date header
+    sections = html.split('<h2 class="major">')
+    for sec in sections[1:]:
+        date_match = re.search(r'<span>(.*?)</span>', sec)
+        if date_match:
+            # Format to YYYY-MM-DD
+            date_str = date_match.group(1).replace('/', '-').strip()
+            # Extract movie titles under this date
+            names = re.findall(r'<div class="filmtitle"><a[^>]*>(.*?)</a></div>', sec)
+            for name in names:
+                events.append({
+                    "name": f"🎬 {name.strip()}",
+                    "date": date_str
+                })
+            
+    return events
+
+
