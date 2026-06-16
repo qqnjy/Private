@@ -3,7 +3,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer,
   PieChart, Pie, Cell
 } from 'recharts';
-import { Search, ExternalLink, Filter, TrendingUp, MessageCircle, ThumbsUp, Share2, RefreshCw } from 'lucide-react';
+import { Search, ExternalLink, Filter, TrendingUp, MessageCircle, ThumbsUp, Share2, RefreshCw, X } from 'lucide-react';
 import { useEffect } from 'react';
 
 const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff7300', '#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
@@ -63,6 +63,8 @@ const CompetitorAnalysis = () => {
   const [endDate, setEndDate] = useState('');
   const [competitorData, setCompetitorData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [videoFilter, setVideoFilter] = useState('All'); // 'All', 'ShortVideo', 'Normal'
+  const [selectedTags, setSelectedTags] = useState([]);
 
   // Dynamically assign unique colors to all tags that are not in the predefined map
   const dynamicTagColorMap = useMemo(() => {
@@ -175,6 +177,18 @@ const CompetitorAnalysis = () => {
       );
     }
 
+    if (videoFilter === 'ShortVideo') {
+      result = result.filter(item => item.tags.includes('短影片'));
+    } else if (videoFilter === 'Normal') {
+      result = result.filter(item => !item.tags.includes('短影片'));
+    }
+
+    if (selectedTags.length > 0) {
+      result = result.filter(item => 
+        selectedTags.every(tag => item.tags.includes(tag))
+      );
+    }
+
     result.sort((a, b) => {
       if (a[sortConfig.key] < b[sortConfig.key]) {
         return sortConfig.direction === 'asc' ? -1 : 1;
@@ -186,7 +200,7 @@ const CompetitorAnalysis = () => {
     });
 
     return result;
-  }, [searchTerm, selectedBrand, sortConfig, dateRangeType, startDate, endDate, competitorData]);
+  }, [searchTerm, selectedBrand, sortConfig, dateRangeType, startDate, endDate, competitorData, videoFilter, selectedTags]);
 
   const requestSort = (key) => {
     let direction = 'desc';
@@ -194,6 +208,14 @@ const CompetitorAnalysis = () => {
       direction = 'asc';
     }
     setSortConfig({ key, direction });
+  };
+
+  const toggleTag = (tag) => {
+    if (selectedTags.includes(tag)) {
+      setSelectedTags(selectedTags.filter(t => t !== tag));
+    } else {
+      setSelectedTags([...selectedTags, tag]);
+    }
   };
 
   // Aggregation for Charts
@@ -432,6 +454,19 @@ const CompetitorAnalysis = () => {
                 ))}
               </select>
             </div>
+
+            {/* Video Filter */}
+            <div className="relative flex-1 md:w-32">
+              <select
+                className="w-full bg-[var(--bg-base)] border border-[var(--border-color)] text-[var(--text-primary)] rounded-xl px-4 py-2.5 focus:outline-none focus:border-indigo-500 appearance-none"
+                value={videoFilter}
+                onChange={(e) => setVideoFilter(e.target.value)}
+              >
+                <option value="All">所有類型</option>
+                <option value="ShortVideo">僅短影音</option>
+                <option value="Normal">一般貼文</option>
+              </select>
+            </div>
             
             {/* Search */}
             <div className="relative flex-1 md:w-64">
@@ -446,6 +481,32 @@ const CompetitorAnalysis = () => {
             </div>
           </div>
         </div>
+
+        {selectedTags.length > 0 && (
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <span className="text-sm text-[var(--text-secondary)] font-medium">已選標籤：</span>
+            {selectedTags.map(tag => (
+              <span 
+                key={tag} 
+                className={`flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded-full shadow-sm ${dynamicTagColorMap[tag] || 'bg-gray-100 text-gray-700'}`}
+              >
+                {tag}
+                <button 
+                  onClick={() => toggleTag(tag)}
+                  className="hover:bg-black/20 dark:hover:bg-white/20 rounded-full p-0.5 transition-colors"
+                >
+                  <X size={14} />
+                </button>
+              </span>
+            ))}
+            <button 
+              onClick={() => setSelectedTags([])}
+              className="text-xs text-[var(--text-secondary)] hover:text-indigo-500 font-medium ml-1 px-2 py-1 transition-colors"
+            >
+              清除全部
+            </button>
+          </div>
+        )}
 
         <div className="overflow-x-auto">
           <table className="w-full text-left">
@@ -480,8 +541,8 @@ const CompetitorAnalysis = () => {
                       {item.tags.map((tag, i) => (
                         <span 
                           key={i} 
-                          onClick={() => setSearchTerm(tag)}
-                          className={`text-xs px-2 py-0.5 rounded-full cursor-pointer hover:opacity-80 transition-opacity ${dynamicTagColorMap[tag] || 'bg-gray-100 text-gray-700'}`}
+                          onClick={() => toggleTag(tag)}
+                          className={`text-xs px-2 py-0.5 rounded-full cursor-pointer hover:opacity-80 transition-all ${selectedTags.includes(tag) ? 'ring-2 ring-indigo-400 ring-offset-1 dark:ring-offset-[#1e1e2d]' : ''} ${dynamicTagColorMap[tag] || 'bg-gray-100 text-gray-700'}`}
                         >
                           {tag}
                         </span>

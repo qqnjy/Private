@@ -1,0 +1,854 @@
+
+
+
+
+
+
+
+
+
+
+	
+
+<!DOCTYPE HTML>
+<html><head>
+	<title>開眼電影網首頁--本週新片--</title>
+	<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="author" content="@movies �}���q�v atmovies.com.tw"> <meta name="copyright" content="@movies �}���q�v"><meta name="Description" content="�i�}���q�v���j�۷��x�W����IMDb(�c�餤�媩)�F�]�t�Ҧ��x�W�W�M�v�����Y�ɸ�T�G���P�s���B���������B�����G���B����W�M�P�s���ֳ����v����T�C�]�]�t�Ҧ��x�W���|���W�M�v���P�����ɶ��P�u�W�q���A�ȡC�٦������d�B���y���B�����f�L�v�i�H�Ϊ��������Ҧ������o��������ơC�H�Υ��y�Ҧ������P��Ʈw����"><meta name="apple-itunes-app" content="app-id=1062654478"><meta name="google-play-app" content="app-id=tw.com.atmovies"><meta name="google" content="notranslate" /> <!-- Schema.org markup for Google+ --> <meta itemprop="name" content="�i�}���q�v���j@movies - ���P�s���B���������B�����G���B����W�M�P�s���ֳ��F�Ҧ��x�W���|���W�M�v���P�����ɶ�"> <meta itemprop="description" content="�i�}���q�v���j�۷��x�W����IMDb(�c�餤�媩)�F�]�t�Ҧ��x�W�W�M�v�����Y�ɸ�T�G���P�s���B���������B�����G���B����W�M�P�s���ֳ����v����T�C�]�]�t�Ҧ��x�W���|���W�M�v���P�����ɶ��P�u�W�q���A�ȡC�٦������d�B���y���B�����f�L�v�i�H�Ϊ��������Ҧ������o��������ơC�H�Υ��y�Ҧ������P��Ʈw����"> <meta itemprop="image" content="http://www.atmovies.com.tw/images/atmovies.jpg"> <!-- Open Graph data --> <meta property="og:type" content="website" /> <meta property="og:title" content="�i�}���q�v���j@movies" /> <meta property="og:description" content="�i�}���q�v���j - ���P�s���B���������B�����G���B����W�M�P�s���ֳ��F�Ҧ��x�W���|���W�M�v���P�����ɶ� - �۷��x�W����IMDb(�c�餤�媩)�F�]�t�Ҧ��x�W�W�M�v�����Y�ɸ�T�G���P�s���B���������B�����G���B����W�M�P�s���ֳ����v����T�C�]�]�t�Ҧ��x�W���|���W�M�v���P�����ɶ��P�u�W�q���A�ȡC�٦������d�B���y���B�����f�L�v�i�H�Ϊ��������Ҧ������o��������ơC�H�Υ��y�Ҧ������P��Ʈw����" /> <meta property="og:url" content="http://www.atmovies.com.tw/" /> <meta property="og:site_name" content="�i�}���q�v���j"> <meta property="og:image" content="http://www.atmovies.com.tw/images/atmovies.jpg" />
+	<!-- ------------------- -->
+	<link rel="shortcut icon" href="/assets2/icons/favicon.ico"> 
+	<link rel="stylesheet" href="/assets2/css/style.css?v=101"> 
+	<link rel="stylesheet" href="/assets2/css/movie.css?v=1001">
+	<link rel="stylesheet" href="/assets2/css/style-qs.css?v=1">
+	<!-- ------------------- --> 
+	<script src='https://www.google.com/recaptcha/api.js' async defer></script> 
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<!--/////////******** GoogleADX廣告 **********//////////-->
+	<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+	<script> var googletag = googletag || {}; googletag.cmd = googletag.cmd || [];</script> 
+	<script> googletag.cmd.push(function() { googletag.defineSlot('/153224125/atmovies_movie_Top_970x250//300x250', [[970, 250], [300, 250]], 'div-gpt-ad-1556087812668-0').addService(googletag.pubads()); googletag.pubads().enableSingleRequest(); googletag.pubads().collapseEmptyDivs(); googletag.enableServices(); });</script>
+	<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/153224125/SF_atmovies_parallax_320x480', [1, 1], 'div-gpt-ad-1557821465943-0').addService(googletag.pubads());
+   	googletag.pubads().enableSingleRequest();
+    googletag.pubads().collapseEmptyDivs();
+    googletag.enableServices();
+  });
+</script>
+			<!--/////////******** Google Analytics Tracking  **********//////////-->
+				<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SBSQGF18QT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SBSQGF18QT');
+</script>
+</head>
+<body class="home_page drawer drawer--left drawer--sidebar language-tw layout_renewal tw"> 
+	<a class="googleplus g-signin2" onclick="" href="javascript:;" data-onsuccess="onSignIn" style="display:none;"></a> 
+	<div class="article_Top_PMP"></div> 
+	<div class="scroller_anchor"></div> 
+	
+<header class="l-nav"> 
+	<div class="container"> 
+		<div class="header_logo">
+			<a href="/home/">
+				<img src="/images/logo180.png" alt="@movies開眼電影網">
+			</a>
+		</div> 
+		<div id="menuTrigger" class="header_menuTrigger icon-menu" onclick="openMenu()"></div> 
+		<div id="menu" class="header_menu"> 
+			<div class="menuHeader"> 開眼電影網 <span class="menuClose icon-cross" onclick="closeMenu()"></span> </div> 
+			 
+			<div class="menuGroup mainMenu"> 
+				<ul id="dropdownMenu" class="dropdownMenu"> 
+					<li> <div class="menuTitle arrow">電影 </div> 
+						<ul class="dropdown top_header"> 
+							<li class="top_menu_listall"><a href="/movie/">電影首頁<span></span></a></li> 
+							<li><a href="/movie/new/">本周新片</a></li> 
+							<li><a href="/movie/now/">本期首輪</a></li> 
+							<li><a href="/movie/now2/">本期二輪</a></li> 
+							<li><a href="/movie/next/">近期上映</a></li> 
+							<li><a href="/movie/next2/">新片快報</a></li> 
+							<li><a href="http://app2.atmovies.com.tw/boxoffice/">票房排行榜</a></li> 
+							<li><a href="http://app2.atmovies.com.tw/atmdb/">資料館</a></li>
+							<li><a href="http://app2.atmovies.com.tw/dvd/"> D V D </a></li>
+							<li><a href="https://search.atmovies.com.tw/"><font color=#cc0000>☆</font> 搜 尋</a></li> 
+						</ul> 
+					<li> <div class="menuTitle arrow">戲院 </div> 
+						<ul class="dropdown"> 
+							<li class="top_menu_listall"><a href="/showtime/">全台戲院<span></span></a></li> 
+							<li class="top_menu_listall"><a href="/showtime/ticket/">網路訂票<span></span></a></li> 
+							<li><a href="/showtime/a02/">台北</a></li> <li><a href="/showtime/a03/">桃園</a></li> 
+							<li><a href="/showtime/a35/">新竹</a></li> <li><a href="/showtime/a04/">台中</a></li> 
+							<li><a href="/showtime/a06/">台南</a></li> <li><a href="/showtime/a07/">高雄</a></li> 
+						</ul>
+					</li> 
+					<li><a class="menuTitle" href="http://app2.atmovies.com.tw/news/">新聞</a></li> 
+					<li><a class="menuTitle" href="http://app2.atmovies.com.tw/eweekly/">E週報</a></li> 
+					<li><a class="menuTitle" href="http://app2.atmovies.com.tw/activity/activity.cfm">活動</a></li> 
+					<li><a class="menuTitle" href="http://bbs.atmovies.com.tw/bbs/bbs.cfm">ＢＢＳ</a></li> 
+				</ul> 
+			</div> 
+			
+			<div class="menuGroup company"> 
+				<ul> 
+					<li><a href="http://app.atmovies.com.tw/service/service.cfm?action=contact"><span class="icon-phone">聯絡我們</span></a></li>
+					<li><a href="http://app.atmovies.com.tw/service/service.cfm?action=about&page=1"><span class="icon-pacman "> 關於開眼</a></li> 
+				</ul> 
+				<p class="footer_copyright">Copyright &copy; @movies TW</p> 
+			</div> 
+		</div> 
+		<form action="https://search.atmovies.com.tw/search/" method="get" class="header_search icon-search"> 
+				<input type=hidden name=fr value="atmovies-movie">
+			  <input type=hidden name=enc value="UTF-8">
+			  <input type="hidden" name="type" value="all"> 
+			  <input type="search" name="search_term" placeholder="關鍵字"> 
+			  <span class="underline"></span> 
+			  <button class="icon-search" type="submit"></button> 
+		</form> 
+	</div>
+</header> 
+	<!-- Main -->
+<div id="main-wrapper">
+		<div class="content" style="margin:auto;">
+			<div class=atmovieslogo2></div>
+		</div>
+		<!--/////////******** GoogleAD廣告 **********//////////-->
+		<DIV><center>
+			
+			
+				<!--/////////******** Google廣告  **********//////////-->
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Responsive AD -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6580532459519002"
+     data-ad-slot="9308357246"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+			
+		</center></DIV>
+		
+		<!--////  內容區塊   ////-->
+		
+		<div class="container">
+			<div id="section_nav">
+				<span class="icon-home3"></span> 
+				<a href="/home/">開眼</a> 》 <a href="/movie/">電影</a> 》 <a href="/movie/next/">近期上映</a>
+			</div>
+			 
+			<div class="l-content container">
+				<div class="l-main"> 
+					<!--/////////******** film list here **********//////////--> 
+					<div class="c-section" style="padding-top: 10px;">
+						
+							<div class="pageList">
+		<div>
+    	<ul class="page">
+				
+				
+		    	<li><a href="/movie/next/w24/">6/13</a></li>
+				
+				
+				
+		    	<li><a href="/movie/next/w25/">6/17</a></li>
+				
+				
+				
+		    	<li><a href="/movie/next/w26/">6/24</a></li>
+				
+				
+				
+		    	<li><a href="/movie/next/w27/">6/30</a></li>
+				
+				
+				
+		    	<li><a href="/movie/next/w28/">7/8</a></li>
+				
+				
+				
+		    	<li><a href="/movie/next/w29/">7/17</a></li>
+				
+				
+				
+		    	<li><a href="/movie/next/w30/">7/24</a></li>
+				
+				
+				
+		    	<li><a href="/movie/next/w31/">7/29</a></li>
+				
+				
+				
+		    	<li><a href="/movie/next/w32/">8/7</a></li>
+				
+				
+				
+		    	<li><a href="/movie/next/w33/">8/12</a></li>
+				
+				
+	    		<li class="listAll"><span class="icon-stack"></span> <a href="/movie/next/0/">List All</a></li>
+		  </ul>
+    </div>	
+	</div>
+
+	<!-- //// film list all //// -->
+			
+	
+		<h2 class="major"><span>2026/06/13</span></h2>
+		<ul class="filmListAll">
+			
+						
+				<li>
+					<a href="/movie/fbko42867738/"><img src="/photo101/fbko42867738/pm_fbko42867738.jpg" alt="BTS WORLD TOUR in Busan" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fbko42867738/">BTS WORLD TOUR in Busan</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fbjp91022524/"><img src="/photo101/fbjp91022524/pm_fbjp91022524.jpg" alt="B’z LIVE-GYM 2026" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fbjp91022524/">B’z LIVE-GYM 2026</a></div>					
+				</li>
+			
+		</ul>
+	
+		<h2 class="major"><span>2026/06/17</span></h2>
+		<ul class="filmListAll">
+			
+						
+				<li>
+					<a href="/movie/ften29355505/"><img src="/photo101/ften29355505/pm_ften29355505.jpg" alt="玩具總動員5" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/ften29355505/">玩具總動員5</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fbpt35340614/"><img src="/photo101/fbpt35340614/pm_fbpt35340614.jpg" alt="藍色亞馬遜" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fbpt35340614/">藍色亞馬遜</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fgjp93868344/"><img src="/photo101/fgjp93868344/pm_fgjp93868344.jpg" alt="空之境界劇場版：終章" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fgjp93868344/">空之境界劇場版：終章</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fhen35672862/"><img src="/photo101/fhen35672862/pm_fhen35672862.jpg" alt="陰魂旅社" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fhen35672862/">陰魂旅社</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fpen33050292/"><img src="/photo101/fpen33050292/pm_fpen33050292.jpg" alt="肖豬皮傑" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fpen33050292/">肖豬皮傑</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fpen33763941/"><img src="/photo101/fpen33763941/pm_fpen33763941.jpg" alt="鬼上車" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fpen33763941/">鬼上車</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fffr37537634/"><img src="/photo101/fffr37537634/pm_fffr37537634.jpg" alt="開放關係試淫運" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fffr37537634/">開放關係試淫運</a></div>					
+				</li>
+			
+		</ul>
+	
+		<h2 class="major"><span>2026/06/24</span></h2>
+		<ul class="filmListAll">
+			
+						
+				<li>
+					<a href="/movie/fdjp94776409/"><img src="/photo101/fdjp94776409/pm_fdjp94776409.jpg" alt="名偵探柯南 高速公路的墮天使" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fdjp94776409/">名偵探柯南 高速公路的墮天使</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fsen38814476/"><img src="/photo101/fsen38814476/pm_fsen38814476.jpg" alt="超少女" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fsen38814476/">超少女</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fsjp51137145/"><img src="/photo101/fsjp51137145/pm_fsjp51137145.jpg" alt="鼠一般的你" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fsjp51137145/">鼠一般的你</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/feko42440534/"><img src="/photo101/feko42440534/pm_feko42440534.jpg" alt="ENHYPEN : IMMERSION IN CINEMAS" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/feko42440534/">ENHYPEN : IMMERSION IN CINEMAS</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fkja39388678/"><img src="/photo101/fkja39388678/pm_fkja39388678.jpg" alt="電影版教場：驪歌" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fkja39388678/">電影版教場：驪歌</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/a12026062601/"><img src="/photo101/a12026062601/pm_a12026062601.jpg" alt="2026台北電影節" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/a12026062601/">2026台北電影節</a></div>					
+				</li>
+			
+		</ul>
+	
+		<h2 class="major"><span>2026/06/30</span></h2>
+		<ul class="filmListAll">
+			
+						
+				<li>
+					<a href="/movie/fmen32890033/"><img src="/photo101/fmen32890033/pm_fmen32890033.jpg" alt="小小兵&大怪獸" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fmen32890033/">小小兵&大怪獸</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fsen32362890/"><img src="/photo101/fsen32362890/pm_fsen32362890.jpg" alt="鯊戮風暴" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fsen32362890/">鯊戮風暴</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fsen28682323/"><img src="/photo101/fsen28682323/pm_fsen28682323.jpg" alt="絕殺路人甲" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fsen28682323/">絕殺路人甲</a></div>					
+				</li>
+			
+		</ul>
+	
+		<h2 class="major"><span>2026/07/08</span></h2>
+		<ul class="filmListAll">
+			
+						
+				<li>
+					<a href="/movie/fmen27419466/"><img src="/photo101/fmen27419466/pm_fmen27419466.jpg" alt="海洋奇緣" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fmen27419466/">海洋奇緣</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fgjp36517689/"><img src="/photo101/fgjp36517689/pm_fgjp36517689.jpg" alt="攻殼機動隊 2026" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fgjp36517689/">攻殼機動隊 2026</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fien14173636/"><img src="/photo101/fien14173636/pm_fien14173636.jpg" alt="開放性邀請" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fien14173636/">開放性邀請</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/feen31170389/"><img src="/photo101/feen31170389/pm_feen31170389.jpg" alt="屍變焚場" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/feen31170389/">屍變焚場</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fstr36472181/"><img src="/photo101/fstr36472181/pm_fstr36472181.jpg" alt="夢的力量" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fstr36472181/">夢的力量</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fnjp38201958/"><img src="/photo101/fnjp38201958/pm_fnjp38201958.jpg" alt="電影哆啦A夢：新‧大雄的海底鬼岩城" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fnjp38201958/">電影哆啦A夢：新‧大雄的海底鬼岩城</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fojp41936211/"><img src="/photo101/fojp41936211/pm_fojp41936211.jpg" alt="人為什麼寫情書" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fojp41936211/">人為什麼寫情書</a></div>					
+				</li>
+			
+		</ul>
+	
+		<h2 class="major"><span>2026/07/17</span></h2>
+		<ul class="filmListAll">
+			
+						
+				<li>
+					<a href="/movie/foen33764258/"><img src="/photo101/foen33764258/pm_foen33764258.jpg" alt="奧德賽" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/foen33764258/">奧德賽</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/flfr35659725/"><img src="/photo101/flfr35659725/pm_flfr35659725.jpg" alt="勇者傳奇" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/flfr35659725/">勇者傳奇</a></div>					
+				</li>
+			
+		</ul>
+	
+		<h2 class="major"><span>2026/07/24</span></h2>
+		<ul class="filmListAll">
+			
+						
+				<li>
+					<a href="/movie/fmjp41986879/"><img src="/photo101/fmjp41986879/pm_fmjp41986879.jpg" alt="未來" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fmjp41986879/">未來</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fsjp37989601/"><img src="/photo101/fsjp37989601/pm_fsjp37989601.jpg" alt="香巴拉物語" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fsjp37989601/">香巴拉物語</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/ften48760666/"><img src="/photo101/ften48760666/pm_ften48760666.jpg" alt="赤身裸愛" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/ften48760666/">赤身裸愛</a></div>					
+				</li>
+			
+		</ul>
+	
+		<h2 class="major"><span>2026/07/29</span></h2>
+		<ul class="filmListAll">
+			
+						
+				<li>
+					<a href="/movie/fsen22084616/"><img src="/photo101/fsen22084616/pm_fsen22084616.jpg" alt="蜘蛛人：重生日" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fsen22084616/">蜘蛛人：重生日</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fnjp39026173/"><img src="/photo101/fnjp39026173/pm_fnjp39026173.jpg" alt="劇場版 吉伊卡哇 人魚島的秘密" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fnjp39026173/">劇場版 吉伊卡哇 人魚島的秘密</a></div>					
+				</li>
+			
+		</ul>
+	
+		<h2 class="major"><span>2026/08/07</span></h2>
+		<ul class="filmListAll">
+			
+						
+				<li>
+					<a href="/movie/flcn38162481/"><img src="/photo101/flcn38162481/pm_flcn38162481.jpg" alt="明日的過客" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/flcn38162481/">明日的過客</a></div>					
+				</li>
+			
+		</ul>
+	
+		<h2 class="major"><span>2026/08/12</span></h2>
+		<ul class="filmListAll">
+			
+						
+				<li>
+					<a href="/movie/feen27165187/"><img src="/photo101/feen27165187/pm_feen27165187.jpg" alt="橡樹街末日" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/feen27165187/">橡樹街末日</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fbjp39400168/"><img src="/photo101/fbjp39400168/pm_fbjp39400168.jpg" alt="藍色監獄" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fbjp39400168/">藍色監獄</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fpen29356163/"><img src="/photo101/fpen29356163/pm_fpen29356163.jpg" alt="汪汪隊立大功：恐龍大電影" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fpen29356163/">汪汪隊立大功：恐龍大電影</a></div>					
+				</li>
+			
+						
+				<li>
+					<a href="/movie/fnen35522483/"><img src="/photo101/fnen35522483/pm_fnen35522483.jpg" alt="超拖樂團之我要幹大事啦！" class="filmListAllPoster" /></a>
+					<div class="filmtitle"><a href="/movie/fnen35522483/">超拖樂團之我要幹大事啦！</a></div>					
+				</li>
+			
+		</ul>
+		
+
+
+
+
+<!-- ------------------- -->
+
+
+<div class="smaller09 grey center">更新時間：2026/06/12 22:54</div>
+
+						
+					</div>
+					<!--/////////******** GoogleAD廣告 **********//////////-->
+					<DIV id="googleAD"></DIV> 
+				</div> 
+				<div class="l-side"> 
+					<div class="c-section"> 
+						<div class="showtimeQuickSelect"> 
+							 
+
+		
+		
+		
+		
+			<!-- 快速查詢 quick_search start -->
+			<div class="quickSelect"><img src="/images/quickSelect02.png" /></div>
+					<div class=SelectTitle>本期首輪</div>
+						<form nmae="filmSelect" method="post">
+								<select onChange="window.open(this.options[this.selectedIndex].value,'_self')">
+								<option>  請選擇影片 ▼</option>
+								 
+									<option value="/movie/fden15047880/">★揭密日</option>
+								 
+									<option value="/movie/ffcn33311069/">★火遮眼</option>
+								 
+									<option value="/movie/fgin39000310/">★鬼入獄</option>
+								 
+									<option value="/movie/facn56462904/">★腎上腺 母侵</option>
+								 
+									<option value="/movie/fpcn36204735/">★逆轉上半場</option>
+								 
+									<option value="/movie/facn84424436/">★為一切人，成為一切</option>
+								 
+									<option value="/movie/fdes31710990/">★美夢</option>
+								 
+									<option value="/movie/fvar36943034/">★欣德之聲</option>
+								 
+									<option value="/movie/fsjp38681496/">★災劇場版</option>
+								 
+									<option value="/movie/faen35932393/">★阿嘉莎的四季</option>
+								 
+									<option value="/movie/fmen40427340/">太空超人</option>
+								 
+									<option value="/movie/fben26657236/">後室</option>
+								 
+									<option value="/movie/fcko34385135/">屍速禁區</option>
+								 
+									<option value="/movie/fden33612209/">穿著Prada的惡魔2</option>
+								 
+									<option value="/movie/fmen30825738/">曼達洛人與古古</option>
+								 
+									<option value="/movie/fsen32093575/">驚聲尖笑6</option>
+								 
+									<option value="/movie/fmen11378946/">麥可傑克森</option>
+								 
+									<option value="/movie/ften33296751/">盜音天才</option>
+								 
+									<option value="/movie/fgja42591814/">言葉之庭</option>
+								 
+									<option value="/movie/faen41635245/">神奇數字馬戲團：最終章</option>
+								 
+									<option value="/movie/fljp41149182/">妳最後留下的歌</option>
+								 
+									<option value="/movie/fitw41501204/">神木之島</option>
+								 
+									<option value="/movie/fpko93618625/">PLAVE Asia Tour</option>
+								 
+									<option value="/movie/fsen28650488/">超級瑪利歐銀河電影版</option>
+								 
+									<option value="/movie/fljp22868842/">鏡之孤城</option>
+								 
+									<option value="/movie/fgjp37931873/">新劇場版 銀魂 吉原大炎上</option>
+								 
+									<option value="/movie/fbcn38771856/">失樂園</option>
+								 
+									<option value="/movie/fcjp38772539/">夜勤事件</option>
+								 
+									<option value="/movie/fSatm0894047/">驚聲尖笑</option>
+								 
+									<option value="/movie/fujp39131120/">別離無恙</option>
+								 
+									<option value="/movie/ffcn44007530/">飛吧！熊鷹</option>
+								 
+									<option value="/movie/fnen29567915/">紐倫堡</option>
+								 
+									<option value="/movie/fhen26443616/">狸想世界</option>
+								 
+									<option value="/movie/fien31514146/">出口成髒</option>
+								 
+									<option value="/movie/fccn36576750/">寒戰1994</option>
+								 
+									<option value="/movie/fhjp34571222/">催眠麥克風</option>
+								 
+									<option value="/movie/ftjp38650409/">關於我轉生變成史萊姆這檔事 劇場版 蒼海之淚篇</option>
+								 
+									<option value="/movie/fuen32654745/">超限戰</option>
+								 
+									<option value="/movie/fszh81116428/">巧虎電影：勇氣之歌</option>
+								 
+									<option value="/movie/flcn71663219/">傳奇女伶 高菊花</option>
+								 
+									<option value="/movie/fsen32565993/">綿羊偵探團</option>
+								 
+									<option value="/movie/fpen12042730/">極限返航</option>
+								 
+									<option value="/movie/fkjp27843782/">祈憐之歌</option>
+								 
+									<option value="/movie/fpjp12439248/">酷愛電影的龐波小姐</option>
+								 
+									<option value="/movie/fLatm0874041/">末代皇帝</option>
+								 
+									<option value="/movie/fajp32192760/">花綠青綻放之時</option>
+								 
+									<option value="/movie/fsen32843349/">寶貝對不起</option>
+								 
+									<option value="/movie/fmkr28230511/">MAMAMOO：MY CON THE MOVIE</option>
+								 
+									<option value="/movie/fsen28671344/">殘殺路人甲</option>
+								 
+									<option value="/movie/fnko39380534/">你能吃到媽媽煮的飯的次數，還剩365次</option>
+								 
+									<option value="/movie/fmjp90131479/">名偵探柯南劇場版1</option>
+								 
+									<option value="/movie/fbvi29482887/">兔兔！！</option>
+								 
+									<option value="/movie/fsen23157384/">末路相縫</option>
+								 
+									<option value="/movie/fucn48450682/">超人再起</option>
+								 
+									<option value="/movie/flen23464902/">單身動物園</option>
+								 
+									<option value="/movie/fojp09257337/">ONE OK ROCK DETOX JAPAN TOUR</option>
+								 
+									<option value="/movie/fsko39833109/">殺木池：鬼水禁地</option>
+								 
+									<option value="/movie/ffen31189315/">家庭日</option>
+								 
+									<option value="/movie/fsde27811632/">你是不會當樹嗎</option>
+								 
+									<option value="/movie/fscn72307726/">陽光女子合唱團</option>
+								 
+									<option value="/movie/fOen00320193/">綠洲</option>
+								 
+									<option value="/movie/fmen17490712/">真人快打Ⅱ</option>
+								 
+									<option value="/movie/fdtw38939396/">甘露水</option>
+								 
+									<option value="/movie/fijp35791463/">#我要說出真相</option>
+								 
+									<option value="/movie/fdro32448239/">抓狂德古拉</option>
+								 
+									<option value="/movie/fsjp78075192/">小偷家族</option>
+								 
+									<option value="/movie/fees20221436/">璀璨女人夢</option>
+								 
+									<option value="/movie/fsen22778346/">絕．種</option>
+								 
+									<option value="/movie/fdcn49971130/">死亡賭局</option>
+								 
+									<option value="/movie/fsjp39934796/">六張臉：狂言師的舞台人生</option>
+								 
+									<option value="/movie/ftjp93029857/">104歲哲代奶奶：一個人生活</option>
+								
+                </select>
+						</form>
+					<div class=SelectTitle>本期二輪</div>
+						<form nmae="filmSelect" method="post">
+								<select onChange="window.open(this.options[this.selectedIndex].value,'_self')">
+								<option>  請選擇影片 ▼</option>
+								 
+									<option value="/movie/faen71757678/">阿凡達：火與燼</option>
+								 
+									<option value="/movie/fkcn32080771/">功夫 (2026)</option>
+								 
+									<option value="/movie/fejp39310683/">電影版女王偵訊室THE FINAL</option>
+								 
+									<option value="/movie/fnhk27184245/">夜王</option>
+								 
+									<option value="/movie/fcen48879928/">全境屍控</option>
+								 
+									<option value="/movie/fren33978029/">弒婚遊戲：2度開局</option>
+								 
+									<option value="/movie/flen32612507/">李克寧 墓乃伊</option>
+								 
+									<option value="/movie/fhhk35517211/">棋拳風暴</option>
+								 
+									<option value="/movie/fcko38954189/">水泥市場：末日皇宮</option>
+								 
+									<option value="/movie/ficn54134016/">愛的戀習生</option>
+								 
+									<option value="/movie/fsen59254940/">潮鞋總動員</option>
+								 
+									<option value="/movie/fkcn99424079/">啵me之我的青春住了鬼</option>
+								 
+									<option value="/movie/fzen31187839/">動物方城市2</option>
+								 
+									<option value="/movie/fhen64357198/">豪門殺人指南</option>
+								
+                </select>
+						</form>
+					<div class=SelectTitle>近期上映</div>
+						<form nmae="filmSelect" method="post">
+								<select onChange="window.open(this.options[this.selectedIndex].value,'_self')">
+								<option>  請選擇影片 ▼</option>
+								 
+									<option value="/movie/fbjp91022524/">B’z LIVE-GYM 2026</option>
+								 
+									<option value="/movie/ften29355505/">玩具總動員5</option>
+								 
+									<option value="/movie/fpen33050292/">肖豬皮傑</option>
+								 
+									<option value="/movie/fbpt35340614/">藍色亞馬遜</option>
+								 
+									<option value="/movie/fgjp93868344/">空之境界劇場版：終章</option>
+								 
+									<option value="/movie/fhen35672862/">陰魂旅社</option>
+								 
+									<option value="/movie/fffr37537634/">開放關係試淫運</option>
+								 
+									<option value="/movie/fpen33763941/">鬼上車</option>
+								 
+									<option value="/movie/fdjp94776409/">名偵探柯南 高速公路的墮天使</option>
+								 
+									<option value="/movie/fsen38814476/">超少女</option>
+								 
+									<option value="/movie/fsjp51137145/">鼠一般的你</option>
+								 
+									<option value="/movie/feko42440534/">ENHYPEN : IMMERSION IN CINEMAS</option>
+								 
+									<option value="/movie/a12026062601/">2026台北電影節</option>
+								 
+									<option value="/movie/fkja39388678/">電影版教場：驪歌</option>
+								 
+									<option value="/movie/fmen32890033/">小小兵&大怪獸</option>
+								 
+									<option value="/movie/fsen32362890/">鯊戮風暴</option>
+								 
+									<option value="/movie/fsen28682323/">絕殺路人甲</option>
+								 
+									<option value="/movie/fmen27419466/">海洋奇緣</option>
+								 
+									<option value="/movie/fien14173636/">開放性邀請</option>
+								 
+									<option value="/movie/fgjp36517689/">攻殼機動隊 2026</option>
+								 
+									<option value="/movie/fljp17499010/">偶像禁愛令</option>
+								 
+									<option value="/movie/feen31170389/">屍變焚場</option>
+								 
+									<option value="/movie/fojp41936211/">人為什麼寫情書</option>
+								 
+									<option value="/movie/fnjp38201958/">電影哆啦A夢：新‧大雄的海底鬼岩城</option>
+								 
+									<option value="/movie/fstr36472181/">夢的力量</option>
+								 
+									<option value="/movie/foen33764258/">奧德賽</option>
+								 
+									<option value="/movie/flfr35659725/">勇者傳奇</option>
+								 
+									<option value="/movie/fsjp37989601/">香巴拉物語</option>
+								 
+									<option value="/movie/fmjp41986879/">未來</option>
+								 
+									<option value="/movie/ften48760666/">赤身裸愛</option>
+								 
+									<option value="/movie/fsen22084616/">蜘蛛人：重生日</option>
+								 
+									<option value="/movie/fnjp39026173/">劇場版 吉伊卡哇 人魚島的秘密</option>
+								 
+									<option value="/movie/flcn38162481/">明日的過客</option>
+								 
+									<option value="/movie/feen27165187/">橡樹街末日</option>
+								 
+									<option value="/movie/fbjp39400168/">藍色監獄</option>
+								 
+									<option value="/movie/fpen29356163/">汪汪隊立大功：恐龍大電影</option>
+								 
+									<option value="/movie/fnen35522483/">超拖樂團之我要幹大事啦！</option>
+								
+                </select>
+						</form>
+					<div class=SelectTitle>新片快報</div>
+						<form nmae="filmSelect" method="post">
+								<select onChange="window.open(this.options[this.selectedIndex].value,'_self')">
+								<option>  請選擇影片 ▼</option>
+								 
+									<option value="/movie/fljp39094466/">驀然回首</option>
+								 
+									<option value="/movie/fren35538033/">惡靈古堡：爆發夜</option>
+								 
+									<option value="/movie/fhen47526136/">野獸之心</option>
+								 
+									<option value="/movie/fven32261958/">不存在的罪人</option>
+								 
+									<option value="/movie/fden31450459/">挖掘者</option>
+								 
+									<option value="/movie/fsen27419420/">快打旋風</option>
+								 
+									<option value="/movie/fhen32558705/">飢餓遊戲：黎明收割</option>
+								 
+									<option value="/movie/ffen34966140/">門當父不對之親家駕到</option>
+								 
+									<option value="/movie/faen21357150/">復仇者聯盟5</option>
+								 
+									<option value="/movie/fden31378509/">沙丘：第三部</option>
+								 
+									<option value="/movie/fien34512981/">冰原歷險記6</option>
+								 
+									<option value="/movie/fgen26443610/">貓的急轉彎</option>
+								 
+									<option value="/movie/fhko27369017/">希望</option>
+								 
+									<option value="/movie/fsjp38551209/">再生家族</option>
+								 
+									<option value="/movie/fien32393988/">陰兒房：穿越陰深處</option>
+								 
+									<option value="/movie/fmen32338669/">玩命航線</option>
+								 
+									<option value="/movie/fden21285562/">寂地</option>
+								 
+									<option value="/movie/fhen35866986/">搶銀行先修班</option>
+								 
+									<option value="/movie/fpen32588798/">超異能快感2</option>
+								 
+									<option value="/movie/ffen36583977/">誤闖遺忘島</option>
+								 
+									<option value="/movie/fwen28535715/">逃出鯨吞</option>
+								 
+									<option value="/movie/fcen34890576/">泥面人</option>
+								 
+									<option value="/movie/fcen52321555/">戴帽子的貓</option>
+								 
+									<option value="/movie/faen38686316/">大天使</option>
+								 
+									<option value="/movie/fien27681354/">金劫任務</option>
+								
+                </select>
+						</form>
+					
+				
+<!-- 快速查詢 quick_search end  -->
+ 
+						</div> 
+						<DIV id="googleAD"></DIV> 
+					</div><!--/////////******** GoogleAD廣告 **********//////////-->
+					<DIV id="googleAD"></DIV> 
+				</div> 
+			</div> 
+		</div>
+		<!-- div container END -->
+	</div><!-- div main-wrapper END -->		
+	
+
+
+
+
+
+
+		<footer>
+		<div>			<!-- Footer -->
+			<div class="footermenu">
+				<ul>
+					<li>&copy; @movies All rights reserved 開眼電影網版權所有</li>
+					<li><a href="https://app2.atmovies.com.tw/service/service/contact/">聯絡我們</a></li>
+					<li><a href="https://app2.atmovies.com.tw/service/service/about/">關於開眼</a></li>
+				</ul>
+			</div>
+			<p class="footer_copyright">Copyright &copy; @movies TW</p> 
+		</div>
+		</footer>
+			
+			<script src="/assets2/js/index.min.js?v=5cb439e586570" async></script>
+			<script src="/assets2/js/home.min.js?v=58570" async></script>
+</body></html>

@@ -192,7 +192,7 @@ export default function Dashboard() {
             <span className="font-bold">{(value || 0).toLocaleString()}</span>
           </p>
           {diff !== undefined && diff !== 0 && (
-            <p className={`text-sm font-bold flex items-center gap-1 ${diff > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+            <p className={`text-sm font-bold flex items-center gap-1 ${diff > 0 ? 'text-red-400' : 'text-emerald-400'}`}>
               {diff > 0 ? '▲' : '▼'} {Math.abs(diff).toLocaleString()} <span className="text-[var(--text-muted)] font-normal text-xs ml-1">(較昨日)</span>
             </p>
           )}

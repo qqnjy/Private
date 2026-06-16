@@ -57,8 +57,17 @@ for row in rows:
     
     tags_raw = row[8].strip()
     tags = [t.strip() for t in tags_raw.split(',')] if tags_raw else []
-    # Filter out empty tags
-    tags = [t for t in tags if t]
+    
+    # Check column J (index 9) for short video flag
+    if len(row) > 9 and row[9].strip():
+        tags.append('短影片')
+        
+    # Filter out empty tags and deduplicate
+    unique_tags = []
+    for t in tags:
+        if t and t not in unique_tags:
+            unique_tags.append(t)
+    tags = unique_tags
     
     # Calculate total engagement
     engagement = likes + comments + shares
@@ -76,6 +85,15 @@ for row in rows:
         'engagement': engagement
     }
     data.append(item)
+
+# Deduplicate data by url
+unique_data = []
+seen_urls = set()
+for item in data:
+    if item['url'] not in seen_urls:
+        seen_urls.add(item['url'])
+        unique_data.append(item)
+data = unique_data
 
 # Sort data by date descending
 data.sort(key=lambda x: x['post_date'], reverse=True)
