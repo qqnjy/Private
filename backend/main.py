@@ -273,6 +273,21 @@ def api_sync_competitors_obsidian():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.post("/api/obsidian/sync_creators")
+def api_sync_creators_obsidian():
+    import subprocess
+    import sys
+    try:
+        script_path = os.path.join(os.path.dirname(__file__), "sync_creators_obsidian.py")
+        result = subprocess.run([sys.executable, script_path], capture_output=True, text=True, cwd=os.path.dirname(__file__))
+        if result.returncode == 0:
+            return {"status": "success", "message": "創作者 Obsidian 同步成功", "output": result.stdout}
+        else:
+            raise HTTPException(status_code=500, detail=f"同步失敗: {result.stderr}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/api/movies/yahoo")
 async def get_yahoo_movies():
     import httpx
