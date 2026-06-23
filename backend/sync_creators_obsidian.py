@@ -25,8 +25,12 @@ def sync_to_obsidian():
         creator_name = clean_filename(creator.get("creatorName", "Unknown"))
         game_category = clean_filename(creator.get("gameCategory", "Unknown"))
         
-        filename = f"{game_category}_{creator_name}.md"
-        file_path = os.path.join(OBSIDIAN_VAULT_PATH, filename)
+        # Create subdirectory based on game_category
+        category_path = os.path.join(OBSIDIAN_VAULT_PATH, game_category)
+        os.makedirs(category_path, exist_ok=True)
+        
+        filename = f"{creator_name}.md"
+        file_path = os.path.join(category_path, filename)
         
         # Prepare tags if any
         posts = creator.get("posts", [])

@@ -2,12 +2,26 @@
 <html lang="zh-TW">
   <head>
     <meta charset="UTF-8" />
+    <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <title>IGS社群數據觀測站</title>
   </head>
   <body>
+    <script>
+      // 簡單的密碼鎖 (存在 sessionStorage 讓同一個視窗不用一直輸入)
+      if (sessionStorage.getItem("auth") !== "true") {
+        var pwd = prompt("請輸入觀看密碼：");
+        // 把 igs2024 換成你想要的密碼
+        if (pwd === "igs2026") { 
+          sessionStorage.setItem("auth", "true");
+        } else {
+          document.body.innerHTML = "<div style='text-align:center; padding:50px; font-size:20px; font-family:sans-serif;'>密碼錯誤，您無權觀看此網頁。<br><button onclick='location.reload()' style='margin-top:20px; padding:10px 20px;'>重新輸入</button></div>";
+          throw new Error("Unauthorized"); // 阻止後續程式載入
+        }
+      }
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
