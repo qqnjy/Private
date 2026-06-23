@@ -14,7 +14,7 @@
       if (sessionStorage.getItem("auth") !== "true") {
         var pwd = prompt("請輸入觀看密碼：");
         // 把 igs2024 換成你想要的密碼
-        if (pwd === "igs2026") { 
+        if (pwd === "igs2026win") { 
           sessionStorage.setItem("auth", "true");
         } else {
           document.body.innerHTML = "<div style='text-align:center; padding:50px; font-size:20px; font-family:sans-serif;'>密碼錯誤，您無權觀看此網頁。<br><button onclick='location.reload()' style='margin-top:20px; padding:10px 20px;'>重新輸入</button></div>";
