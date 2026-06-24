@@ -87,12 +87,31 @@ o\t[亮點分析]
 """
 
 
-def _strip_json_fences(s: str) -> str:
-    s = s.strip()
-    if s.startswith("```"):
-        s = re.sub(r"^```[a-zA-Z]*\n?", "", s)
-        s = re.sub(r"\n?```\s*$", "", s)
-    return s.strip()
+def _extract_json(raw: str) -> dict | None:
+    """Pull a JSON object out of an LLM response that may wrap it in fences,
+    prefix it with chatter, or append explanations afterward. Returns the
+    parsed dict, or None if nothing parses."""
+    s = (raw or "").strip()
+    # Drop any ```json / ``` fences anywhere
+    s = re.sub(r"```[a-zA-Z]*\s*", "", s)
+    s = s.replace("```", "")
+
+    # Direct attempt first
+    try:
+        return json.loads(s)
+    except json.JSONDecodeError:
+        pass
+
+    # Find the largest {...} block and try that
+    start = s.find("{")
+    end = s.rfind("}")
+    if start != -1 and end > start:
+        candidate = s[start:end + 1]
+        try:
+            return json.loads(candidate)
+        except json.JSONDecodeError:
+            return None
+    return None
 
 
 def generate_weekly_report(brand_name: str, notes: str, followers_growth_fb: int, followers_growth_ig: int, followers_growth_threads: int = 0) -> dict:
@@ -119,12 +138,12 @@ def generate_weekly_report(brand_name: str, notes: str, followers_growth_fb: int
             max_tokens=2500
         )
         raw = response.choices[0].message.content
-        cleaned = _strip_json_fences(raw)
-        try:
-            data = json.loads(cleaned)
-        except json.JSONDecodeError:
-            # Fallback: salvage outline only
+        data = _extract_json(raw)
+        if data is None:
             return {"outline": raw, "slides": None, "error": "JSON 解析失敗，僅回傳純文字"}
+        # Ensure outline exists; if the model put the report under another key, try to find it
+        if "outline" not in data and "report" in data:
+            data["outline"] = data.pop("report")
         return data
     except Exception as e:
         print(f"SiliconFlow API 錯誤: {e}")
