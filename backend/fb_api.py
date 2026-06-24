@@ -56,12 +56,16 @@ def find_page_by_brand(brand_name: str) -> Optional[dict]:
 
 
 def fetch_fb_posts(page_id: str, page_token: str, since: str, until: str) -> list[dict]:
-    """Fetch FB page posts in [since, until] (YYYY-MM-DD inclusive) with engagement."""
+    """Fetch FB page posts in [since, until] (YYYY-MM-DD inclusive) with engagement.
+
+    For video posts we pull view counts; for live broadcasts we additionally
+    pull `post_video_views_live` and tag the post with is_live=True.
+    """
     out = _get(f"{page_id}/posts", {
         "access_token": page_token,
         "fields": (
-            "id,message,created_time,permalink_url,"
-            "attachments{media_type,url,media},"
+            "id,message,created_time,permalink_url,status_type,"
+            "attachments{media_type,url,media,target{id}},"
             "reactions.summary(true).limit(0),"
             "comments.summary(true).limit(0),"
             "shares"
@@ -70,19 +74,55 @@ def fetch_fb_posts(page_id: str, page_token: str, since: str, until: str) -> lis
         "until": until,
         "limit": 50,
     })
+
+    # Build a lookup: which posts came from live broadcasts? Live VODs are
+    # listed under /page/live_videos and link to a post via permalink_url.
+    live_posts: dict[str, dict] = {}
+    try:
+        lv = _get(f"{page_id}/live_videos", {
+            "access_token": page_token,
+            "fields": "id,title,broadcast_start_time,permalink_url",
+            "limit": 50,
+        })
+        for v in lv.get("data") or []:
+            link = v.get("permalink_url") or ""
+            # link looks like /1323185103270629/videos/1011752444736502
+            tail = link.rstrip("/").rsplit("/", 1)[-1] if link else ""
+            if tail:
+                live_posts[tail] = v
+    except Exception:
+        pass
+
     posts = []
     for p in out.get("data", []):
         reactions = (p.get("reactions") or {}).get("summary", {}).get("total_count", 0)
         comments = (p.get("comments") or {}).get("summary", {}).get("total_count", 0)
         shares = (p.get("shares") or {}).get("count", 0)
 
-        # Try to enrich with insight metrics (clicks / video views). Failures are non-fatal.
+        # Check if this post is a live broadcast — match by the trailing post id
+        post_tail = p["id"].split("_")[-1]
+        live_info = live_posts.get(post_tail)
+        is_live = bool(live_info)
+
         clicks = None
         video_views = None
+        video_views_unique = None
+        video_views_15s = None
+        avg_watch_ms = None
+        live_views = None
         try:
+            metric_list = [
+                "post_clicks",
+                "post_video_views",
+                "post_video_views_unique",
+                "post_video_views_15s",
+                "post_video_avg_time_watched",
+            ]
+            if is_live:
+                metric_list.append("post_video_views_live")
             ins = _get(f"{p['id']}/insights", {
                 "access_token": page_token,
-                "metric": "post_clicks,post_video_views",
+                "metric": ",".join(metric_list),
             })
             for m in ins.get("data", []):
                 v = m["values"][0].get("value") if m.get("values") else None
@@ -90,16 +130,39 @@ def fetch_fb_posts(page_id: str, page_token: str, since: str, until: str) -> lis
                     clicks = v
                 elif m["name"] == "post_video_views":
                     video_views = v
+                elif m["name"] == "post_video_views_unique":
+                    video_views_unique = v
+                elif m["name"] == "post_video_views_15s":
+                    video_views_15s = v
+                elif m["name"] == "post_video_avg_time_watched":
+                    avg_watch_ms = v
+                elif m["name"] == "post_video_views_live":
+                    live_views = v
         except Exception:
             pass
 
         attachments = (p.get("attachments") or {}).get("data") or []
         media_type = attachments[0].get("media_type") if attachments else None
         media_url = None
+        video_id = None
         if attachments:
-            m = attachments[0].get("media") or {}
-            img = m.get("image") or {}
+            m_att = attachments[0].get("media") or {}
+            img = m_att.get("image") or {}
             media_url = img.get("src") or attachments[0].get("url")
+            tgt = attachments[0].get("target") or {}
+            if media_type == "video":
+                video_id = tgt.get("id")
+
+        # For video posts, fetch the video object's `views` field — this matches
+        # what Meta Business Suite shows in its UI (and is much higher than
+        # `post_video_views` which only counts ≥ 3-second views).
+        total_views = None
+        if video_id:
+            try:
+                vo = _get(video_id, {"access_token": page_token, "fields": "views"})
+                total_views = vo.get("views")
+            except Exception:
+                pass
 
         engagement = reactions + comments + shares
         posts.append({
@@ -108,16 +171,25 @@ def fetch_fb_posts(page_id: str, page_token: str, since: str, until: str) -> lis
             "message": p.get("message") or "",
             "created_at": p.get("created_time"),
             "permalink": p.get("permalink_url"),
+            "status_type": p.get("status_type"),
             "media_type": media_type,
             "media_url": media_url,
+            "is_live": is_live,
+            "live_title": live_info.get("title") if live_info else None,
             "reactions": reactions,
             "comments": comments,
             "shares": shares,
             "clicks": clicks,
+            "total_views": total_views,
             "video_views": video_views,
+            "video_views_unique": video_views_unique,
+            "video_views_15s": video_views_15s,
+            "avg_watch_ms": avg_watch_ms,
+            "live_views": live_views,
             "engagement": engagement,
         })
-    posts.sort(key=lambda x: x["engagement"], reverse=True)
+    # Sort by total_views (matches Meta UI) when available, fall back to other signals.
+    posts.sort(key=lambda x: ((x.get("total_views") or x.get("video_views") or 0), x["engagement"]), reverse=True)
     return posts
 
 
@@ -257,14 +329,23 @@ def top_posts_summary(weekly: dict, top_n: int = 3) -> str:
     lines = []
     fb = weekly.get("fb") or []
     if fb:
-        lines.append("【FB TOP 貼文（按互動排序）】")
+        lines.append("【FB TOP 貼文（影片按觀看數排序）】")
         for i, p in enumerate(fb[:top_n], 1):
-            msg = (p["message"] or "(無文字)")[:80].replace("\n", " ")
-            lines.append(
-                f"  {i}. {msg} — 讚 {p['reactions']}、留言 {p['comments']}、分享 {p['shares']}"
-                + (f"、點擊 {p['clicks']}" if p.get("clicks") is not None else "")
-                + (f"、影片觀看 {p['video_views']}" if p.get("video_views") else "")
-            )
+            msg = (p["message"] or p.get("live_title") or "(無文字)")[:80].replace("\n", " ")
+            tag = "🔴 直播" if p.get("is_live") else ""
+            parts = [f"  {i}. {tag} {msg}".strip()]
+            metric_bits = []
+            views = p.get("total_views") or p.get("video_views")
+            if views:
+                metric_bits.append(f"觀看 {views}")
+            if p.get("live_views"):
+                metric_bits.append(f"直播即時觀看 {p['live_views']}")
+            metric_bits.append(f"讚 {p['reactions']}")
+            metric_bits.append(f"留言 {p['comments']}")
+            metric_bits.append(f"分享 {p['shares']}")
+            if p.get("clicks") is not None:
+                metric_bits.append(f"點擊 {p['clicks']}")
+            lines.append(parts[0] + " — " + "、".join(metric_bits))
     ig = weekly.get("ig") or []
     if ig:
         lines.append("【IG TOP 貼文（按觀看次數排序）】")

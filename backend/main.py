@@ -385,11 +385,26 @@ def api_fb_pages():
 class ReportRequestExt(ReportRequest):
     start_date: str | None = None
     end_date: str | None = None
+    refresh: bool = False
 
 
 @app.post("/api/generate-report")
 def api_generate_report(req: ReportRequestExt):
     try:
+        from reports_repo import get_cached_report, save_report
+
+        # Cache hit short-circuits the LLM call (saves tokens)
+        if req.start_date and req.end_date and not req.refresh:
+            cached = get_cached_report(req.brand_name, req.start_date, req.end_date)
+            if cached and cached.get("outline"):
+                return {
+                    "status": "success",
+                    "report": cached["outline"],
+                    "slides": cached.get("slides"),
+                    "from_cache": True,
+                    "generated_at": cached.get("generated_at"),
+                }
+
         from ai_reporter import generate_weekly_report
         # Enrich notes with TOP posts if we can pull them
         notes = req.notes or ""
@@ -403,12 +418,25 @@ def api_generate_report(req: ReportRequestExt):
             except Exception as fb_err:
                 print(f"FB posts fetch failed: {fb_err}")
 
-        result = generate_weekly_report(req.brand_name, notes, req.followers_growth_fb, req.followers_growth_ig, req.followers_growth_threads)
-        # result is a dict {outline, slides, ...}
+        result = generate_weekly_report(
+            req.brand_name, notes,
+            req.followers_growth_fb, req.followers_growth_ig, req.followers_growth_threads,
+        )
+        outline = result.get("outline", "")
+        slides = result.get("slides")
+
+        # Persist for next time (only if we actually got valid AI output)
+        if req.start_date and req.end_date and outline and not result.get("error"):
+            try:
+                save_report(req.brand_name, req.start_date, req.end_date, outline, slides, req.notes)
+            except Exception as save_err:
+                print(f"reports cache save failed: {save_err}")
+
         return {
             "status": "success",
-            "report": result.get("outline", ""),
-            "slides": result.get("slides"),
+            "report": outline,
+            "slides": slides,
+            "from_cache": False,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

@@ -14,7 +14,8 @@ client = OpenAI(
 )
 
 SYSTEM_PROMPT = """你是一位資深的社群行銷專家與數據分析師。
-你的任務是根據提供的社群成效數據與筆記，產出一份社群週報，並同時輸出「貼信件用的文字大綱」與「PPT 投影片內容」。
+你的任務是根據提供的社群成效數據與筆記，產出一份只涵蓋 FB 與 IG 的社群週報，
+並同時輸出「貼信件用的文字大綱」與「PPT 投影片內容」。
 
 請務必輸出**純 JSON**（不要包 ```json 或任何前後說明文字），結構如下：
 
@@ -23,8 +24,7 @@ SYSTEM_PROMPT = """你是一位資深的社群行銷專家與數據分析師。
   "slides": {
     "summary": {
       "fb": "FB 一句話總結（含關鍵成長數字）",
-      "ig": "IG 一句話總結",
-      "threads": "Threads 一句話總結，若無資料給空字串"
+      "ig": "IG 一句話總結"
     },
     "fb": {
       "status": "本週狀態，例如：穩健成長 / 表現亮眼 / 待優化",
@@ -36,20 +36,14 @@ SYSTEM_PROMPT = """你是一位資深的社群行銷專家與數據分析師。
       "data": "粉絲數與觸及等關鍵數據",
       "highlights": ["亮點或建議 1", "亮點 2"]
     },
-    "threads": {
-      "status": "本週狀態，無資料則填 \\"無資料\\"",
-      "data": "關鍵數據，若無填空字串",
-      "highlights": []
-    },
     "plans": [
       {"platform": "FB", "title": "規劃重點", "detail": "詳細作法"},
-      {"platform": "IG", "title": "規劃重點", "detail": "詳細作法"},
-      {"platform": "Threads", "title": "規劃重點", "detail": "詳細作法"}
+      {"platform": "IG", "title": "規劃重點", "detail": "詳細作法"}
     ]
   }
 }
 
-outline 欄位必須完全遵照以下範例格式（含三大段標題與條列符號）：
+outline 欄位必須完全遵照以下範例格式（含三大段標題與條列符號），**不要包含任何 Threads 段落**：
 
 【範例格式開始】
 本週社群操作重點如下：
@@ -57,7 +51,6 @@ outline 欄位必須完全遵照以下範例格式（含三大段標題與條列
 一、 整體表現總結
 •\tFB：[總結 FB 亮點]
 •\tIG：[總結 IG 亮點]
-•\tThreads：[總結 Threads 亮點（若有資訊，否則省略此行）]
 
 二、 各平台成效詳述
 1. Facebook (狀態)
@@ -68,15 +61,10 @@ o\t時事梗：[其他亮點貼文]
 2. Instagram
 •\t數據：粉絲數 [X]。[其他相關數據]
 •\t分析建議：[IG 表現分析與建議]
-3. Threads (若無資料可省略整段)
-•\t數據：[相關數據]
-•\t亮點成效：
-o\t[亮點分析]
 
 三、 後續規劃
 1.\tFB [規劃重點]：[詳細作法]
 2.\tIG [規劃重點]：[詳細作法]
-3.\tThreads [規劃重點]：[詳細作法]
 【範例格式結束】
 
 語氣要求：
@@ -84,6 +72,7 @@ o\t[亮點分析]
 - 使用繁體中文。
 - 將數據轉化為有意義的商業洞察。
 - 嚴格輸出 JSON，不要任何額外文字或 markdown 標記。
+- 整份報告只談 FB 與 IG，**完全不要提到 Threads**。
 """
 
 
@@ -96,36 +85,35 @@ def _extract_json(raw: str) -> dict | None:
     s = re.sub(r"```[a-zA-Z]*\s*", "", s)
     s = s.replace("```", "")
 
-    # Direct attempt first
+    # strict=False lets us accept raw tabs/newlines inside string values
+    # (the LLM sometimes emits literal control chars instead of \t / \n escapes)
     try:
-        return json.loads(s)
+        return json.loads(s, strict=False)
     except json.JSONDecodeError:
         pass
 
-    # Find the largest {...} block and try that
     start = s.find("{")
     end = s.rfind("}")
     if start != -1 and end > start:
         candidate = s[start:end + 1]
         try:
-            return json.loads(candidate)
+            return json.loads(candidate, strict=False)
         except json.JSONDecodeError:
             return None
     return None
 
 
 def generate_weekly_report(brand_name: str, notes: str, followers_growth_fb: int, followers_growth_ig: int, followers_growth_threads: int = 0) -> dict:
-    user_prompt = f"""請幫我撰寫【{brand_name}】的本週社群週報。
+    user_prompt = f"""請幫我撰寫【{brand_name}】的本週社群週報（只涵蓋 FB 與 IG）。
 
 【本週數據摘要】
 - FB 粉絲成長：{followers_growth_fb} 人
 - IG 粉絲成長：{followers_growth_ig} 人
-- Threads 粉絲成長：{followers_growth_threads} 人
 
 【本週重要筆記與亮點】
 {notes}
 
-請輸出 JSON（含 outline 與 slides 兩欄位），不要任何前後說明。
+請輸出 JSON（含 outline 與 slides 兩欄位），不要任何前後說明。整份報告**不要出現 Threads**。
 """
     try:
         response = client.chat.completions.create(

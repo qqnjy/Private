@@ -77,8 +77,12 @@ export default function AiReporter() {
 
   const weekRange = getWeekDateRange(weekString);
 
-  const handleGenerate = async (e) => {
-    e.preventDefault();
+  const [fromCache, setFromCache] = useState(false);
+  const [generatedAt, setGeneratedAt] = useState(null);
+
+  const handleGenerate = async (eOrRefresh) => {
+    const refresh = eOrRefresh === true;
+    if (eOrRefresh && eOrRefresh.preventDefault) eOrRefresh.preventDefault();
     if (!selectedBrand) {
       setError('請選擇專案');
       return;
@@ -87,7 +91,7 @@ export default function AiReporter() {
       setError('請選擇週次');
       return;
     }
-    
+
     setLoading(true);
     setError(null);
     try {
@@ -137,6 +141,7 @@ export default function AiReporter() {
           followers_growth_threads: growthThreads,
           start_date: start,
           end_date: end,
+          refresh,
         }),
       });
       
@@ -148,6 +153,8 @@ export default function AiReporter() {
       if (data.status === 'success') {
         setReport(data.report);
         setSlidesData(data.slides || null);
+        setFromCache(!!data.from_cache);
+        setGeneratedAt(data.generated_at || null);
       } else {
         throw new Error(data.message || '產生失敗');
       }
@@ -259,6 +266,16 @@ export default function AiReporter() {
               {loading ? <Loader2 size={20} className="animate-spin" /> : <Send size={20} />}
               {loading ? '系統正在抓資料與 AI 撰寫中...' : '自動產生週報'}
             </button>
+            {report && (
+              <button
+                type="button"
+                onClick={() => handleGenerate(true)}
+                disabled={loading}
+                className="w-full py-2 bg-[var(--bg-base)] border border-[var(--border-color)] hover:border-[var(--accent)] text-[var(--text-primary)] rounded-xl text-sm font-bold transition disabled:opacity-50"
+              >
+                重新生成（強制呼叫 AI，會消耗 token）
+              </button>
+            )}
           </form>
         </div>
 
@@ -269,6 +286,14 @@ export default function AiReporter() {
             <h3 className="font-bold">產出結果</h3>
           </div>
           
+          {report && generatedAt && (
+            <div className="mb-2 flex items-center gap-2 text-xs">
+              <span className={`px-2 py-0.5 rounded-md font-bold ${fromCache ? 'bg-emerald-500/10 text-emerald-600' : 'bg-blue-500/10 text-blue-600'}`}>
+                {fromCache ? '已快取' : '剛生成'}
+              </span>
+              <span className="text-[var(--text-muted)]">{new Date(generatedAt).toLocaleString('zh-TW')}</span>
+            </div>
+          )}
           <div className="flex-1 bg-[var(--bg-base)] rounded-xl border border-[var(--border-color)] p-4 overflow-y-auto">
             {report ? (
               <div className="whitespace-pre-wrap text-[var(--text-primary)] text-sm leading-relaxed">

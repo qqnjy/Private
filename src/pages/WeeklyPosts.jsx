@@ -82,7 +82,7 @@ export default function WeeklyPosts() {
 
   const allPosts = useMemo(() => {
     if (!data) return [];
-    const fb = (data.fb || []).map(p => ({ ...p, _platform: 'fb', _views: p.video_views || 0 }));
+    const fb = (data.fb || []).map(p => ({ ...p, _platform: 'fb', _views: p.total_views || p.video_views || p.live_views || 0 }));
     const ig = (data.ig || []).map(p => ({ ...p, _platform: 'ig', _views: p.views || 0 }));
     let combined = [...fb, ...ig];
     if (platformFilter !== 'all') combined = combined.filter(p => p._platform === platformFilter);
@@ -190,14 +190,19 @@ export default function WeeklyPosts() {
                 )}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-2">
+                <div className="flex items-center gap-2 mb-2 flex-wrap">
                   <span className={`px-2 py-0.5 rounded-md text-xs font-bold ${p._platform === 'fb' ? 'bg-blue-500/10 text-blue-600' : 'bg-pink-500/10 text-pink-600'}`}>
                     {p._platform.toUpperCase()}
                   </span>
+                  {p.is_live && (
+                    <span className="px-2 py-0.5 rounded-md text-xs font-bold bg-red-500/10 text-red-600 flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" /> LIVE 直播
+                    </span>
+                  )}
                   <span className="text-xs text-[var(--text-muted)]">{new Date(p.created_at).toLocaleString('zh-TW')}</span>
                   <span className="ml-auto text-xs font-bold text-[var(--accent)]">#{idx + 1}</span>
                 </div>
-                <p className="text-sm text-[var(--text-primary)] line-clamp-3 mb-3 whitespace-pre-wrap">{p.message || '(無文字)'}</p>
+                <p className="text-sm text-[var(--text-primary)] line-clamp-3 mb-3 whitespace-pre-wrap">{p.message || p.live_title || '(無文字)'}</p>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-bold text-[var(--text-secondary)]">
                   {/* Views shown most prominently */}
                   {p._views > 0 && (
@@ -207,10 +212,22 @@ export default function WeeklyPosts() {
                   )}
                   {p._platform === 'fb' ? (
                     <>
+                      {p.is_live && p.live_views > 0 && (
+                        <span className="flex items-center gap-1 text-red-600">直播即時 {p.live_views.toLocaleString()}</span>
+                      )}
+                      {p.video_views > 0 && p.video_views !== p.total_views && (
+                        <span className="flex items-center gap-1 text-[var(--text-muted)]" title="≥3 秒觀看數">3s+ {p.video_views.toLocaleString()}</span>
+                      )}
+                      {p.video_views_15s > 0 && (
+                        <span className="flex items-center gap-1 text-[var(--text-muted)]" title="≥15 秒觀看數">15s {p.video_views_15s.toLocaleString()}</span>
+                      )}
                       <span className="flex items-center gap-1"><Heart size={14} /> {p.reactions}</span>
                       <span className="flex items-center gap-1"><MessageSquare size={14} /> {p.comments}</span>
                       <span className="flex items-center gap-1"><Share2 size={14} /> {p.shares}</span>
                       {p.clicks != null && <span className="flex items-center gap-1">點擊 {p.clicks}</span>}
+                      {p.avg_watch_ms > 0 && (
+                        <span className="flex items-center gap-1"><Clock size={14} /> 平均 {(p.avg_watch_ms / 1000).toFixed(1)}s</span>
+                      )}
                     </>
                   ) : (
                     <>
