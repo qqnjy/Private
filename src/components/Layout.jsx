@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Users, Settings, Activity, CalendarDays, PieChart } from 'lucide-react';
+import { LayoutDashboard, Users, Settings, Activity, CalendarDays, PieChart, FileText, Sparkles } from 'lucide-react';
 
 export default function Layout({ children }) {
   const location = useLocation();
@@ -10,6 +10,8 @@ export default function Layout({ children }) {
     { name: '競品分析', path: '/competitors', icon: <PieChart size={20} /> },
     { name: '小編行事曆', path: '/calendar', icon: <CalendarDays size={20} /> },
     { name: '追蹤清單管理', path: '/manage', icon: <Users size={20} /> },
+    { name: '本週貼文成效', path: '/posts', icon: <Sparkles size={20} /> },
+    { name: 'AI 自動產週報', path: '/report', icon: <FileText size={20} /> },
   ];
 
   return (

@@ -1,5 +1,7 @@
 from fastapi import FastAPI, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import Response
+from urllib.parse import quote
 from scraper import parse_followers
 from pydantic import BaseModel
 import contextlib
@@ -318,4 +320,118 @@ async def get_yahoo_movies():
             
     return events
 
+from pydantic import BaseModel
+class ReportRequest(BaseModel):
+    brand_name: str
+    notes: str
+    followers_growth_fb: int
+    followers_growth_ig: int
+    followers_growth_threads: int = 0
 
+@app.get("/api/posts/week")
+def api_posts_week(brand_name: str, start_date: str, end_date: str, refresh: bool = False):
+    try:
+        from fb_api import fetch_weekly_posts
+        from posts_repo import get_cached_posts, save_posts
+
+        if not refresh:
+            cached = get_cached_posts(brand_name, start_date, end_date)
+            if cached and (cached.get("fb") or cached.get("ig")):
+                # Need matched_page hint too; reuse a lightweight lookup
+                from fb_api import find_page_by_brand
+                page = find_page_by_brand(brand_name)
+                matched = None
+                if page:
+                    matched = {"page_id": page["page_id"], "name": page["name"], "ig_user_id": page.get("ig_user_id")}
+                return {
+                    "matched_page": matched,
+                    "fb": cached["fb"],
+                    "ig": cached["ig"],
+                    "fetched_at": cached.get("fetched_at"),
+                    "from_cache": True,
+                }
+
+        live = fetch_weekly_posts(brand_name, start_date, end_date)
+        try:
+            save_posts(brand_name, start_date, end_date, live.get("fb") or [], live.get("ig") or [])
+        except Exception as save_err:
+            print(f"posts cache save failed: {save_err}")
+        live["from_cache"] = False
+        return live
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/brand/meta")
+def api_brand_meta(brand_name: str):
+    try:
+        from fb_api import fetch_brand_meta
+        return fetch_brand_meta(brand_name)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/fb/pages")
+def api_fb_pages():
+    try:
+        from fb_api import list_managed_pages
+        # Don't leak page_token to the frontend
+        pages = [{"page_id": p["page_id"], "name": p["name"], "ig_user_id": p.get("ig_user_id")} for p in list_managed_pages()]
+        return pages
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+class ReportRequestExt(ReportRequest):
+    start_date: str | None = None
+    end_date: str | None = None
+
+
+@app.post("/api/generate-report")
+def api_generate_report(req: ReportRequestExt):
+    try:
+        from ai_reporter import generate_weekly_report
+        # Enrich notes with TOP posts if we can pull them
+        notes = req.notes or ""
+        if req.start_date and req.end_date:
+            try:
+                from fb_api import fetch_weekly_posts, top_posts_summary
+                weekly = fetch_weekly_posts(req.brand_name, req.start_date, req.end_date)
+                summary = top_posts_summary(weekly, top_n=3)
+                if summary:
+                    notes = (notes + "\n\n" if notes else "") + summary
+            except Exception as fb_err:
+                print(f"FB posts fetch failed: {fb_err}")
+
+        result = generate_weekly_report(req.brand_name, notes, req.followers_growth_fb, req.followers_growth_ig, req.followers_growth_threads)
+        # result is a dict {outline, slides, ...}
+        return {
+            "status": "success",
+            "report": result.get("outline", ""),
+            "slides": result.get("slides"),
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+class PptRequest(BaseModel):
+    brand_name: str
+    week_range: str
+    slides: dict | None = None
+
+
+@app.post("/api/generate-ppt")
+def api_generate_ppt(req: PptRequest):
+    try:
+        from ppt_generator import build_ppt
+        data = build_ppt(req.brand_name, req.week_range, req.slides or {})
+        filename = f"{req.brand_name}_週報_{req.week_range}.pptx"
+        return Response(
+            content=data,
+            media_type="application/vnd.openxmlformats-officedocument.presentationml.presentation",
+            headers={
+                "Content-Disposition": f"attachment; filename*=UTF-8''{quote(filename)}"
+            },
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
