@@ -143,11 +143,11 @@ def _derive_post_type(p: dict) -> str:
         return p["post_type"]
     mt = (p.get("media_type") or "").lower()
     if mt in ("video", "reels"):
-        return "梗影"
+        return "影片"
     if mt == "album" or mt == "carousel_album":
         return "圖文"
     if mt in ("photo", "image"):
-        return "梗圖"
+        return "圖片"
     return "—"
 
 
@@ -194,6 +194,8 @@ def _add_cover(prs, brand_name, week_range):
 
 def _add_summary_slide(prs, slides_data):
     summary = (slides_data or {}).get("summary", {}) or {}
+    if not summary.get("fb") and not summary.get("ig"):
+        return  # nothing useful to show — skip the slide entirely
     body1 = []
     body2 = []
     if summary.get("fb"):

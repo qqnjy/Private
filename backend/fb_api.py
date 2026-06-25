@@ -153,13 +153,13 @@ def fetch_fb_posts(page_id: str, page_token: str, since: str, until: str) -> lis
             if media_type == "video":
                 video_id = tgt.get("id")
 
-        # Post type classification — heuristic: video → 梗影, photo → 梗圖, album → 圖文
+        # Post type classification — heuristic: video → 影片, photo → 圖片, album → 圖文
         if media_type == "video":
-            post_type = "梗影"
+            post_type = "影片"
         elif media_type == "album":
             post_type = "圖文"
         elif media_type == "photo":
-            post_type = "梗圖"
+            post_type = "圖片"
         else:
             post_type = "其他"
 
@@ -272,11 +272,11 @@ def fetch_ig_media(ig_user_id: str, since_ts: int, until_ts: int) -> list[dict]:
 
         mt = m.get("media_type")
         if mt == "VIDEO":
-            ig_post_type = "梗影"
+            ig_post_type = "影片"
         elif mt == "CAROUSEL_ALBUM":
             ig_post_type = "圖文"
         elif mt == "IMAGE":
-            ig_post_type = "梗圖"
+            ig_post_type = "圖片"
         else:
             ig_post_type = "其他"
 

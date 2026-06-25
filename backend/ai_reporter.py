@@ -111,8 +111,32 @@ def _extract_json(raw: str) -> dict | None:
         try:
             return json.loads(candidate, strict=False)
         except json.JSONDecodeError:
-            return None
+            pass
+
+    # Last resort: pull the outline field out by regex. Decode JSON escapes
+    # (e.g. \n, 本) properly — using json.loads on the captured string
+    # avoids the unicode_escape pitfall that mangles raw UTF-8 Chinese bytes.
+    m = re.search(r'"outline"\s*:\s*"((?:[^"\\]|\\.)*)"', s, re.DOTALL)
+    if m:
+        try:
+            outline_str = json.loads('"' + m.group(1) + '"', strict=False)
+        except Exception:
+            outline_str = m.group(1)
+        return {"outline": outline_str, "slides": None}
     return None
+
+
+def _looks_like_raw_json(text: str) -> bool:
+    """Heuristic — outline shouldn't start with { or contain "outline": near the start."""
+    if not text:
+        return False
+    t = text.strip()[:200]
+    if t.startswith("{") or t.startswith("```") or '"outline"' in t:
+        return True
+    # Detect mojibake (UTF-8 decoded as Latin-1) by sampling for the giveaway
+    # characters that latin-1 → utf-8 produces from common Chinese codepoints.
+    mojibake_markers = ("Ã©", "Ã¨", "Ã¦", "æ¬", "ä¸", "ç¤¾", "ä½")
+    return any(m in t for m in mojibake_markers)
 
 
 def generate_weekly_report(brand_name: str, notes: str, followers_growth_fb: int, followers_growth_ig: int, followers_growth_threads: int = 0) -> dict:
@@ -127,23 +151,39 @@ def generate_weekly_report(brand_name: str, notes: str, followers_growth_fb: int
 
 請輸出 JSON（含 outline 與 slides 兩欄位），不要任何前後說明。整份報告**不要出現 Threads**。
 """
-    try:
+    def _call(temperature: float):
         response = client.chat.completions.create(
             model="stepfun-ai/Step-3.5-Flash",
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt}
             ],
-            temperature=0.7,
-            max_tokens=2500
+            temperature=temperature,
+            max_tokens=2500,
         )
-        raw = response.choices[0].message.content
-        data = _extract_json(raw)
-        if data is None:
-            return {"outline": raw, "slides": None, "error": "JSON 解析失敗，僅回傳純文字"}
-        # Ensure outline exists; if the model put the report under another key, try to find it
-        if "outline" not in data and "report" in data:
-            data["outline"] = data.pop("report")
+        return response.choices[0].message.content
+
+    try:
+        last_raw = ""
+        # Up to 2 attempts: if the first call returns malformed JSON or no slides,
+        # try once more with a lower temperature for a cleaner format.
+        for attempt, temp in enumerate((0.7, 0.2)):
+            raw = _call(temp)
+            last_raw = raw
+            data = _extract_json(raw)
+            if data is None:
+                continue
+            if "outline" not in data and "report" in data:
+                data["outline"] = data.pop("report")
+            # Accept if we have BOTH outline and slides
+            if data.get("outline") and data.get("slides"):
+                return data
+            # If only outline (no slides) but it's the second attempt, take it.
+            if attempt == 1 and data.get("outline"):
+                return data
+        # All attempts failed — return whatever the last extraction gave us, or raw.
+        data = _extract_json(last_raw) or {"outline": last_raw, "slides": None,
+                                            "error": "JSON 解析失敗，僅回傳純文字"}
         return data
     except Exception as e:
         print(f"SiliconFlow API 錯誤: {e}")

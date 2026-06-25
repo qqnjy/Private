@@ -80,6 +80,34 @@ export default function AiReporter() {
   const [fromCache, setFromCache] = useState(false);
   const [generatedAt, setGeneratedAt] = useState(null);
 
+  // Silently look up cached report when brand or week changes — no LLM, no Graph API.
+  useEffect(() => {
+    if (!selectedBrand || !weekString) return;
+    const { start, end } = getWeekDateRange(weekString);
+    let cancelled = false;
+    setError(null);
+    fetch(`${API_BASE}/report/cached?brand_name=${encodeURIComponent(selectedBrand)}&start_date=${start}&end_date=${end}`)
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (cancelled) return;
+        if (data && data.status === 'success') {
+          setReport(data.report);
+          setSlidesData(data.slides || null);
+          setFromCache(true);
+          setGeneratedAt(data.generated_at || null);
+        } else {
+          // No cache for this brand+week — clear stale display
+          setReport('');
+          setSlidesData(null);
+          setFromCache(false);
+          setGeneratedAt(null);
+        }
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedBrand, weekString]);
+
   const handleGenerate = async (eOrRefresh) => {
     const refresh = eOrRefresh === true;
     if (eOrRefresh && eOrRefresh.preventDefault) eOrRefresh.preventDefault();
@@ -166,10 +194,6 @@ export default function AiReporter() {
   };
 
   const handleDownloadPpt = async () => {
-    if (!slidesData) {
-      setError('尚無投影片資料，請重新產生週報');
-      return;
-    }
     setDownloadingPpt(true);
     setError(null);
     try {
@@ -179,7 +203,7 @@ export default function AiReporter() {
         body: JSON.stringify({
           brand_name: selectedBrand,
           week_range: `${weekRange.start} ~ ${weekRange.end}`,
-          slides: slidesData,
+          slides: slidesData || {},
         }),
       });
       if (!res.ok) throw new Error('產生 PPT 失敗');
@@ -320,7 +344,7 @@ export default function AiReporter() {
               </button>
               <button
                 onClick={handleDownloadPpt}
-                disabled={!slidesData || downloadingPpt}
+                disabled={!report || downloadingPpt}
                 className="py-2 bg-[var(--accent)] hover:opacity-90 text-[var(--bg-base)] rounded-xl font-bold transition flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {downloadingPpt ? <Loader2 size={16} className="animate-spin" /> : <Download size={16} />}

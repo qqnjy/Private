@@ -382,6 +382,27 @@ def api_fb_pages():
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.get("/api/report/cached")
+def api_report_cached(brand_name: str, start_date: str, end_date: str):
+    """Return a previously-generated report if cached. 404 if none."""
+    try:
+        from reports_repo import get_cached_report
+        cached = get_cached_report(brand_name, start_date, end_date)
+        if not cached or not cached.get("outline"):
+            raise HTTPException(status_code=404, detail="no cached report")
+        return {
+            "status": "success",
+            "report": cached["outline"],
+            "slides": cached.get("slides"),
+            "from_cache": True,
+            "generated_at": cached.get("generated_at"),
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 class ReportRequestExt(ReportRequest):
     start_date: str | None = None
     end_date: str | None = None
@@ -406,12 +427,39 @@ def api_generate_report(req: ReportRequestExt):
                 }
 
         from ai_reporter import generate_weekly_report
-        # Enrich notes with TOP posts if we can pull them
+        from posts_repo import get_cached_posts as _get_cached_posts, save_posts as _save_posts
+        from datetime import datetime as _dt, timedelta as _td
+
+        def _ensure_week_cached(brand, ws, we):
+            """Hit cache first; if miss, pull from Graph and persist. Returns the weekly dict."""
+            from fb_api import fetch_weekly_posts
+            cached = _get_cached_posts(brand, ws, we)
+            if cached and (cached.get("fb") or cached.get("ig")):
+                return cached
+            weekly = fetch_weekly_posts(brand, ws, we)
+            try:
+                _save_posts(brand, ws, we, weekly.get("fb") or [], weekly.get("ig") or [])
+            except Exception as save_err:
+                print(f"posts cache save failed for {ws}~{we}: {save_err}")
+            return weekly
+
         notes = req.notes or ""
         if req.start_date and req.end_date:
             try:
-                from fb_api import fetch_weekly_posts, top_posts_summary
-                weekly = fetch_weekly_posts(req.brand_name, req.start_date, req.end_date)
+                from fb_api import top_posts_summary
+                weekly = _ensure_week_cached(req.brand_name, req.start_date, req.end_date)
+
+                # Also warm up last week's cache so the PPT comparison table has data.
+                # Best-effort: if it fails (e.g. rate limit), don't block report.
+                try:
+                    start_d = _dt.strptime(req.start_date, "%Y-%m-%d").date()
+                    end_d = _dt.strptime(req.end_date, "%Y-%m-%d").date()
+                    prev_ws = (start_d - _td(days=7)).isoformat()
+                    prev_we = (end_d - _td(days=7)).isoformat()
+                    _ensure_week_cached(req.brand_name, prev_ws, prev_we)
+                except Exception as prev_err:
+                    print(f"prev-week warmup failed: {prev_err}")
+
                 summary = top_posts_summary(weekly, top_n=3)
                 if summary:
                     notes = (notes + "\n\n" if notes else "") + summary
@@ -425,8 +473,12 @@ def api_generate_report(req: ReportRequestExt):
         outline = result.get("outline", "")
         slides = result.get("slides")
 
-        # Persist for next time (only if we actually got valid AI output)
-        if req.start_date and req.end_date and outline and not result.get("error"):
+        # Persist for next time — but only if the outline is clean text.
+        # Avoid caching outlines that look like raw JSON / parse failures.
+        from ai_reporter import _looks_like_raw_json
+        if (req.start_date and req.end_date and outline
+                and not result.get("error")
+                and not _looks_like_raw_json(outline)):
             try:
                 save_report(req.brand_name, req.start_date, req.end_date, outline, slides, req.notes)
             except Exception as save_err:

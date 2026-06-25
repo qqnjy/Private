@@ -24,7 +24,8 @@ brand_map = {
     'xinstarsonline': '星城',
     '08online': '老子有錢',
     'star.partygo': '玩星派對',
-    'HSCasino': '豪神'
+    'HSCasino': '豪神',
+    'goodluck777game': '金好運'
 }
 
 data = []
@@ -43,7 +44,11 @@ for row in rows:
     # row[8]: tags
     
     brand_raw = row[3].strip()
-    brand_display = brand_map.get(brand_raw, brand_raw)
+    brand_display = brand_raw
+    for key, value in brand_map.items():
+        if key in brand_raw:
+            brand_display = value
+            break
     
     def parse_int(val):
         try:
