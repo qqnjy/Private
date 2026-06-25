@@ -153,6 +153,16 @@ def fetch_fb_posts(page_id: str, page_token: str, since: str, until: str) -> lis
             if media_type == "video":
                 video_id = tgt.get("id")
 
+        # Post type classification — heuristic: video → 梗影, photo → 梗圖, album → 圖文
+        if media_type == "video":
+            post_type = "梗影"
+        elif media_type == "album":
+            post_type = "圖文"
+        elif media_type == "photo":
+            post_type = "梗圖"
+        else:
+            post_type = "其他"
+
         # For video posts, fetch the video object's `views` field — this matches
         # what Meta Business Suite shows in its UI (and is much higher than
         # `post_video_views` which only counts ≥ 3-second views).
@@ -174,6 +184,7 @@ def fetch_fb_posts(page_id: str, page_token: str, since: str, until: str) -> lis
             "status_type": p.get("status_type"),
             "media_type": media_type,
             "media_url": media_url,
+            "post_type": post_type,
             "is_live": is_live,
             "live_title": live_info.get("title") if live_info else None,
             "reactions": reactions,
@@ -259,14 +270,25 @@ def fetch_ig_media(ig_user_id: str, since_ts: int, until_ts: int) -> list[dict]:
         comments = m.get("comments_count") or 0
         engagement = total_interactions if total_interactions is not None else (likes + comments + (saved or 0))
 
+        mt = m.get("media_type")
+        if mt == "VIDEO":
+            ig_post_type = "梗影"
+        elif mt == "CAROUSEL_ALBUM":
+            ig_post_type = "圖文"
+        elif mt == "IMAGE":
+            ig_post_type = "梗圖"
+        else:
+            ig_post_type = "其他"
+
         media.append({
             "platform": "ig",
             "id": m["id"],
             "message": m.get("caption") or "",
             "created_at": ts,
             "permalink": m.get("permalink"),
-            "media_type": m.get("media_type"),
+            "media_type": mt,
             "media_url": m.get("thumbnail_url") or m.get("media_url"),
+            "post_type": ig_post_type,
             "likes": likes,
             "comments": comments,
             "saved": saved,

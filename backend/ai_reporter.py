@@ -29,12 +29,24 @@ SYSTEM_PROMPT = """你是一位資深的社群行銷專家與數據分析師。
     "fb": {
       "status": "本週狀態，例如：穩健成長 / 表現亮眼 / 待優化",
       "data": "粉絲數、觸及、互動等關鍵數據（一句話）",
-      "highlights": ["爆款貼文 / 亮點 1", "亮點 2"]
+      "overview": ["本週概況 bullet 1（含關鍵變化%）", "本週概況 bullet 2", "本週概況 bullet 3"],
+      "top_posts": [
+        {"rank": 1, "summary": "TOP1 貼文（標題或主題）", "comment": "為何表現好的分析"},
+        {"rank": 2, "summary": "TOP2", "comment": "分析"},
+        {"rank": 3, "summary": "TOP3", "comment": "分析"}
+      ],
+      "highlights": ["亮點或建議 1（用於概要頁）", "亮點或建議 2"]
     },
     "ig": {
       "status": "本週狀態",
       "data": "粉絲數與觸及等關鍵數據",
-      "highlights": ["亮點或建議 1", "亮點 2"]
+      "overview": ["本週概況 bullet 1", "bullet 2", "bullet 3"],
+      "top_posts": [
+        {"rank": 1, "summary": "...", "comment": "..."},
+        {"rank": 2, "summary": "...", "comment": "..."},
+        {"rank": 3, "summary": "...", "comment": "..."}
+      ],
+      "highlights": ["亮點或建議 1", "亮點或建議 2"]
     },
     "plans": [
       {"platform": "FB", "title": "規劃重點", "detail": "詳細作法"},
