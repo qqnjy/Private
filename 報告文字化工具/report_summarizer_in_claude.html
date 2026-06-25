@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社群報告總結器(Claude 內建版)</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+  .rs-root *{box-sizing:border-box;margin:0;padding:0}
+  .rs-root{
+    --rs-ink:#1c1b22;--rs-ink-soft:#54525e;--rs-line:#e3e0d8;--rs-paper:#faf8f3;--rs-card:#fff;
+    --rs-accent:#4a3fc4;--rs-accent-soft:#ece9ff;--rs-ok:#1f8a5b;--rs-warn:#b4451f;
+    --rs-mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+    --rs-sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+    font-family:var(--rs-sans);color:var(--rs-ink);background:var(--rs-paper);min-height:100vh;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .rs-wrap{max-width:880px;margin:0 auto;padding:36px 24px 70px}
+  .rs-head{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--rs-ink);padding-bottom:14px}
+  .rs-head h1{font-size:23px;font-weight:800;letter-spacing:-.01em}
+  .rs-head .rs-eyebrow{font-family:var(--rs-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--rs-accent);font-weight:600}
+  .rs-sub{color:var(--rs-ink-soft);font-size:13.5px;margin:10px 0 24px}
+  .rs-sub b{color:var(--rs-ink)}
+  .rs-card{background:var(--rs-card);border:1px solid var(--rs-line);border-radius:14px;padding:20px;margin-bottom:18px}
+  .rs-card-title{font-family:var(--rs-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--rs-ink-soft);font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .rs-card-title::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--rs-accent)}
+  .rs-drop{border:2px dashed var(--rs-line);border-radius:14px;padding:32px 20px;text-align:center;cursor:pointer;transition:all .15s;background:var(--rs-card)}
+  .rs-drop:hover{border-color:var(--rs-accent);background:var(--rs-accent-soft)}
+  .rs-drop.drag{border-color:var(--rs-accent);background:var(--rs-accent-soft)}
+  .rs-drop.has{border-style:solid;border-color:var(--rs-accent)}
+  .rs-drop .rs-ico{font-size:32px;display:block;margin-bottom:9px}
+  .rs-drop .rs-big{font-weight:700;font-size:15px}
+  .rs-drop .rs-small{color:var(--rs-ink-soft);font-size:12.5px;margin-top:5px}
+  .rs-files{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+  .rs-file{display:flex;align-items:center;gap:10px;background:var(--rs-paper);border:1px solid var(--rs-line);border-radius:9px;padding:9px 12px;font-size:13px}
+  .rs-file .rs-fname{flex:1;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .rs-file .rs-fmeta{font-family:var(--rs-mono);font-size:11px;color:var(--rs-ink-soft)}
+  .rs-file .rs-fx{cursor:pointer;color:var(--rs-ink-soft);font-size:16px;line-height:1;padding:2px 6px;border-radius:6px}
+  .rs-file .rs-fx:hover{background:#f0eee8;color:var(--rs-warn)}
+  .rs-or{text-align:center;font-size:12px;color:var(--rs-ink-soft);margin:14px 0 10px;font-family:var(--rs-mono);letter-spacing:.1em}
+  .rs-paste{width:100%;min-height:90px;resize:vertical;border:1px solid var(--rs-line);border-radius:9px;padding:11px 13px;font-size:13px;font-family:var(--rs-sans);outline:none;background:var(--rs-paper)}
+  .rs-paste:focus{border-color:var(--rs-accent)}
+  .rs-opts{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:560px){.rs-opts{grid-template-columns:1fr}.rs-wrap{padding:26px 16px 56px}}
+  .rs-field label.rs-lab{display:block;font-size:12px;font-weight:700;margin-bottom:7px}
+  .rs-seg{display:flex;border:1px solid var(--rs-line);border-radius:9px;overflow:hidden}
+  .rs-seg button{flex:1;border:none;background:var(--rs-card);padding:8px 6px;font-size:12.5px;cursor:pointer;color:var(--rs-ink-soft);font-family:var(--rs-sans);transition:all .12s;border-right:1px solid var(--rs-line)}
+  .rs-seg button:last-child{border-right:none}
+  .rs-seg button.on{background:#4a3fc4 !important;color:#fff !important;font-weight:700 !important;box-shadow:inset 0 0 0 2px #4a3fc4}
+  .rs-check{display:flex;align-items:center;gap:9px;font-size:13px;cursor:pointer;user-select:none;margin-top:6px}
+  .rs-check input{width:17px;height:17px;accent-color:var(--rs-accent);cursor:pointer}
+  .rs-custom{grid-column:1/-1}
+  .rs-custom textarea{width:100%;min-height:58px;resize:vertical;border:1px solid var(--rs-line);border-radius:9px;padding:10px 12px;font-size:13px;font-family:var(--rs-sans);outline:none;background:var(--rs-paper)}
+  .rs-custom textarea:focus{border-color:var(--rs-accent)}
+  .rs-run{width:100%;background:var(--rs-ink);color:#fff;border:none;border-radius:11px;padding:15px;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:.02em;transition:all .15s;margin-top:4px}
+  .rs-run:hover:not(:disabled){background:var(--rs-accent)}
+  .rs-run:disabled{opacity:.45;cursor:not-allowed}
+  .rs-out-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .rs-out-actions{display:flex;gap:8px}
+  .rs-btn{font-size:12px;font-weight:600;border:1px solid var(--rs-line);background:var(--rs-card);border-radius:8px;padding:7px 13px;cursor:pointer;color:var(--rs-ink);transition:all .12s;font-family:var(--rs-sans)}
+  .rs-btn:hover{border-color:var(--rs-accent);color:var(--rs-accent)}
+  .rs-out{white-space:pre-wrap;font-size:14.5px;line-height:1.75}
+  .rs-out:empty::after{content:"總結會出現在這裡。";color:var(--rs-ink-soft);font-style:italic}
+  .rs-out>div{min-height:1px}
+  .rs-out table.rs-tbl{border-collapse:collapse;margin:12px 0;font-size:13.5px;width:100%}
+  .rs-out .rs-tbl th,.rs-out .rs-tbl td{border:1px solid var(--rs-line);padding:7px 11px;text-align:left}
+  .rs-out .rs-tbl th{background:var(--rs-accent-soft);font-weight:700;font-size:12.5px}
+  .rs-out .rs-tbl td.rs-num{text-align:right;font-variant-numeric:tabular-nums}
+  .rs-out .rs-tbl td.rs-platcell{font-weight:700;background:#faf7ef;text-align:center;vertical-align:middle}
+  .rs-out .rs-tbl td.rs-red{color:#d32f2f;font-weight:700}
+  .rs-status{font-family:var(--rs-mono);font-size:12px;color:var(--rs-ink-soft);min-height:18px;margin-top:12px;text-align:center}
+  .rs-status.err{color:var(--rs-warn)}.rs-status.ok{color:var(--rs-ok)}
+  .rs-spin{display:inline-block;width:13px;height:13px;border:2px solid var(--rs-line);border-top-color:var(--rs-accent);border-radius:50%;animation:rs-rot .7s linear infinite;vertical-align:-2px;margin-right:7px}
+  @keyframes rs-rot{to{transform:rotate(360deg)}}
+  .rs-foot{text-align:center;font-size:11px;color:var(--rs-ink-soft);margin-top:28px;font-family:var(--rs-mono)}
+</style>
+</head>
+<body>
+<div class="rs-root">
+<div class="rs-wrap">
+
+  <div class="rs-head">
+    <span class="rs-eyebrow">In-Claude</span>
+    <h1>社群報告總結器</h1>
+  </div>
+  <p class="rs-sub">用的是 <b>Claude 內建能力</b>,不用 API key、不另外計費。丟 <b>.pptx</b> 或直接貼上數據,產生可貼進週報的社群操作總結。</p>
+
+  <div class="rs-card">
+    <div class="rs-card-title">輸入報告</div>
+    <div class="rs-drop" id="rsDrop">
+      <span class="rs-ico">📑</span>
+      <span class="rs-big">拖進 .pptx,或點這裡選檔</span>
+      <span class="rs-small">支援多檔。舊版 .ppt 請先另存成 .pptx</span>
+    </div>
+    <input type="file" id="rsInput" accept=".pptx" multiple hidden>
+    <div class="rs-files" id="rsFiles"></div>
+    <div class="rs-or">— 或直接貼上文字 —</div>
+    <textarea class="rs-paste" id="rsPaste" placeholder="把後台數據或報告內容貼這裡也可以(可跟 pptx 並用)"></textarea>
+  </div>
+
+  <div class="rs-card">
+    <div class="rs-card-title">總結設定</div>
+    <div class="rs-opts">
+      <div class="rs-field">
+        <label class="rs-lab">報告類型</label>
+        <div class="rs-seg" data-group="type">
+          <button data-v="auto" class="on">自動</button>
+          <button data-v="weekly">週報</button>
+          <button data-v="monthly">月報</button>
+        </div>
+      </div>
+      <div class="rs-field">
+        <label class="rs-lab">摘要風格</label>
+        <div class="rs-seg" data-group="style">
+          <button data-v="social" class="on">週報信件格式</button>
+          <button data-v="exec">主管摘要</button>
+          <button data-v="prose">段落敘述</button>
+        </div>
+      </div>
+      <div class="rs-field">
+        <label class="rs-lab">長度</label>
+        <div class="rs-seg" data-group="len">
+          <button data-v="short">簡短</button>
+          <button data-v="std" class="on">標準</button>
+          <button data-v="long">詳細</button>
+        </div>
+      </div>
+      <div class="rs-field">
+        <label class="rs-lab">附加</label>
+        <label class="rs-check"><input type="checkbox" id="rsNotes" checked> 讀進 pptx 備註</label>
+        <label class="rs-check"><input type="checkbox" id="rsJp"> 附一份日文版</label>
+      </div>
+      <div class="rs-field rs-custom">
+        <label class="rs-lab">自訂指示(選填)</label>
+        <textarea id="rsCustom" placeholder="例:聚焦數據成長與下期計畫、跨期比較、加競品對照…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <button class="rs-run" id="rsRun">產生總結</button>
+  <div class="rs-status" id="rsStatus"></div>
+
+  <div class="rs-card" style="margin-top:18px">
+    <div class="rs-out-head">
+      <div class="rs-card-title" style="margin:0">總結結果</div>
+      <div class="rs-out-actions">
+        <button class="rs-btn" id="rsCopy">複製</button>
+      </div>
+    </div>
+    <div class="rs-out" id="rsOut"></div>
+  </div>
+
+  <div class="rs-foot">執行於 Claude 內,使用你現有的存取權限</div>
+
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  const $=id=>document.getElementById(id);
+  const els={drop:$('rsDrop'),input:$('rsInput'),files:$('rsFiles'),paste:$('rsPaste'),
+    notes:$('rsNotes'),jp:$('rsJp'),custom:$('rsCustom'),run:$('rsRun'),status:$('rsStatus'),out:$('rsOut'),copy:$('rsCopy')};
+  const opts={type:'auto',style:'social',len:'std'};
+  let parsed=[];
+  let copyText='';
+
+  document.querySelectorAll('.rs-seg').forEach(seg=>{
+    const g=seg.dataset.group;
+    seg.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+      seg.querySelectorAll('button').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');opts[g]=b.dataset.v;
+    }));
+  });
+
+  els.drop.addEventListener('click',()=>els.input.click());
+  els.input.addEventListener('change',e=>handleFiles(e.target.files));
+  ['dragenter','dragover'].forEach(ev=>els.drop.addEventListener(ev,e=>{e.preventDefault();els.drop.classList.add('drag');}));
+  ['dragleave','drop'].forEach(ev=>els.drop.addEventListener(ev,e=>{e.preventDefault();els.drop.classList.remove('drag');}));
+  els.drop.addEventListener('drop',e=>handleFiles(e.dataTransfer.files));
+
+  async function handleFiles(fl){
+    const arr=Array.from(fl).filter(f=>/\.pptx$/i.test(f.name));
+    const skipped=Array.from(fl).length-arr.length;
+    if(!arr.length){setStatus(skipped?'只接受 .pptx。舊版 .ppt 請先另存成 .pptx。':'沒有可用的檔案。','err');return;}
+    setStatus('解析中…','');
+    for(const f of arr){
+      try{
+        const slides=await parsePptx(await f.arrayBuffer());
+        const chars=slides.reduce((s,sl)=>s+sl.text.length+sl.notes.length,0);
+        parsed.push({name:f.name,slides,chars});
+      }catch(err){console.error(err);setStatus('「'+f.name+'」解析失敗:'+(err.message||err),'err');}
+    }
+    renderFiles();
+    const tot=parsed.reduce((s,p)=>s+p.slides.length,0);
+    if(parsed.length)setStatus('已讀取 '+parsed.length+' 份、共 '+tot+' 頁。','ok');
+    els.drop.classList.toggle('has',parsed.length>0);
+  }
+  function renderFiles(){
+    els.files.innerHTML='';
+    parsed.forEach((p,i)=>{
+      const row=document.createElement('div');row.className='rs-file';
+      row.innerHTML='<span class="rs-fname">📄 '+esc(p.name)+'</span><span class="rs-fmeta">'+p.slides.length+' 頁 · '+fmt(p.chars)+' 字</span><span class="rs-fx">✕</span>';
+      row.querySelector('.rs-fx').addEventListener('click',()=>{parsed.splice(i,1);renderFiles();els.drop.classList.toggle('has',parsed.length>0);});
+      els.files.appendChild(row);
+    });
+  }
+
+  async function parsePptx(buf){
+    const zip=await JSZip.loadAsync(buf);const parser=new DOMParser();
+    let paths=[];
+    try{
+      const pf=zip.file('ppt/presentation.xml'),rf=zip.file('ppt/_rels/presentation.xml.rels');
+      if(pf&&rf){
+        const pd=parser.parseFromString(await pf.async('string'),'application/xml');
+        const rd=parser.parseFromString(await rf.async('string'),'application/xml');
+        const map={};Array.from(rd.getElementsByTagName('Relationship')).forEach(r=>map[r.getAttribute('Id')]=r.getAttribute('Target'));
+        Array.from(pd.getElementsByTagName('p:sldId')).forEach(s=>{const t=map[s.getAttribute('r:id')];if(t)paths.push(norm('ppt/',t));});
+      }
+    }catch(e){}
+    if(!paths.length)paths=Object.keys(zip.files).filter(p=>/^ppt\/slides\/slide\d+\.xml$/.test(p)).sort((a,b)=>sn(a)-sn(b));
+    const out=[];
+    for(let i=0;i<paths.length;i++){
+      const sf=zip.file(paths[i]);if(!sf)continue;
+      const text=extract(parser,await sf.async('string'));
+      let notes='';try{notes=await readNotes(zip,parser,paths[i]);}catch(e){}
+      out.push({n:i+1,text,notes});
+    }
+    return out;
+  }
+  async function readNotes(zip,parser,sp){
+    const m=sp.match(/^(.*\/)([^\/]+)$/);const dir=m?m[1]:'',file=m?m[2]:sp;
+    const rf=zip.file(dir+'_rels/'+file+'.rels');if(!rf)return '';
+    const rd=parser.parseFromString(await rf.async('string'),'application/xml');let tgt=null;
+    Array.from(rd.getElementsByTagName('Relationship')).forEach(r=>{if((r.getAttribute('Type')||'').indexOf('notesSlide')>-1)tgt=r.getAttribute('Target');});
+    if(!tgt)return '';const nf=zip.file(norm(dir,tgt));if(!nf)return '';
+    return extract(parser,await nf.async('string'));
+  }
+  function extract(parser,xml){
+    const d=parser.parseFromString(xml,'application/xml');
+    return Array.from(d.getElementsByTagName('a:p')).map(p=>Array.from(p.getElementsByTagName('a:t')).map(t=>t.textContent).join('').trim()).filter(Boolean).join('\n');
+  }
+  function norm(base,t){if(t.charAt(0)==='/')return t.slice(1);const st=base.replace(/\/$/,'').split('/');t.split('/').forEach(s=>{if(s==='..')st.pop();else if(s!=='.'&&s!=='')st.push(s);});return st.join('/');}
+  function sn(p){const m=p.match(/slide(\d+)\.xml/);return m?+m[1]:0;}
+
+  function buildContent(){
+    const typeLabel=opts.type==='weekly'?'週報':opts.type==='monthly'?'月報':'(請依內容自行判斷週報或月報)';
+    const styleMap={
+      social:'週報信件格式。嚴格照以下結構與順序輸出,固定句逐字保留,只能有這三段、不要加任何額外段落(不要「待確認」、不要「各平台詳述」):\n\nDears\n\n連結為 [期間,例 06/16-06/21] [品牌名] 週報\n\n本週社群操作重點如下：\n\n一、整體表現總結\n● FB：[一段話,含粉絲數方向、平均觸及變化%、互動變化%,並一句帶出帶動原因或受眾觀察]\n● IG：[同上格式]\n● Threads：[同上,含單篇爆款瀏覽數與擴散度觀察]\n\n二、後續規劃\n● FB：[一句可執行的下期方向]\n● IG：[同上]\n● Threads：[同上]\n\n三、月 KPI 達成狀況\n[用 markdown 表格輸出,欄位固定為:平台 | 項目 | 目標 | 實際 | 達成率。每個平台的每一列第一欄都要填平台名(例如 FB 連續三列第一欄都寫 FB)。項目一般為 互動/觸及/追蹤(FB、IG)與 觸及/瀏覽(Threads)。達成率 = 實際 ÷ 目標 × 100%,四捨五入到小數點兩位後加 %。只在目標與實際都有資料時計算,缺的一律標「資料未提供」。]\n\n如有需要調整的地方再跟我說,謝謝!\n\n補充規則:期間與品牌若資料中可判斷就直接填,否則用 [請填] 佔位;絕不編造數字。',
+      exec:'主管摘要:開頭一句 TL;DR,接著條列 3–6 個關鍵要點(成果、數據、進行中、風險、下期計畫),語氣寫給忙碌主管。',
+      prose:'段落敘述:用通順段落講清楚整份報告,不用條列符號。'
+    };
+    const lenMap={short:'盡量精簡,只留最核心。',std:'適中,涵蓋主要重點。',long:'較完整,保留具體數字、貼文主題、平台名。'};
+    let body='';
+    parsed.forEach(p=>{
+      body+='===== 簡報檔:'+p.name+' =====\n';
+      p.slides.forEach(s=>{body+='【投影片 '+s.n+'】\n'+(s.text||'(本頁無文字)')+'\n';if(els.notes.checked&&s.notes)body+='[備註] '+s.notes+'\n';body+='\n';});
+    });
+    const pasted=els.paste.value.trim();
+    if(pasted)body+='===== 貼上的內容 =====\n'+pasted+'\n';
+    const custom=els.custom.value.trim()?('\n額外指示:'+els.custom.value.trim()):'';
+    const jp=els.jp.checked?'\n- 總結完後,再附一份日文版(用於對日方/合作窗口回報)。':'';
+    return '你是明星3缺1 / 金好運社群團隊的幕僚,把後台數據與簡報整理成可直接放進週報的社群操作總結。以下是'+typeLabel+'的內容。\n\n'+
+      '【輸出要求】\n- 風格:'+styleMap[opts.style]+'\n- 長度:'+lenMap[opts.len]+'\n- 繁體中文,台灣社群行銷用語。\n- 數據、品牌名、貼文主題、平台名照原樣保留,不要編造或推估任何數字,讀不到的標「資料未提供」。\n- 只輸出總結本身,不要前言。'+jp+custom+'\n\n【報告內容】\n'+body;
+  }
+
+  els.run.addEventListener('click',run);
+  async function run(){
+    if(!parsed.length&&!els.paste.value.trim()){setStatus('請先上傳 .pptx 或貼上文字。','err');return;}
+    els.run.disabled=true;els.out.textContent='';
+    setStatus('<span class="rs-spin"></span>Claude 正在閱讀並整理…','');
+    try{
+      if(!window.claude||typeof window.claude.complete!=='function'){
+        throw new Error('找不到 window.claude.complete,請確認此檔已在 Claude artifact 內開啟');
+      }
+      const text=(await window.claude.complete(buildContent())||'').trim();
+      els.out.textContent='';renderOutput(text||'(沒有產生內容,請再試一次)');
+      setStatus('完成 ✓','ok');
+    }catch(err){console.error(err);setStatus('失敗:'+(err.message||err),'err');}
+    finally{els.run.disabled=false;}
+  }
+
+  els.copy.addEventListener('click',()=>{
+    const t=(copyText||els.out.textContent).trim();if(!t)return;
+    navigator.clipboard.writeText(t).then(()=>{const o=els.copy.textContent;els.copy.textContent='已複製 ✓';setTimeout(()=>els.copy.textContent=o,1400);});
+  });
+
+  function renderOutput(md){
+    const lines=md.split('\n');let html='',i=0,copyLines=[];
+    while(i<lines.length){
+      const ln=lines[i];
+      const isRow=/^\s*\|.*\|\s*$/.test(ln);
+      const sepNext=i+1<lines.length&&/^\s*\|[\s:\-|]+\|\s*$/.test(lines[i+1]);
+      if(isRow&&sepNext){
+        const head=splitRow(ln);i+=2;const body=[];
+        while(i<lines.length&&/^\s*\|.*\|\s*$/.test(lines[i])&&!/^\s*\|[\s:\-|]+\|\s*$/.test(lines[i])){body.push(splitRow(lines[i]));i++;}
+        html+=renderTable(head,body);
+        copyLines.push(head.join('\t'));let fp='';
+        body.forEach(r=>{const rr=r.slice();if(!rr[0])rr[0]=fp;else fp=rr[0];copyLines.push(rr.join('\t'));});
+      }else{html+='<div>'+(esc(ln)||'&nbsp;')+'</div>';copyLines.push(ln);i++;}
+    }
+    els.out.innerHTML=html;copyText=copyLines.join('\n');
+  }
+  function splitRow(l){return l.trim().replace(/^\|/,'').replace(/\|$/,'').split('|').map(c=>c.trim());}
+  function renderTable(head,body){
+    let h='<table class="rs-tbl"><thead><tr>';
+    head.forEach(c=>h+='<th>'+esc(c)+'</th>');h+='</tr></thead><tbody>';
+    for(let r=0;r<body.length;r++){
+      h+='<tr>';
+      for(let c=0;c<body[r].length;c++){
+        const v=body[r][c];
+        if(c===0){
+          if(r>0&&body[r-1][0]===v&&v!=='')continue;
+          let span=1;while(r+span<body.length&&body[r+span][0]===v&&v!=='')span++;
+          h+='<td rowspan="'+span+'" class="rs-platcell">'+esc(v)+'</td>';
+        }else{
+          const pct=parsePct(v);const num=/^[\d,.\s%]+$/.test(v)&&/\d/.test(v);
+          const cls=[];if(num)cls.push('rs-num');if(pct!==null&&pct>=100)cls.push('rs-red');
+          h+='<td'+(cls.length?' class="'+cls.join(' ')+'"':'')+'>'+esc(v)+'</td>';
+        }
+      }
+      h+='</tr>';
+    }
+    return h+'</tbody></table>';
+  }
+  function parsePct(s){const m=s.match(/^([\d,.]+)\s*%$/);return m?parseFloat(m[1].replace(/,/g,'')):null;}
+
+  function setStatus(h,c){els.status.className='rs-status '+(c||'');els.status.innerHTML=h;}
+  function fmt(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+  function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+})();
+</script>
+</body>
+</html>

@@ -382,6 +382,31 @@ def api_fb_pages():
         raise HTTPException(status_code=500, detail=str(e))
 
 
+class SummarizeRequest(BaseModel):
+    prompt: str
+
+
+@app.post("/api/summarize")
+def api_summarize(req: SummarizeRequest):
+    """Generic LLM passthrough — used by the 報告文字化工具 page.
+    Accepts a fully-formed prompt and returns the model's text reply."""
+    try:
+        from ai_reporter import client
+        if not (req.prompt or "").strip():
+            raise HTTPException(status_code=400, detail="prompt is empty")
+        response = client.chat.completions.create(
+            model="stepfun-ai/Step-3.5-Flash",
+            messages=[{"role": "user", "content": req.prompt}],
+            temperature=0.4,
+            max_tokens=3500,
+        )
+        return {"text": (response.choices[0].message.content or "").strip()}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/api/report/cached")
 def api_report_cached(brand_name: str, start_date: str, end_date: str):
     """Return a previously-generated report if cached. 404 if none."""
