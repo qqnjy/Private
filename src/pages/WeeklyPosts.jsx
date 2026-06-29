@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Sparkles, MessageSquare, Heart, Share2, Eye, ExternalLink, Loader2, Bookmark, Play, Clock, RefreshCw } from 'lucide-react';
+import { Sparkles, MessageSquare, Heart, Share2, Eye, ExternalLink, Loader2, Bookmark, Play, Clock, RefreshCw, ClipboardCopy } from 'lucide-react';
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
 
@@ -54,6 +54,75 @@ export default function WeeklyPosts() {
     const fmt = (dt) => `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}-${String(dt.getDate()).padStart(2, '0')}`;
     return { start: fmt(start), end: fmt(end) };
   }, [weekString]);
+
+  const [copied, setCopied] = useState(false);
+
+  const buildAiPrompt = () => {
+    if (!data) return '';
+    const lines = [];
+    lines.push(`# ${selectedBrand} — 本週貼文成效（${weekRange.start} ~ ${weekRange.end}）`);
+    if (data.matched_page) {
+      lines.push(`> 粉專：${data.matched_page.name}${data.matched_page.ig_user_id ? '（含 IG 商業帳號）' : ''}`);
+    }
+    if (data.fetched_at) {
+      lines.push(`> 抓取時間：${new Date(data.fetched_at).toLocaleString('zh-TW')}`);
+    }
+    lines.push('');
+
+    const writePlatform = (label, posts, platform) => {
+      if (!posts || !posts.length) return;
+      lines.push(`## ${label}（共 ${posts.length} 篇）`);
+      lines.push('');
+      posts.forEach((p, idx) => {
+        const ts = p.created_at ? new Date(p.created_at).toLocaleString('zh-TW') : '';
+        const liveTag = p.is_live ? ' 🔴 LIVE' : '';
+        const type = p.post_type || (p.media_type === 'video' ? '影片' : p.media_type === 'photo' ? '圖片' : p.media_type === 'album' ? '圖文' : p.media_type === 'VIDEO' ? '影片' : p.media_type === 'IMAGE' ? '圖片' : p.media_type === 'CAROUSEL_ALBUM' ? '圖文' : '其他');
+        lines.push(`### #${idx + 1} ${type}${liveTag} — ${ts}`);
+
+        const metrics = [];
+        if (platform === 'fb') {
+          const views = p.total_views || p.video_views;
+          if (views) metrics.push(`觀看 ${views.toLocaleString()}`);
+          if (p.is_live && p.live_views) metrics.push(`直播即時 ${p.live_views.toLocaleString()}`);
+          if (p.video_views && p.video_views !== p.total_views) metrics.push(`3s+ ${p.video_views.toLocaleString()}`);
+          if (p.video_views_15s) metrics.push(`15s ${p.video_views_15s.toLocaleString()}`);
+          metrics.push(`讚 ${p.reactions || 0}`);
+          metrics.push(`留言 ${p.comments || 0}`);
+          metrics.push(`分享 ${p.shares || 0}`);
+          if (p.clicks != null) metrics.push(`點擊 ${p.clicks}`);
+          if (p.avg_watch_ms) metrics.push(`平均觀看 ${(p.avg_watch_ms / 1000).toFixed(1)}s`);
+        } else {
+          if (p.views) metrics.push(`觀看 ${p.views.toLocaleString()}`);
+          if (p.reach != null) metrics.push(`觸及 ${p.reach.toLocaleString()}`);
+          metrics.push(`讚 ${p.likes || 0}`);
+          metrics.push(`留言 ${p.comments || 0}`);
+          if (p.saved) metrics.push(`儲存 ${p.saved}`);
+          if (p.avg_watch_time_ms) metrics.push(`平均觀看 ${(p.avg_watch_time_ms / 1000).toFixed(1)}s`);
+        }
+        lines.push(metrics.join(' | '));
+
+        const text = (p.message || p.live_title || '').trim();
+        if (text) lines.push(text);
+        lines.push('');
+      });
+    };
+
+    writePlatform('FB', data.fb, 'fb');
+    writePlatform('IG', data.ig, 'ig');
+    return lines.join('\n');
+  };
+
+  const handleCopyForAi = async () => {
+    const text = buildAiPrompt();
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      setError('複製失敗：' + (err.message || err));
+    }
+  };
 
   const handleFetch = async (refresh = false) => {
     if (!selectedBrand) return;
@@ -136,17 +205,29 @@ export default function WeeklyPosts() {
               <option value="ig">只看 IG</option>
             </select>
           </div>
-          <div className="flex items-end">
+          <div className="flex items-end gap-2">
             <button
               onClick={() => handleFetch(true)}
               disabled={loading || !selectedBrand}
-              className="w-full py-2 bg-[var(--accent)] hover:opacity-90 text-[var(--bg-base)] rounded-xl font-bold transition flex items-center justify-center gap-2 disabled:opacity-50"
+              className="flex-1 py-2 bg-[var(--accent)] hover:opacity-90 text-[var(--bg-base)] rounded-xl font-bold transition flex items-center justify-center gap-2 disabled:opacity-50"
             >
               {loading ? <Loader2 size={18} className="animate-spin" /> : <RefreshCw size={16} />}
               {loading ? '抓取中...' : '重新抓取'}
             </button>
           </div>
         </div>
+        {data && (data.fb?.length > 0 || data.ig?.length > 0) && (
+          <div className="mt-3 flex justify-end">
+            <button
+              onClick={handleCopyForAi}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold border border-[var(--border-color)] hover:border-[var(--accent)] hover:text-[var(--accent)] text-[var(--text-primary)] rounded-lg transition"
+              title="把所有貼文整理成 Markdown 複製，可貼給其他 AI 工具分析"
+            >
+              <ClipboardCopy size={14} />
+              {copied ? '已複製 ✓' : '複製給其他 AI 分析'}
+            </button>
+          </div>
+        )}
         {error && (
           <div className="mt-4 p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-red-500 text-sm font-bold">
             {error}
