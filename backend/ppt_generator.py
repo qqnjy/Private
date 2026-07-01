@@ -219,11 +219,24 @@ def _add_summary_slide(prs, slides_data):
     _remove_placeholder(slide, PH_PICTURE)
 
 
-def _add_comparison_slide(prs, platform_label, week_range, this_week, last_week, ai_info, post_count_this, post_count_last):
+def _add_comparison_slide(prs, platform_label, week_range, this_week, last_week, ai_info, post_count_this, post_count_last, follower_count=None):
     """Slide: comparison table on left, AI bullets on right."""
     slide = prs.slides.add_slide(prs.slide_layouts[LAYOUT_BLANK])
     _remove_placeholder(slide, PH_TITLE)  # built-in title is centered low; we add our own
     _add_slide_title(slide, f"{platform_label}　成效對比")
+
+    # Live fan / follower count badge just below the title
+    if follower_count is not None:
+        tb = slide.shapes.add_textbox(Inches(0.45), Inches(1.00), Inches(4.0), Inches(0.35))
+        tf = tb.text_frame
+        tf.margin_left = Inches(0)
+        p = tf.paragraphs[0]
+        p.alignment = PP_ALIGN.LEFT
+        r = p.add_run()
+        r.text = f"粉絲 {follower_count:,}"
+        r.font.size = Pt(16)
+        r.font.bold = True
+        r.font.color.rgb = BRAND_RED
 
     # ----- LEFT: comparison table -----
     rows_data = [
@@ -240,9 +253,9 @@ def _add_comparison_slide(prs, platform_label, week_range, this_week, last_week,
     rows = len(rows_data) + 1
     cols = 4
     left = Inches(0.45)
-    top = Inches(1.30)
+    top = Inches(1.50)
     width = Inches(4.55)
-    height = Inches(3.80)
+    height = Inches(3.60)
     table_shape = slide.shapes.add_table(rows, cols, left, top, width, height)
     tbl = table_shape.table
     # Column widths
@@ -273,7 +286,7 @@ def _add_comparison_slide(prs, platform_label, week_range, this_week, last_week,
     overview = ai_info.get("overview") or []
     top_posts = ai_info.get("top_posts") or []
 
-    tb_right = slide.shapes.add_textbox(Inches(5.20), Inches(1.30), Inches(4.50), Inches(3.95))
+    tb_right = slide.shapes.add_textbox(Inches(5.20), Inches(1.50), Inches(4.50), Inches(3.75))
     tf = tb_right.text_frame
     tf.word_wrap = True
 
@@ -481,6 +494,19 @@ def build_ppt(brand_name: str, week_range: str, slides_data: dict) -> bytes:
     fb_posts = cached.get("fb") or []
     ig_posts = cached.get("ig") or []
 
+    # Live fan / follower counts (best effort — slide still renders if missing)
+    fb_fans = None
+    ig_fans = None
+    try:
+        from fb_api import fetch_brand_meta
+        meta = fetch_brand_meta(brand_name)
+        if meta.get("fb"):
+            fb_fans = meta["fb"].get("fan_count") or meta["fb"].get("followers_count")
+        if meta.get("ig"):
+            ig_fans = meta["ig"].get("followers_count")
+    except Exception as meta_err:
+        print(f"brand meta fetch failed: {meta_err}")
+
     _add_cover(prs, brand_name, week_range)
     _add_summary_slide(prs, slides_data or {})
 
@@ -489,6 +515,7 @@ def build_ppt(brand_name: str, week_range: str, slides_data: dict) -> bytes:
         this_summary.get("fb") or {}, last_summary.get("fb") if last_summary else {},
         (slides_data or {}).get("fb") or {},
         len(fb_posts), (last_summary.get("fb") or {}).get("post_count") if last_summary else None,
+        follower_count=fb_fans,
     )
     _add_top5_slide(prs, "Facebook", fb_posts, "fb")
 
@@ -497,6 +524,7 @@ def build_ppt(brand_name: str, week_range: str, slides_data: dict) -> bytes:
         this_summary.get("ig") or {}, last_summary.get("ig") if last_summary else {},
         (slides_data or {}).get("ig") or {},
         len(ig_posts), (last_summary.get("ig") or {}).get("post_count") if last_summary else None,
+        follower_count=ig_fans,
     )
     _add_top5_slide(prs, "Instagram", ig_posts, "ig")
 
