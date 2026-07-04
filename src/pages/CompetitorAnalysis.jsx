@@ -53,6 +53,7 @@ const BRAND_COLORS = {
   '玩星派對': '#ff7300',
   '豪神': '#82ca9d',
   '金好運': '#ffc658',
+  '大滿貫': '#ff8042',
   '預設': '#897bb8'
 };
 
@@ -99,7 +100,13 @@ const CompetitorAnalysis = () => {
       const res = await fetch(`${API_BASE}/competitors`);
       if (res.ok) {
         const data = await res.json();
-        setCompetitorData(data);
+        const mappedData = data.map(item => {
+          if (item.brand && item.brand.includes('Slam888Casino')) {
+            return { ...item, brand: '大滿貫' };
+          }
+          return item;
+        });
+        setCompetitorData(mappedData);
       }
     } catch (e) {
       console.error('Failed to fetch competitors data', e);
