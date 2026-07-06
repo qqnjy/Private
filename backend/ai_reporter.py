@@ -6,11 +6,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-SILICONFLOW_API_KEY = os.getenv("SILICONFLOW_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 client = OpenAI(
-    api_key=SILICONFLOW_API_KEY,
-    base_url="https://api.siliconflow.cn/v1"
+    api_key=GEMINI_API_KEY,
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
 )
 
 SYSTEM_PROMPT = """你是一位資深的社群行銷專家與數據分析師。
@@ -153,7 +153,7 @@ def generate_weekly_report(brand_name: str, notes: str, followers_growth_fb: int
 """
     def _call(temperature: float):
         response = client.chat.completions.create(
-            model="stepfun-ai/Step-3.5-Flash",
+            model="gemini-2.5-flash",
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt}
@@ -186,7 +186,7 @@ def generate_weekly_report(brand_name: str, notes: str, followers_growth_fb: int
                                             "error": "JSON 解析失敗，僅回傳純文字"}
         return data
     except Exception as e:
-        print(f"SiliconFlow API 錯誤: {e}")
+        print(f"Gemini API 錯誤: {e}")
         return {"outline": f"產生報告時發生錯誤：{str(e)}", "slides": None, "error": str(e)}
 
 
