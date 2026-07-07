@@ -6,11 +6,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyDgjpHZ0c6pYlpjrN_aCBPqCl-jVY0OAFE")
+SILICONFLOW_API_KEY = os.getenv("SILICONFLOW_API_KEY")
 
 client = OpenAI(
-    api_key=GEMINI_API_KEY,
-    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+    api_key=SILICONFLOW_API_KEY,
+    base_url="https://api.siliconflow.cn/v1"
 )
 
 SYSTEM_PROMPT = """你是一位資深的社群行銷專家與數據分析師。
@@ -151,29 +151,17 @@ def generate_weekly_report(brand_name: str, notes: str, followers_growth_fb: int
 
 請輸出 JSON（含 outline 與 slides 兩欄位），不要任何前後說明。整份報告**不要出現 Threads**。
 """
-    import requests
-
     def _call(temperature: float):
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GEMINI_API_KEY}"
-        payload = {
-            "systemInstruction": {
-                "parts": [{"text": SYSTEM_PROMPT}]
-            },
-            "contents": [
-                {
-                    "role": "user",
-                    "parts": [{"text": user_prompt}]
-                }
+        response = client.chat.completions.create(
+            model="stepfun-ai/Step-3.5-Flash",
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": user_prompt}
             ],
-            "generationConfig": {
-                "temperature": temperature,
-                "maxOutputTokens": 8192,
-            }
-        }
-        resp = requests.post(url, json=payload, headers={'Content-Type': 'application/json'}, timeout=120)
-        resp.raise_for_status()
-        res_json = resp.json()
-        return res_json['candidates'][0]['content']['parts'][0]['text']
+            temperature=temperature,
+            max_tokens=2500,
+        )
+        return response.choices[0].message.content
 
     try:
         last_raw = ""
@@ -198,7 +186,7 @@ def generate_weekly_report(brand_name: str, notes: str, followers_growth_fb: int
                                             "error": "JSON 解析失敗，僅回傳純文字"}
         return data
     except Exception as e:
-        print(f"Gemini API 錯誤: {e}")
+        print(f"SiliconFlow API 錯誤: {e}")
         return {"outline": f"產生報告時發生錯誤：{str(e)}", "slides": None, "error": str(e)}
 
 

@@ -391,27 +391,16 @@ def api_summarize(req: SummarizeRequest):
     """Generic LLM passthrough — used by the 報告文字化工具 page.
     Accepts a fully-formed prompt and returns the model's text reply."""
     try:
-        import requests
-        from ai_reporter import GEMINI_API_KEY
-        
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
-        payload = {
-            "contents": [
-                {
-                    "role": "user",
-                    "parts": [{"text": req.prompt}]
-                }
-            ],
-            "generationConfig": {
-                "temperature": 0.4,
-                "maxOutputTokens": 8192,
-            }
-        }
-        resp = requests.post(url, json=payload, headers={'Content-Type': 'application/json'}, timeout=120)
-        resp.raise_for_status()
-        res_json = resp.json()
-        summary = res_json['candidates'][0]['content']['parts'][0]['text']
-        return {"text": (summary or "").strip()}
+        from ai_reporter import client
+        if not (req.prompt or "").strip():
+            raise HTTPException(status_code=400, detail="prompt is empty")
+        response = client.chat.completions.create(
+            model="stepfun-ai/Step-3.5-Flash",
+            messages=[{"role": "user", "content": req.prompt}],
+            temperature=0.4,
+            max_tokens=3500,
+        )
+        return {"text": (response.choices[0].message.content or "").strip()}
     except HTTPException:
         raise
     except Exception as e:
