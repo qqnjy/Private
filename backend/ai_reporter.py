@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyDgjpHZ0c6pYlpjrN_aCBPqCl-jVY0OAFE")
 
 client = OpenAI(
     api_key=GEMINI_API_KEY,
@@ -151,17 +151,29 @@ def generate_weekly_report(brand_name: str, notes: str, followers_growth_fb: int
 
 請輸出 JSON（含 outline 與 slides 兩欄位），不要任何前後說明。整份報告**不要出現 Threads**。
 """
+    import requests
+
     def _call(temperature: float):
-        response = client.chat.completions.create(
-            model="gemini-2.5-flash",
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": user_prompt}
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GEMINI_API_KEY}"
+        payload = {
+            "systemInstruction": {
+                "parts": [{"text": SYSTEM_PROMPT}]
+            },
+            "contents": [
+                {
+                    "role": "user",
+                    "parts": [{"text": user_prompt}]
+                }
             ],
-            temperature=temperature,
-            max_tokens=2500,
-        )
-        return response.choices[0].message.content
+            "generationConfig": {
+                "temperature": temperature,
+                "maxOutputTokens": 8192,
+            }
+        }
+        resp = requests.post(url, json=payload, headers={'Content-Type': 'application/json'}, timeout=120)
+        resp.raise_for_status()
+        res_json = resp.json()
+        return res_json['candidates'][0]['content']['parts'][0]['text']
 
     try:
         last_raw = ""
