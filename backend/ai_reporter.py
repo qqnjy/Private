@@ -9,7 +9,7 @@ load_dotenv()
 SILICONFLOW_API_KEY = os.getenv("SILICONFLOW_API_KEY")
 
 client = OpenAI(
-    api_key=SILICONFLOW_API_KEY,
+    api_key=SILICONFLOW_API_KEY or "dummy_key_to_prevent_crash_on_import",
     base_url="https://api.siliconflow.cn/v1"
 )
 
