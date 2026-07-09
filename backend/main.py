@@ -395,7 +395,7 @@ def api_summarize(req: SummarizeRequest):
         if not (req.prompt or "").strip():
             raise HTTPException(status_code=400, detail="prompt is empty")
         response = client.chat.completions.create(
-            model="stepfun-ai/Step-3.5-Flash",
+            model="Qwen/Qwen2.5-32B-Instruct",
             messages=[{"role": "user", "content": req.prompt}],
             temperature=0.4,
             max_tokens=3500,

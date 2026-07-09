@@ -10,7 +10,8 @@ SILICONFLOW_API_KEY = os.getenv("SILICONFLOW_API_KEY")
 
 client = OpenAI(
     api_key=SILICONFLOW_API_KEY or "dummy_key_to_prevent_crash_on_import",
-    base_url="https://api.siliconflow.cn/v1"
+    base_url="https://api.siliconflow.cn/v1",
+    timeout=60.0,  # any single request > 60s fails fast instead of hanging the whole endpoint
 )
 
 SYSTEM_PROMPT = """你是一位資深的社群行銷專家與數據分析師。
@@ -153,7 +154,7 @@ def generate_weekly_report(brand_name: str, notes: str, followers_growth_fb: int
 """
     def _call(temperature: float):
         response = client.chat.completions.create(
-            model="stepfun-ai/Step-3.5-Flash",
+            model="Qwen/Qwen2.5-32B-Instruct",
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt}
