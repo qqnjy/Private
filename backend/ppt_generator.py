@@ -239,7 +239,10 @@ def _add_comparison_slide(prs, platform_label, week_range, this_week, last_week,
         r.font.color.rgb = BRAND_RED
 
     # ----- LEFT: comparison table -----
+    fans_this = this_week.get("fans") if this_week else None
+    fans_last = last_week.get("fans") if last_week else None
     rows_data = [
+        ("粉絲數", fans_this, fans_last),
         ("貼文總數", post_count_this, post_count_last),
         ("總觀看數", this_week.get("total_views"), last_week.get("total_views") if last_week else None),
         ("總互動數", this_week.get("total_interactions"), last_week.get("total_interactions") if last_week else None),
@@ -271,9 +274,22 @@ def _add_comparison_slide(prs, platform_label, week_range, this_week, last_week,
 
     for ri, (label, this_v, last_v) in enumerate(rows_data, start=1):
         bg = ROW_ALT if ri % 2 == 0 else WHITE
+        # Interaction rate shows small percentages — needs 2 decimals so
+        # 0.15% doesn't get rounded to a misleading 0.2%.
+        is_rate = label == "互動率(%)"
+        fmt = (lambda v: f"{v:,.2f}") if is_rate else _format_num
         _set_cell(tbl.cell(ri, 0), label, size=11, bold=True, color=TEXT_DARK, bg=bg, align=PP_ALIGN.LEFT)
-        _set_cell(tbl.cell(ri, 1), _format_num(this_v), size=11, color=TEXT_DARK, bg=bg)
-        _set_cell(tbl.cell(ri, 2), _format_num(last_v) if last_v is not None else "—", size=11, color=TEXT_MUTED, bg=bg)
+        _set_cell(tbl.cell(ri, 1), fmt(this_v) if this_v is not None else "—", size=11, color=TEXT_DARK, bg=bg)
+        _set_cell(tbl.cell(ri, 2), fmt(last_v) if last_v is not None else "—", size=11, color=TEXT_MUTED, bg=bg)
+
+        # Fan count row: show absolute +N / -N instead of percentage
+        if label == "粉絲數" and this_v is not None and last_v is not None:
+            diff = this_v - last_v
+            color = GROWTH_UP if diff > 0 else (GROWTH_DOWN if diff < 0 else TEXT_DARK)
+            sign = "+" if diff >= 0 else ""
+            _set_cell(tbl.cell(ri, 3), f"{sign}{diff:,}", size=11, bold=True, color=color, bg=bg)
+            continue
+
         pct = _pct_change(this_v, last_v) if last_v is not None else None
         if pct is None:
             _set_cell(tbl.cell(ri, 3), "—", size=11, color=TEXT_MUTED, bg=bg)
@@ -497,15 +513,37 @@ def build_ppt(brand_name: str, week_range: str, slides_data: dict) -> bytes:
     # Live fan / follower counts (best effort — slide still renders if missing)
     fb_fans = None
     ig_fans = None
+    fb_fans_last = None
+    ig_fans_last = None
     try:
-        from fb_api import fetch_brand_meta
+        from fb_api import fetch_brand_meta, get_historical_fans
         meta = fetch_brand_meta(brand_name)
         if meta.get("fb"):
             fb_fans = meta["fb"].get("fan_count") or meta["fb"].get("followers_count")
         if meta.get("ig"):
             ig_fans = meta["ig"].get("followers_count")
+        # Historical (end of last week) from local scraper records
+        if " ~ " in week_range:
+            start_s, end_s = [s.strip() for s in week_range.split(" ~ ", 1)]
+            from datetime import datetime as _dt, timedelta as _td
+            end_d = _dt.strptime(end_s, "%Y-%m-%d").date()
+            prev_end = (end_d - _td(days=7)).isoformat()
+            fb_fans_last = get_historical_fans(brand_name, "fb", prev_end)
+            ig_fans_last = get_historical_fans(brand_name, "ig", prev_end)
     except Exception as meta_err:
         print(f"brand meta fetch failed: {meta_err}")
+
+    # Inject fan counts into the summary dicts so the comparison table can pull them
+    this_summary = this_summary or {}
+    last_summary = last_summary or {}
+    if fb_fans is not None:
+        this_summary.setdefault("fb", {})["fans"] = fb_fans
+    if fb_fans_last is not None:
+        last_summary.setdefault("fb", {})["fans"] = fb_fans_last
+    if ig_fans is not None:
+        this_summary.setdefault("ig", {})["fans"] = ig_fans
+    if ig_fans_last is not None:
+        last_summary.setdefault("ig", {})["fans"] = ig_fans_last
 
     _add_cover(prs, brand_name, week_range)
     _add_summary_slide(prs, slides_data or {})
