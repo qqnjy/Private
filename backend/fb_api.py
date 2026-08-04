@@ -303,6 +303,36 @@ def fetch_ig_media(ig_user_id: str, since_ts: int, until_ts: int) -> list[dict]:
     return media
 
 
+def get_historical_fans(brand: str, platform: str, on_or_before_date: str) -> int | None:
+    """Return the latest scraped follower count for this brand+platform on or
+    before the given date (YYYY-MM-DD). Uses the local scraper's `records` table."""
+    try:
+        from models import supabase
+        targets = supabase.table("targets").select("id, name").eq("platform", platform).execute().data or []
+        target = None
+        normalized = brand.strip()
+        for t in targets:
+            clean = (t["name"]
+                     .replace("粉絲團", "")
+                     .replace("(FB)", "").replace("(IG)", "")
+                     .replace("(THREADS)", "")
+                     .replace("_IG", "")
+                     .strip())
+            if clean == normalized or normalized in clean or clean in normalized:
+                target = t
+                break
+        if not target:
+            return None
+        rec = supabase.table("records").select("followers") \
+            .eq("target_id", target["id"]) \
+            .lte("scraped_at", f"{on_or_before_date}T23:59:59+00:00") \
+            .order("scraped_at", desc=True).limit(1).execute().data or []
+        return rec[0]["followers"] if rec else None
+    except Exception as e:
+        print(f"get_historical_fans failed: {e}")
+        return None
+
+
 def fetch_brand_meta(brand_name: str) -> dict:
     """Return live follower / fan counts for a brand's FB page + IG account."""
     page = find_page_by_brand(brand_name)
