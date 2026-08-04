@@ -118,10 +118,49 @@ def get_week_summary(brand: str, week_start: str, week_end: str) -> dict:
     }
 
 
+# Metric keys that a manual override should protect from being wiped by a
+# subsequent Graph API refetch. If a row has metrics._manual_override = True,
+# whichever of these keys are already set survive the upsert.
+MANUAL_PROTECTED_KEYS = {
+    "total_views", "video_views", "video_views_unique", "video_views_15s",
+    "reach", "views", "saved", "avg_watch_ms", "avg_watch_time_ms",
+    "live_views",
+}
+
+
 def save_posts(brand: str, week_start: str, week_end: str, fb: list[dict], ig: list[dict]) -> None:
-    """Upsert all posts to the table. Existing post ids get refreshed metrics."""
+    """Upsert all posts to the table. Existing post ids get refreshed metrics.
+
+    Rows previously marked with metrics._manual_override = True keep their
+    manually-set metric values (e.g. FB photo views that the Graph API can't
+    provide) even when a live refetch would overwrite them with 0 / None.
+    """
     rows = [_normalize_post_for_db(brand, week_start, week_end, p) for p in (fb or [])] \
          + [_normalize_post_for_db(brand, week_start, week_end, p) for p in (ig or [])]
     if not rows:
         return
+
+    # Pull existing rows in one query so we can merge manual overrides
+    ids = [r["id"] for r in rows]
+    existing_rows = supabase.table("posts").select("id, metrics").in_("id", ids).execute().data or []
+    existing = {r["id"]: (r.get("metrics") or {}) for r in existing_rows}
+
+    for row in rows:
+        old_metrics = existing.get(row["id"])
+        if not old_metrics or not old_metrics.get("_manual_override"):
+            continue
+        # Merge: keep the manual flag + any manually-set protected values
+        new_metrics = row["metrics"]
+        new_metrics["_manual_override"] = True
+        for k in MANUAL_PROTECTED_KEYS:
+            if old_metrics.get(k) is not None:
+                # only keep manual if it looks more informative
+                # (non-zero manual overrides a zero/None from live fetch)
+                if not new_metrics.get(k):
+                    new_metrics[k] = old_metrics[k]
+                # If both are set (rare), respect the manual one — user
+                # explicitly overrode it, so keep the human-supplied value.
+                elif old_metrics.get(k):
+                    new_metrics[k] = old_metrics[k]
+
     supabase.table("posts").upsert(rows, on_conflict="id").execute()
