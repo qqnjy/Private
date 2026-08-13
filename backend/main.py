@@ -389,14 +389,28 @@ class SummarizeRequest(BaseModel):
 @app.post("/api/summarize")
 def api_summarize(req: SummarizeRequest):
     """Generic LLM passthrough — used by the 報告文字化工具 page.
-    Accepts a fully-formed prompt and returns the model's text reply."""
+
+    Uses a 128K-context model because this endpoint ingests whole decks: a
+    127-slide monthly report is ~33k tokens, which overflows the 32K models.
+    """
     try:
-        from ai_reporter import client
-        if not (req.prompt or "").strip():
+        from ai_reporter import client, LONG_CONTEXT_MODEL
+        prompt = (req.prompt or "").strip()
+        if not prompt:
             raise HTTPException(status_code=400, detail="prompt is empty")
+
+        # Rough guard: CJK runs ~1 token/char, so keep well under the 128K window
+        # after leaving room for the reply. Trim the middle, keeping the head
+        # (instructions + early slides) and tail (summary/KPI slides).
+        MAX_CHARS = 110_000
+        if len(prompt) > MAX_CHARS:
+            head = prompt[: int(MAX_CHARS * 0.7)]
+            tail = prompt[-int(MAX_CHARS * 0.3):]
+            prompt = head + "\n\n…（中間內容過長已省略）…\n\n" + tail
+
         response = client.chat.completions.create(
-            model="Qwen/Qwen2.5-32B-Instruct",
-            messages=[{"role": "user", "content": req.prompt}],
+            model=LONG_CONTEXT_MODEL,
+            messages=[{"role": "user", "content": prompt}],
             temperature=0.4,
             max_tokens=3500,
         )

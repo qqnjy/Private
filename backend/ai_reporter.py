@@ -11,8 +11,13 @@ SILICONFLOW_API_KEY = os.getenv("SILICONFLOW_API_KEY")
 client = OpenAI(
     api_key=SILICONFLOW_API_KEY or "dummy_key_to_prevent_crash_on_import",
     base_url="https://api.siliconflow.cn/v1",
-    timeout=60.0,  # any single request > 60s fails fast instead of hanging the whole endpoint
+    timeout=120.0,  # fail fast rather than hanging the endpoint, but allow big decks
 )
+
+# 32K window — fine for the weekly report, whose input is just post summaries.
+REPORT_MODEL = "Qwen/Qwen2.5-32B-Instruct"
+# 128K window — needed by /api/summarize, which ingests whole PPT decks.
+LONG_CONTEXT_MODEL = "Qwen/Qwen2.5-72B-Instruct-128K"
 
 SYSTEM_PROMPT = """你是一位資深的社群行銷專家與數據分析師。
 你的任務是根據提供的社群成效數據與筆記，產出一份只涵蓋 FB 與 IG 的社群週報，
@@ -82,7 +87,7 @@ o\t時事梗：[其他亮點貼文]
 
 語氣要求：
 - 專業、客觀但具有行動力。
-- 使用繁體中文。
+- 全文一律使用**台灣繁體中文**，絕對不可出現簡體字（例：互动→互動、内容→內容、点击→點擊、视频→影片、尽管→儘管、较低→較低、透过→透過），也不可夾雜英文單字。
 - 將數據轉化為有意義的商業洞察。
 - 嚴格輸出 JSON，不要任何額外文字或 markdown 標記。
 - 整份報告只談 FB 與 IG，**完全不要提到 Threads**。
@@ -154,7 +159,7 @@ def generate_weekly_report(brand_name: str, notes: str, followers_growth_fb: int
 """
     def _call(temperature: float):
         response = client.chat.completions.create(
-            model="Qwen/Qwen2.5-32B-Instruct",
+            model=REPORT_MODEL,
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt}
