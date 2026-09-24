@@ -125,6 +125,16 @@ export default function Dashboard() {
 
   const safePlatformStats = summary?.platform_stats || {};
 
+  // 總粉絲數 + 各平台各一張卡，欄數跟著卡數走才不會掉到第二排
+  // （字串要寫死，Tailwind 才掃得到）
+  const statCardCols = {
+    2: 'lg:grid-cols-2',
+    3: 'lg:grid-cols-3',
+    4: 'lg:grid-cols-4',
+    5: 'lg:grid-cols-5',
+    6: 'lg:grid-cols-6',
+  }[1 + Object.keys(safePlatformStats).length] || 'lg:grid-cols-4';
+
   // Prepare Pie Chart Data
   const pieData = Object.keys(safePlatformStats).map(key => ({
     name: key.toUpperCase(),
@@ -245,14 +255,14 @@ export default function Dashboard() {
         <div className="p-8 text-[var(--text-secondary)]">載入遊戲數據中...</div>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-6">
-              <p className="text-[var(--text-secondary)] text-sm font-medium mb-1">{selectedGame} 總粉絲數</p>
-              <h3 className="text-4xl font-black text-[var(--text-primary)]">{(summary?.total_followers || 0).toLocaleString()}</h3>
+          <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ${statCardCols} gap-4`}>
+            <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-5">
+              <p className="text-[var(--text-secondary)] text-sm font-medium mb-1 truncate">{selectedGame} 總粉絲數</p>
+              <h3 className="text-3xl font-black text-[var(--text-primary)]">{(summary?.total_followers || 0).toLocaleString()}</h3>
             </div>
 
             {Object.entries(safePlatformStats).map(([platform, count]) => (
-              <div key={platform} className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-6 flex items-center justify-between">
+              <div key={platform} className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-5 flex items-center justify-between">
                 <div>
                   <p className="text-[var(--text-secondary)] text-sm font-medium mb-1 flex items-center gap-2 uppercase">
                     <span style={{color: COLORS[platform]}}>{PLATFORM_ICONS[platform]}</span>
