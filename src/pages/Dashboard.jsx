@@ -47,7 +47,7 @@ export default function Dashboard() {
         
         // 利用名稱推導出遊戲名稱，將「粉絲團」、「_IG」等字眼去除
         const uniqueGames = [...new Set(data.map(t => {
-          return (t?.name || '').replace('粉絲團', '').replace('_IG', '').trim();
+          return (t?.name || '').replace('粉絲團', '').replace('_IG', '').replace('_YT', '').trim();
         }).filter(Boolean))];
         
         setGames(uniqueGames);
@@ -69,7 +69,7 @@ export default function Dashboard() {
     if (!selectedGame || targets.length === 0) return;
 
     const gameTargets = targets.filter(t => {
-      const n = (t?.name || '').replace('粉絲團', '').replace('_IG', '').trim();
+      const n = (t?.name || '').replace('粉絲團', '').replace('_IG', '').replace('_YT', '').trim();
       return n === selectedGame;
     });
     const targetIds = gameTargets.map(t => t.id).join(',');

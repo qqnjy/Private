@@ -30,6 +30,7 @@ export default function WeeklyPosts() {
             .replace(/\(THREADS\)$/i, '')
             .replace(/粉絲團/i, '')
             .replace(/_IG/i, '')
+            .replace(/_YT/i, '')
             .replace(/\(FB\)$/i, '')
             .replace(/\(IG\)$/i, '')
             .trim();
