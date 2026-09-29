@@ -376,15 +376,59 @@ def fetch_weekly_posts(brand_name: str, start_date: str, end_date: str) -> dict:
     }
 
 
-def top_posts_summary(weekly: dict, top_n: int = 3) -> str:
+def _type_breakdown(posts: list, views_key, label: str) -> list:
+    """Views vs engagement split by post type.
+
+    Posts are ranked by views, so photos never make the TOP list even when they
+    carry the week's interactions. Without this the report only ever describes
+    videos.
+    """
+    if not posts:
+        return []
+    buckets = {}
+    for p in posts:
+        b = buckets.setdefault(p.get("post_type") or "其他", {"n": 0, "v": 0, "e": 0})
+        b["n"] += 1
+        b["v"] += views_key(p) or 0
+        b["e"] += p.get("engagement") or 0
+    total_v = sum(b["v"] for b in buckets.values())
+    total_e = sum(b["e"] for b in buckets.values())
+    lines = [f"【{label} 貼文類型分佈】"]
+    for name, b in sorted(buckets.items(), key=lambda kv: -kv[1]["v"]):
+        vp = f"{b['v'] / total_v * 100:.1f}%" if total_v else "—"
+        ep = f"{b['e'] / total_e * 100:.1f}%" if total_e else "—"
+        lines.append(
+            f"  {name}：{b['n']} 則，觀看 {b['v']:,}（佔 {vp}）、互動 {b['e']:,}（佔 {ep}）"
+        )
+    return lines
+
+
+def _top_by_engagement(posts: list, top_n: int, label: str) -> list:
+    """The interaction leaders, which the views ranking hides."""
+    ranked = sorted(posts, key=lambda p: p.get("engagement") or 0, reverse=True)[:top_n]
+    if not ranked:
+        return []
+    lines = [f"【{label} 互動最高貼文】"]
+    for i, p in enumerate(ranked, 1):
+        msg = (p.get("message") or p.get("live_title") or "(無文字)")[:60].replace("\n", " ")
+        lines.append(
+            f"  {i}. [{p.get('post_type') or '其他'}] {msg} — 互動 {p.get('engagement') or 0}"
+            f"（讚 {p.get('reactions') or 0}、留言 {p.get('comments') or 0}、分享 {p.get('shares') or 0}）"
+        )
+    return lines
+
+
+def top_posts_summary(weekly: dict, top_n: int = 5) -> str:
     """Format top N posts per platform as text for the AI prompt."""
     lines = []
     fb = weekly.get("fb") or []
     if fb:
+        lines += _type_breakdown(fb, lambda p: p.get("total_views") or p.get("video_views"), "FB")
+        lines.append("")
         lines.append("【FB TOP 貼文（影片按觀看數排序）】")
         for i, p in enumerate(fb[:top_n], 1):
             msg = (p["message"] or p.get("live_title") or "(無文字)")[:80].replace("\n", " ")
-            tag = "🔴 直播" if p.get("is_live") else ""
+            tag = "🔴 直播" if p.get("is_live") else f"[{p.get('post_type') or '其他'}]"
             parts = [f"  {i}. {tag} {msg}".strip()]
             metric_bits = []
             views = p.get("total_views") or p.get("video_views")
@@ -398,13 +442,22 @@ def top_posts_summary(weekly: dict, top_n: int = 3) -> str:
             if p.get("clicks") is not None:
                 metric_bits.append(f"點擊 {p['clicks']}")
             lines.append(parts[0] + " — " + "、".join(metric_bits))
+        eng = _top_by_engagement(fb, 3, "FB")
+        if eng:
+            lines.append("")
+            lines += eng
     ig = weekly.get("ig") or []
     if ig:
+        if fb:
+            lines.append("")
+        lines += _type_breakdown(ig, lambda m: m.get("views"), "IG")
+        lines.append("")
         lines.append("【IG TOP 貼文（按觀看次數排序）】")
         for i, m in enumerate(ig[:top_n], 1):
             msg = (m["message"] or "(無文字)")[:80].replace("\n", " ")
             lines.append(
-                f"  {i}. {msg} — 觀看 {m.get('views') or '?'}、觸及 {m.get('reach') or '?'}、讚 {m['likes']}、留言 {m['comments']}"
+                f"  {i}. [{m.get('post_type') or '其他'}] {msg} — 觀看 {m.get('views') or '?'}"
+                f"、觸及 {m.get('reach') or '?'}、讚 {m['likes']}、留言 {m['comments']}"
                 + (f"、儲存 {m['saved']}" if m.get("saved") else "")
                 + (f"、互動 {m['total_interactions']}" if m.get("total_interactions") else "")
             )
