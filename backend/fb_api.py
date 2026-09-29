@@ -316,7 +316,7 @@ def get_historical_fans(brand: str, platform: str, on_or_before_date: str) -> in
                      .replace("粉絲團", "")
                      .replace("(FB)", "").replace("(IG)", "")
                      .replace("(THREADS)", "")
-                     .replace("_IG", "")
+                     .replace("_IG", "").replace("_YT", "")
                      .strip())
             if clean == normalized or normalized in clean or clean in normalized:
                 target = t
@@ -416,6 +416,85 @@ def _top_by_engagement(posts: list, top_n: int, label: str) -> list:
             f"（讚 {p.get('reactions') or 0}、留言 {p.get('comments') or 0}、分享 {p.get('shares') or 0}）"
         )
     return lines
+
+
+def fan_trend_summary(brand: str, week_end: str, weeks: int = 5) -> str:
+    """Week-ending follower counts for the last few weeks.
+
+    Single-week deltas read as noise; the useful line in the report is whether
+    this is the first down week or the third, and what it adds up to.
+    """
+    from datetime import datetime as _d, timedelta as _t
+
+    try:
+        end = _d.strptime(week_end, "%Y-%m-%d").date()
+    except ValueError:
+        return ""
+    lines = []
+    for plat, label in (("fb", "FB"), ("ig", "IG")):
+        series = []
+        for i in range(weeks - 1, -1, -1):
+            d = (end - _t(days=7 * i)).isoformat()
+            n = get_historical_fans(brand, plat, d)
+            if n:
+                series.append((d, n))
+        if len(series) < 2:
+            continue
+        bits = []
+        for idx, (d, n) in enumerate(series):
+            if idx == 0:
+                bits.append(f"{d} {n:,}")
+            else:
+                bits.append(f"{d} {n:,}（{n - series[idx - 1][1]:+,}）")
+        net = series[-1][1] - series[0][1]
+        lines.append(f"【{label} 近 {len(series)} 週粉絲數】")
+        lines.append("  " + " → ".join(bits))
+        lines.append(f"  區間淨變化：{net:+,} 人")
+        lines.append("")
+    return "\n".join(lines).rstrip()
+
+
+_WOW_FIELDS = [
+    ("post_count", "發佈篇數", ""),
+    ("total_views", "總觀看", ""),
+    ("total_reach", "總觸及", ""),
+    ("avg_view", "平均觀看", ""),
+    ("total_interactions", "總互動", ""),
+    ("interaction_rate", "互動率", "%"),
+    ("total_likes", "讚", ""),
+    ("total_comments", "留言", ""),
+    ("total_shares", "分享", ""),
+]
+
+
+def wow_summary(this_week: dict, last_week: dict) -> str:
+    """This week vs last week, per platform.
+
+    The report is meant to read as a trend, not a snapshot, so the model needs
+    last week's aggregates to state any change rate at all.
+    """
+    if not this_week:
+        return ""
+    lines = []
+    for plat in ("fb", "ig"):
+        cur = this_week.get(plat) or {}
+        prev = (last_week or {}).get(plat) or {}
+        if not cur.get("post_count"):
+            continue
+        lines.append(f"【{plat.upper()} 本週 vs 上週】")
+        for key, label, unit in _WOW_FIELDS:
+            now = cur.get(key) or 0
+            if not now and not (prev.get(key) or 0):
+                continue
+            before = prev.get(key) or 0
+            if before:
+                pct = (now - before) / before * 100
+                delta = f"（上週 {before:,}{unit}，{pct:+.1f}%）"
+            else:
+                delta = "（上週無資料）"
+            lines.append(f"  {label}：{now:,}{unit}{delta}")
+        lines.append("")
+    return "\n".join(lines).rstrip()
 
 
 def top_posts_summary(weekly: dict, top_n: int = 5) -> str:

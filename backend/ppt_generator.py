@@ -186,10 +186,31 @@ def _set_cell(cell, text, *, size=11, bold=False, color=TEXT_DARK, bg=None, alig
 
 # ---------- slide builders ----------
 
+def _pretty_week(week_range: str) -> str:
+    """"2026-09-21 ~ 2026-09-27" -> "9月21日至27日" for the cover.
+
+    The range is passed in ISO because the data lookups parse it; only the
+    display should be localised.
+    """
+    if " ~ " not in week_range:
+        return week_range
+    try:
+        from datetime import datetime
+
+        start_s, end_s = [s.strip() for s in week_range.split(" ~ ", 1)]
+        a = datetime.strptime(start_s, "%Y-%m-%d").date()
+        b = datetime.strptime(end_s, "%Y-%m-%d").date()
+    except ValueError:
+        return week_range
+    if a.month == b.month:
+        return f"{a.month}月{a.day}日至{b.day}日"
+    return f"{a.month}月{a.day}日至{b.month}月{b.day}日"
+
+
 def _add_cover(prs, brand_name, week_range):
     slide = prs.slides.add_slide(prs.slide_layouts[LAYOUT_COVER])
     _set_text(slide, PH_TITLE, f"{brand_name} 社群週報")
-    _set_text(slide, PH_SUBTITLE, week_range)
+    _set_text(slide, PH_SUBTITLE, _pretty_week(week_range))
 
 
 def _add_summary_slide(prs, slides_data):

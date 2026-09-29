@@ -485,8 +485,10 @@ def api_generate_report(req: ReportRequestExt):
         notes = req.notes or ""
         if req.start_date and req.end_date:
             try:
-                from fb_api import top_posts_summary
+                from fb_api import top_posts_summary, wow_summary, fan_trend_summary
+                from posts_repo import get_week_summary
                 weekly = _ensure_week_cached(req.brand_name, req.start_date, req.end_date)
+                prev_ws = prev_we = None
 
                 # Also warm up last week's cache so the PPT comparison table has data.
                 # Best-effort: if it fails (e.g. rate limit), don't block report.
@@ -499,7 +501,26 @@ def api_generate_report(req: ReportRequestExt):
                 except Exception as prev_err:
                     print(f"prev-week warmup failed: {prev_err}")
 
-                summary = top_posts_summary(weekly, top_n=3)
+                # WoW block first: the outline leads with change rates.
+                if prev_ws:
+                    try:
+                        wow = wow_summary(
+                            get_week_summary(req.brand_name, req.start_date, req.end_date),
+                            get_week_summary(req.brand_name, prev_ws, prev_we),
+                        )
+                        if wow:
+                            notes = (notes + "\n\n" if notes else "") + wow
+                    except Exception as wow_err:
+                        print(f"WoW summary failed: {wow_err}")
+
+                try:
+                    trend = fan_trend_summary(req.brand_name, req.end_date)
+                    if trend:
+                        notes = (notes + "\n\n" if notes else "") + trend
+                except Exception as trend_err:
+                    print(f"fan trend failed: {trend_err}")
+
+                summary = top_posts_summary(weekly, top_n=5)
                 if summary:
                     notes = (notes + "\n\n" if notes else "") + summary
             except Exception as fb_err:
@@ -542,9 +563,9 @@ class PptRequest(BaseModel):
 @app.post("/api/generate-ppt")
 def api_generate_ppt(req: PptRequest):
     try:
-        from ppt_generator import build_ppt
+        from ppt_generator import build_ppt, _pretty_week
         data = build_ppt(req.brand_name, req.week_range, req.slides or {})
-        filename = f"{req.brand_name}_週報_{req.week_range}.pptx"
+        filename = f"{req.brand_name}_{_pretty_week(req.week_range)}_週報.pptx"
         return Response(
             content=data,
             media_type="application/vnd.openxmlformats-officedocument.presentationml.presentation",
