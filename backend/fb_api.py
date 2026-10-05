@@ -404,16 +404,34 @@ def _type_breakdown(posts: list, views_key, label: str) -> list:
 
 
 def _top_by_engagement(posts: list, top_n: int, label: str) -> list:
-    """The interaction leaders, which the views ranking hides."""
+    """The interaction leaders, which the views ranking hides.
+
+    The ratios are computed here rather than left to the model, which gets them
+    wrong (it has reported a 1.27% comment rate as 24.5%).
+    """
     ranked = sorted(posts, key=lambda p: p.get("engagement") or 0, reverse=True)[:top_n]
     if not ranked:
         return []
-    lines = [f"【{label} 互動最高貼文】"]
+    week_comments = sum(p.get("comments") or 0 for p in posts)
+    week_eng = sum(p.get("engagement") or 0 for p in posts)
+    lines = [f"【{label} 互動最高貼文】（比率均已算好，請直接引用，不要自行計算）"]
     for i, p in enumerate(ranked, 1):
         msg = (p.get("message") or p.get("live_title") or "(無文字)")[:60].replace("\n", " ")
+        views = p.get("total_views") or p.get("video_views") or 0
+        eng = p.get("engagement") or 0
+        com = p.get("comments") or 0
+        ratios = []
+        if week_eng:
+            ratios.append(f"占全週互動 {eng / week_eng * 100:.1f}%")
+        if week_comments:
+            ratios.append(f"占全週留言 {com / week_comments * 100:.1f}%")
+        if views:
+            ratios.append(f"留言率 {com / views * 100:.2f}%")
+            ratios.append(f"互動率 {eng / views * 100:.2f}%")
         lines.append(
-            f"  {i}. [{p.get('post_type') or '其他'}] {msg} — 互動 {p.get('engagement') or 0}"
-            f"（讚 {p.get('reactions') or 0}、留言 {p.get('comments') or 0}、分享 {p.get('shares') or 0}）"
+            f"  {i}. [{p.get('post_type') or '其他'}] {msg} — 觀看 {views:,}、互動 {eng}"
+            f"（讚 {p.get('reactions') or 0}、留言 {com}、分享 {p.get('shares') or 0}）"
+            + ("；" + "、".join(ratios) if ratios else "")
         )
     return lines
 
@@ -447,9 +465,26 @@ def fan_trend_summary(brand: str, week_end: str, weeks: int = 5) -> str:
             else:
                 bits.append(f"{d} {n:,}（{n - series[idx - 1][1]:+,}）")
         net = series[-1][1] - series[0][1]
+        # Count the run of consecutive down (or up) weeks ending this week, so
+        # the model never has to count it itself.
+        deltas = [series[i][1] - series[i - 1][1] for i in range(1, len(series))]
+        streak, direction = 0, None
+        for d in reversed(deltas):
+            if d < 0 and direction in (None, "down"):
+                direction, streak = "down", streak + 1
+            elif d > 0 and direction in (None, "up"):
+                direction, streak = "up", streak + 1
+            else:
+                break
         lines.append(f"【{label} 近 {len(series)} 週粉絲數】")
         lines.append("  " + " → ".join(bits))
         lines.append(f"  區間淨變化：{net:+,} 人")
+        if direction == "down":
+            lines.append(f"  連續淨流失週數：{streak} 週（寫報告時請直接寫「連續第 {streak} 週」，不要自行推算）")
+        elif direction == "up":
+            lines.append(f"  連續淨成長週數：{streak} 週")
+        else:
+            lines.append("  本週持平")
         lines.append("")
     return "\n".join(lines).rstrip()
 
