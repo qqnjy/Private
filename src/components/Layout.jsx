@@ -7,6 +7,7 @@ export default function Layout({ children }) {
   const navItems = [
     { name: '總覽儀表板', path: '/', icon: <LayoutDashboard size={20} /> },
     { name: '單一帳號分析', path: '/platforms', icon: <Activity size={20} /> },
+    { name: '追蹤增減', path: '/followers', icon: <Users size={20} /> },
     { name: '競品分析', path: '/competitors', icon: <PieChart size={20} /> },
     { name: '小編行事曆', path: '/calendar', icon: <CalendarDays size={20} /> },
     { name: '追蹤清單管理', path: '/manage', icon: <Users size={20} /> },
@@ -68,6 +69,7 @@ export default function Layout({ children }) {
           <h1 className="text-xl font-black text-[var(--accent)]">
             IGS社群數據觀測站
           </h1>
+          <Link to="/followers" className="text-sm text-[var(--accent)]">追蹤增減</Link>
         </header>
 
         <div className="flex-1 overflow-y-auto p-4 md:p-8">

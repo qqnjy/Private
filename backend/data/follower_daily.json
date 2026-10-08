@@ -1,0 +1,826 @@
+{
+  "brand": "滿貫大亨",
+  "rows": [
+    {
+      "date": "2026-08-01",
+      "platform": "fb",
+      "follows": 15,
+      "unfollows": 6
+    },
+    {
+      "date": "2026-08-01",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-08-02",
+      "platform": "fb",
+      "follows": 12,
+      "unfollows": 10
+    },
+    {
+      "date": "2026-08-02",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-08-03",
+      "platform": "fb",
+      "follows": 64,
+      "unfollows": 8
+    },
+    {
+      "date": "2026-08-03",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-08-04",
+      "platform": "fb",
+      "follows": 22,
+      "unfollows": 9
+    },
+    {
+      "date": "2026-08-04",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-08-05",
+      "platform": "fb",
+      "follows": 19,
+      "unfollows": 4
+    },
+    {
+      "date": "2026-08-05",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-08-06",
+      "platform": "fb",
+      "follows": 16,
+      "unfollows": 8
+    },
+    {
+      "date": "2026-08-06",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-08-07",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 8
+    },
+    {
+      "date": "2026-08-07",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-08-08",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 6
+    },
+    {
+      "date": "2026-08-08",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-08-09",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 14
+    },
+    {
+      "date": "2026-08-09",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 3
+    },
+    {
+      "date": "2026-08-10",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 17
+    },
+    {
+      "date": "2026-08-10",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-08-11",
+      "platform": "fb",
+      "follows": 114,
+      "unfollows": 12
+    },
+    {
+      "date": "2026-08-11",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-08-12",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 14
+    },
+    {
+      "date": "2026-08-12",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-08-13",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 10
+    },
+    {
+      "date": "2026-08-13",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 4
+    },
+    {
+      "date": "2026-08-14",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 4
+    },
+    {
+      "date": "2026-08-14",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-08-15",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 5
+    },
+    {
+      "date": "2026-08-15",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-08-16",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 8
+    },
+    {
+      "date": "2026-08-16",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-08-17",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 7
+    },
+    {
+      "date": "2026-08-17",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 3
+    },
+    {
+      "date": "2026-08-18",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 4
+    },
+    {
+      "date": "2026-08-18",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-08-19",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 9
+    },
+    {
+      "date": "2026-08-19",
+      "platform": "ig",
+      "follows": 3,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-08-20",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 13
+    },
+    {
+      "date": "2026-08-20",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-08-21",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 11
+    },
+    {
+      "date": "2026-08-21",
+      "platform": "ig",
+      "follows": 3,
+      "unfollows": 5
+    },
+    {
+      "date": "2026-08-22",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 4
+    },
+    {
+      "date": "2026-08-22",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-08-23",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 4
+    },
+    {
+      "date": "2026-08-23",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-08-24",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 11
+    },
+    {
+      "date": "2026-08-24",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-08-25",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 9
+    },
+    {
+      "date": "2026-08-25",
+      "platform": "ig",
+      "follows": 3,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-08-26",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 6
+    },
+    {
+      "date": "2026-08-26",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-08-27",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 4
+    },
+    {
+      "date": "2026-08-27",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 4
+    },
+    {
+      "date": "2026-08-28",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 4
+    },
+    {
+      "date": "2026-08-28",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-08-29",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 8
+    },
+    {
+      "date": "2026-08-29",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-08-30",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 5
+    },
+    {
+      "date": "2026-08-30",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-08-31",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-08-31",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-09-01",
+      "platform": "fb",
+      "follows": 8,
+      "unfollows": 10
+    },
+    {
+      "date": "2026-09-01",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-09-02",
+      "platform": "fb",
+      "follows": 14,
+      "unfollows": 7
+    },
+    {
+      "date": "2026-09-02",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-09-03",
+      "platform": "fb",
+      "follows": 9,
+      "unfollows": 5
+    },
+    {
+      "date": "2026-09-03",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-09-04",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 3
+    },
+    {
+      "date": "2026-09-04",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-09-05",
+      "platform": "fb",
+      "follows": 8,
+      "unfollows": 3
+    },
+    {
+      "date": "2026-09-05",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-09-06",
+      "platform": "fb",
+      "follows": 8,
+      "unfollows": 6
+    },
+    {
+      "date": "2026-09-06",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-09-07",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 9
+    },
+    {
+      "date": "2026-09-07",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-09-08",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 8
+    },
+    {
+      "date": "2026-09-08",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-09-09",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 20
+    },
+    {
+      "date": "2026-09-09",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-09-10",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 4
+    },
+    {
+      "date": "2026-09-10",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 4
+    },
+    {
+      "date": "2026-09-11",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-09-11",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-09-12",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-09-12",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-09-13",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 9
+    },
+    {
+      "date": "2026-09-13",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-09-14",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 5
+    },
+    {
+      "date": "2026-09-14",
+      "platform": "ig",
+      "follows": 3,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-09-15",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 3
+    },
+    {
+      "date": "2026-09-15",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 4
+    },
+    {
+      "date": "2026-09-16",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 9
+    },
+    {
+      "date": "2026-09-16",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-09-17",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 4
+    },
+    {
+      "date": "2026-09-17",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-09-18",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 5
+    },
+    {
+      "date": "2026-09-18",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-09-19",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 5
+    },
+    {
+      "date": "2026-09-19",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-09-20",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 4
+    },
+    {
+      "date": "2026-09-20",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-09-21",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 3
+    },
+    {
+      "date": "2026-09-21",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-09-22",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 10
+    },
+    {
+      "date": "2026-09-22",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-09-23",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 11
+    },
+    {
+      "date": "2026-09-23",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-09-24",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-09-24",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-09-25",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 7
+    },
+    {
+      "date": "2026-09-25",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 3
+    },
+    {
+      "date": "2026-09-26",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 10
+    },
+    {
+      "date": "2026-09-26",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-09-27",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 8
+    },
+    {
+      "date": "2026-09-27",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-09-28",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 5
+    },
+    {
+      "date": "2026-09-28",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-09-29",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 3
+    },
+    {
+      "date": "2026-09-29",
+      "platform": "ig",
+      "follows": 4,
+      "unfollows": 1
+    },
+    {
+      "date": "2026-09-30",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 5
+    },
+    {
+      "date": "2026-09-30",
+      "platform": "ig",
+      "follows": 4,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-10-01",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 6
+    },
+    {
+      "date": "2026-10-01",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-10-02",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 13
+    },
+    {
+      "date": "2026-10-02",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-10-03",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 7
+    },
+    {
+      "date": "2026-10-03",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2
+    },
+    {
+      "date": "2026-10-04",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 3
+    },
+    {
+      "date": "2026-10-04",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-10-05",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 11
+    },
+    {
+      "date": "2026-10-05",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-10-06",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 6
+    },
+    {
+      "date": "2026-10-06",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0
+    },
+    {
+      "date": "2026-10-07",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 5
+    },
+    {
+      "date": "2026-10-07",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null
+    }
+  ],
+  "updated_at": "2026-10-08T16:12:20.105462+08:00",
+  "reporting_windows": {
+    "fb": "Meta daily buckets",
+    "ig": "Asia/Taipei calendar day"
+  }
+}

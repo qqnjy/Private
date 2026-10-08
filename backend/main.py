@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi import FastAPI, HTTPException, BackgroundTasks, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from urllib.parse import quote
@@ -37,6 +37,17 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.get("/api/followers/month")
+def api_follower_month(month: str = Query(..., pattern=r"^\d{4}-\d{2}$")):
+    from follower_insights import load_month
+    try:
+        return load_month(month)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from None
+    except FileNotFoundError:
+        raise HTTPException(status_code=503, detail="追蹤增減資料尚未建立") from None
+
 
 class TargetCreate(BaseModel):
     name: str

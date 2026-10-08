@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import PlatformAnalysis from './pages/PlatformAnalysis';
+import FollowerGrowth from './pages/FollowerGrowth';
 import ManageList from './pages/ManageList';
 import Calendar from './pages/Calendar';
 import CompetitorAnalysis from './pages/CompetitorAnalysis';
@@ -74,6 +75,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/platforms" element={<PlatformAnalysis />} />
+          <Route path="/followers" element={<FollowerGrowth />} />
           <Route path="/competitors" element={<CompetitorAnalysis />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/manage" element={<ManageList />} />
