@@ -1,826 +1,6711 @@
 {
-  "brand": "滿貫大亨",
   "rows": [
     {
       "date": "2026-08-01",
       "platform": "fb",
-      "follows": 15,
-      "unfollows": 6
+      "follows": 2,
+      "unfollows": 1,
+      "project": "donut"
     },
     {
       "date": "2026-08-01",
       "platform": "ig",
-      "follows": 2,
-      "unfollows": 0
+      "follows": 1,
+      "unfollows": 0,
+      "project": "donut"
     },
     {
       "date": "2026-08-02",
       "platform": "fb",
-      "follows": 12,
-      "unfollows": 10
+      "follows": 3,
+      "unfollows": 3,
+      "project": "donut"
     },
     {
       "date": "2026-08-02",
       "platform": "ig",
-      "follows": 2,
-      "unfollows": 0
+      "follows": 1,
+      "unfollows": 0,
+      "project": "donut"
     },
     {
       "date": "2026-08-03",
       "platform": "fb",
-      "follows": 64,
-      "unfollows": 8
+      "follows": 3,
+      "unfollows": 2,
+      "project": "donut"
     },
     {
       "date": "2026-08-03",
       "platform": "ig",
-      "follows": 0,
-      "unfollows": 0
+      "follows": 4,
+      "unfollows": 1,
+      "project": "donut"
     },
     {
       "date": "2026-08-04",
       "platform": "fb",
-      "follows": 22,
-      "unfollows": 9
+      "follows": 10,
+      "unfollows": 5,
+      "project": "donut"
     },
     {
       "date": "2026-08-04",
       "platform": "ig",
-      "follows": 1,
-      "unfollows": 0
+      "follows": 4,
+      "unfollows": 2,
+      "project": "donut"
     },
     {
       "date": "2026-08-05",
       "platform": "fb",
-      "follows": 19,
-      "unfollows": 4
+      "follows": 5,
+      "unfollows": 0,
+      "project": "donut"
     },
     {
       "date": "2026-08-05",
       "platform": "ig",
-      "follows": 0,
-      "unfollows": 1
+      "follows": 1,
+      "unfollows": 1,
+      "project": "donut"
     },
     {
       "date": "2026-08-06",
       "platform": "fb",
-      "follows": 16,
-      "unfollows": 8
+      "follows": 10,
+      "unfollows": 5,
+      "project": "donut"
     },
     {
       "date": "2026-08-06",
       "platform": "ig",
-      "follows": 0,
-      "unfollows": 0
+      "follows": 4,
+      "unfollows": 2,
+      "project": "donut"
     },
     {
       "date": "2026-08-07",
-      "platform": "fb",
-      "follows": 6,
-      "unfollows": 8
-    },
-    {
-      "date": "2026-08-07",
-      "platform": "ig",
-      "follows": 1,
-      "unfollows": 2
-    },
-    {
-      "date": "2026-08-08",
-      "platform": "fb",
-      "follows": 3,
-      "unfollows": 6
-    },
-    {
-      "date": "2026-08-08",
-      "platform": "ig",
-      "follows": 1,
-      "unfollows": 1
-    },
-    {
-      "date": "2026-08-09",
-      "platform": "fb",
-      "follows": 3,
-      "unfollows": 14
-    },
-    {
-      "date": "2026-08-09",
-      "platform": "ig",
-      "follows": 1,
-      "unfollows": 3
-    },
-    {
-      "date": "2026-08-10",
-      "platform": "fb",
-      "follows": 4,
-      "unfollows": 17
-    },
-    {
-      "date": "2026-08-10",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 2
-    },
-    {
-      "date": "2026-08-11",
-      "platform": "fb",
-      "follows": 114,
-      "unfollows": 12
-    },
-    {
-      "date": "2026-08-11",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 0
-    },
-    {
-      "date": "2026-08-12",
-      "platform": "fb",
-      "follows": 2,
-      "unfollows": 14
-    },
-    {
-      "date": "2026-08-12",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 0
-    },
-    {
-      "date": "2026-08-13",
-      "platform": "fb",
-      "follows": 6,
-      "unfollows": 10
-    },
-    {
-      "date": "2026-08-13",
-      "platform": "ig",
-      "follows": 1,
-      "unfollows": 4
-    },
-    {
-      "date": "2026-08-14",
-      "platform": "fb",
-      "follows": 4,
-      "unfollows": 4
-    },
-    {
-      "date": "2026-08-14",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 0
-    },
-    {
-      "date": "2026-08-15",
-      "platform": "fb",
-      "follows": 5,
-      "unfollows": 5
-    },
-    {
-      "date": "2026-08-15",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 2
-    },
-    {
-      "date": "2026-08-16",
-      "platform": "fb",
-      "follows": 1,
-      "unfollows": 8
-    },
-    {
-      "date": "2026-08-16",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 1
-    },
-    {
-      "date": "2026-08-17",
-      "platform": "fb",
-      "follows": 3,
-      "unfollows": 7
-    },
-    {
-      "date": "2026-08-17",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 3
-    },
-    {
-      "date": "2026-08-18",
-      "platform": "fb",
-      "follows": 2,
-      "unfollows": 4
-    },
-    {
-      "date": "2026-08-18",
-      "platform": "ig",
-      "follows": 1,
-      "unfollows": 1
-    },
-    {
-      "date": "2026-08-19",
-      "platform": "fb",
-      "follows": 4,
-      "unfollows": 9
-    },
-    {
-      "date": "2026-08-19",
-      "platform": "ig",
-      "follows": 3,
-      "unfollows": 2
-    },
-    {
-      "date": "2026-08-20",
-      "platform": "fb",
-      "follows": 2,
-      "unfollows": 13
-    },
-    {
-      "date": "2026-08-20",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 2
-    },
-    {
-      "date": "2026-08-21",
-      "platform": "fb",
-      "follows": 6,
-      "unfollows": 11
-    },
-    {
-      "date": "2026-08-21",
-      "platform": "ig",
-      "follows": 3,
-      "unfollows": 5
-    },
-    {
-      "date": "2026-08-22",
-      "platform": "fb",
-      "follows": 6,
-      "unfollows": 4
-    },
-    {
-      "date": "2026-08-22",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 0
-    },
-    {
-      "date": "2026-08-23",
-      "platform": "fb",
-      "follows": 5,
-      "unfollows": 4
-    },
-    {
-      "date": "2026-08-23",
-      "platform": "ig",
-      "follows": 2,
-      "unfollows": 1
-    },
-    {
-      "date": "2026-08-24",
-      "platform": "fb",
-      "follows": 2,
-      "unfollows": 11
-    },
-    {
-      "date": "2026-08-24",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 1
-    },
-    {
-      "date": "2026-08-25",
-      "platform": "fb",
-      "follows": 6,
-      "unfollows": 9
-    },
-    {
-      "date": "2026-08-25",
-      "platform": "ig",
-      "follows": 3,
-      "unfollows": 2
-    },
-    {
-      "date": "2026-08-26",
-      "platform": "fb",
-      "follows": 3,
-      "unfollows": 6
-    },
-    {
-      "date": "2026-08-26",
-      "platform": "ig",
-      "follows": 1,
-      "unfollows": 0
-    },
-    {
-      "date": "2026-08-27",
-      "platform": "fb",
-      "follows": 5,
-      "unfollows": 4
-    },
-    {
-      "date": "2026-08-27",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 4
-    },
-    {
-      "date": "2026-08-28",
-      "platform": "fb",
-      "follows": 6,
-      "unfollows": 4
-    },
-    {
-      "date": "2026-08-28",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 0
-    },
-    {
-      "date": "2026-08-29",
-      "platform": "fb",
-      "follows": 3,
-      "unfollows": 8
-    },
-    {
-      "date": "2026-08-29",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 0
-    },
-    {
-      "date": "2026-08-30",
-      "platform": "fb",
-      "follows": 4,
-      "unfollows": 5
-    },
-    {
-      "date": "2026-08-30",
-      "platform": "ig",
-      "follows": 2,
-      "unfollows": 1
-    },
-    {
-      "date": "2026-08-31",
-      "platform": "fb",
-      "follows": 3,
-      "unfollows": 1
-    },
-    {
-      "date": "2026-08-31",
-      "platform": "ig",
-      "follows": 1,
-      "unfollows": 0
-    },
-    {
-      "date": "2026-09-01",
-      "platform": "fb",
-      "follows": 8,
-      "unfollows": 10
-    },
-    {
-      "date": "2026-09-01",
-      "platform": "ig",
-      "follows": 1,
-      "unfollows": 1
-    },
-    {
-      "date": "2026-09-02",
-      "platform": "fb",
-      "follows": 14,
-      "unfollows": 7
-    },
-    {
-      "date": "2026-09-02",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 0
-    },
-    {
-      "date": "2026-09-03",
       "platform": "fb",
       "follows": 9,
-      "unfollows": 5
+      "unfollows": 5,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-07",
+      "platform": "ig",
+      "follows": 6,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-08",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-08",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-09",
+      "platform": "fb",
+      "follows": 7,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-09",
+      "platform": "ig",
+      "follows": 5,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-10",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 5,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-10",
+      "platform": "ig",
+      "follows": 3,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-11",
+      "platform": "fb",
+      "follows": 20,
+      "unfollows": 3,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-11",
+      "platform": "ig",
+      "follows": 3,
+      "unfollows": 4,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-12",
+      "platform": "fb",
+      "follows": 14,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-12",
+      "platform": "ig",
+      "follows": 4,
+      "unfollows": 2,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-13",
+      "platform": "fb",
+      "follows": 11,
+      "unfollows": 5,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-13",
+      "platform": "ig",
+      "follows": 3,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-14",
+      "platform": "fb",
+      "follows": 13,
+      "unfollows": 5,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-14",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 5,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-15",
+      "platform": "fb",
+      "follows": 15,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-15",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 3,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-16",
+      "platform": "fb",
+      "follows": 8,
+      "unfollows": 4,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-16",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-17",
+      "platform": "fb",
+      "follows": 12,
+      "unfollows": 3,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-17",
+      "platform": "ig",
+      "follows": 6,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-18",
+      "platform": "fb",
+      "follows": 12,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-18",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-19",
+      "platform": "fb",
+      "follows": 9,
+      "unfollows": 2,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-19",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-20",
+      "platform": "fb",
+      "follows": 9,
+      "unfollows": 2,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-20",
+      "platform": "ig",
+      "follows": 7,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-21",
+      "platform": "fb",
+      "follows": 17,
+      "unfollows": 4,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-21",
+      "platform": "ig",
+      "follows": 3,
+      "unfollows": 2,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-22",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 3,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-22",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-23",
+      "platform": "fb",
+      "follows": 8,
+      "unfollows": 3,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-23",
+      "platform": "ig",
+      "follows": 3,
+      "unfollows": 2,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-24",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-24",
+      "platform": "ig",
+      "follows": 5,
+      "unfollows": 4,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-25",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 7,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-25",
+      "platform": "ig",
+      "follows": 4,
+      "unfollows": 3,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-26",
+      "platform": "fb",
+      "follows": 19,
+      "unfollows": 3,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-26",
+      "platform": "ig",
+      "follows": 5,
+      "unfollows": 2,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-27",
+      "platform": "fb",
+      "follows": 14,
+      "unfollows": 7,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-27",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 4,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-28",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 3,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-28",
+      "platform": "ig",
+      "follows": 4,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-29",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 2,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-29",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 2,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-30",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-30",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-31",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-31",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-01",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 2,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-01",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-02",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-02",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-03",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 2,
+      "project": "donut"
     },
     {
       "date": "2026-09-03",
       "platform": "ig",
-      "follows": 1,
-      "unfollows": 2
+      "follows": 0,
+      "unfollows": 2,
+      "project": "donut"
     },
     {
       "date": "2026-09-04",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-04",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-05",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-05",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-06",
       "platform": "fb",
       "follows": 5,
-      "unfollows": 3
+      "unfollows": 3,
+      "project": "donut"
     },
     {
-      "date": "2026-09-04",
+      "date": "2026-09-06",
       "platform": "ig",
       "follows": 0,
-      "unfollows": 1
-    },
-    {
-      "date": "2026-09-05",
-      "platform": "fb",
-      "follows": 8,
-      "unfollows": 3
-    },
-    {
-      "date": "2026-09-05",
-      "platform": "ig",
-      "follows": 1,
-      "unfollows": 2
-    },
-    {
-      "date": "2026-09-06",
-      "platform": "fb",
-      "follows": 8,
-      "unfollows": 6
-    },
-    {
-      "date": "2026-09-06",
-      "platform": "ig",
-      "follows": 1,
-      "unfollows": 0
+      "unfollows": 0,
+      "project": "donut"
     },
     {
       "date": "2026-09-07",
       "platform": "fb",
-      "follows": 6,
-      "unfollows": 9
+      "follows": 4,
+      "unfollows": 4,
+      "project": "donut"
     },
     {
       "date": "2026-09-07",
       "platform": "ig",
+      "follows": 4,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-08",
+      "platform": "fb",
+      "follows": 10,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-08",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-09",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 4,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-09",
+      "platform": "ig",
+      "follows": 4,
+      "unfollows": 2,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-10",
+      "platform": "fb",
       "follows": 2,
-      "unfollows": 1
+      "unfollows": 2,
+      "project": "donut"
     },
     {
-      "date": "2026-09-08",
-      "platform": "fb",
-      "follows": 6,
-      "unfollows": 8
-    },
-    {
-      "date": "2026-09-08",
+      "date": "2026-09-10",
       "platform": "ig",
-      "follows": 0,
-      "unfollows": 0
-    },
-    {
-      "date": "2026-09-09",
-      "platform": "fb",
       "follows": 5,
-      "unfollows": 20
-    },
-    {
-      "date": "2026-09-09",
-      "platform": "ig",
-      "follows": 1,
-      "unfollows": 1
-    },
-    {
-      "date": "2026-09-10",
-      "platform": "fb",
-      "follows": 6,
-      "unfollows": 4
-    },
-    {
-      "date": "2026-09-10",
-      "platform": "ig",
-      "follows": 1,
-      "unfollows": 4
+      "unfollows": 2,
+      "project": "donut"
     },
     {
       "date": "2026-09-11",
       "platform": "fb",
       "follows": 1,
-      "unfollows": 2
+      "unfollows": 2,
+      "project": "donut"
     },
     {
       "date": "2026-09-11",
       "platform": "ig",
-      "follows": 0,
-      "unfollows": 0
+      "follows": 4,
+      "unfollows": 0,
+      "project": "donut"
     },
     {
       "date": "2026-09-12",
       "platform": "fb",
-      "follows": 4,
-      "unfollows": 2
+      "follows": 1,
+      "unfollows": 1,
+      "project": "donut"
     },
     {
       "date": "2026-09-12",
       "platform": "ig",
-      "follows": 2,
-      "unfollows": 0
+      "follows": 0,
+      "unfollows": 0,
+      "project": "donut"
     },
     {
       "date": "2026-09-13",
       "platform": "fb",
-      "follows": 2,
-      "unfollows": 9
+      "follows": 0,
+      "unfollows": 1,
+      "project": "donut"
     },
     {
       "date": "2026-09-13",
       "platform": "ig",
-      "follows": 1,
-      "unfollows": 1
+      "follows": 2,
+      "unfollows": 1,
+      "project": "donut"
     },
     {
       "date": "2026-09-14",
       "platform": "fb",
-      "follows": 3,
-      "unfollows": 5
+      "follows": 2,
+      "unfollows": 2,
+      "project": "donut"
     },
     {
       "date": "2026-09-14",
       "platform": "ig",
-      "follows": 3,
-      "unfollows": 0
+      "follows": 0,
+      "unfollows": 0,
+      "project": "donut"
     },
     {
       "date": "2026-09-15",
       "platform": "fb",
-      "follows": 6,
-      "unfollows": 3
+      "follows": 1,
+      "unfollows": 2,
+      "project": "donut"
     },
     {
       "date": "2026-09-15",
       "platform": "ig",
-      "follows": 0,
-      "unfollows": 4
+      "follows": 1,
+      "unfollows": 2,
+      "project": "donut"
     },
     {
       "date": "2026-09-16",
       "platform": "fb",
-      "follows": 6,
-      "unfollows": 9
+      "follows": 3,
+      "unfollows": 3,
+      "project": "donut"
     },
     {
       "date": "2026-09-16",
       "platform": "ig",
-      "follows": 0,
-      "unfollows": 1
+      "follows": 2,
+      "unfollows": 2,
+      "project": "donut"
     },
     {
       "date": "2026-09-17",
       "platform": "fb",
-      "follows": 3,
-      "unfollows": 4
+      "follows": 2,
+      "unfollows": 4,
+      "project": "donut"
     },
     {
       "date": "2026-09-17",
       "platform": "ig",
-      "follows": 0,
-      "unfollows": 2
+      "follows": 5,
+      "unfollows": 2,
+      "project": "donut"
     },
     {
       "date": "2026-09-18",
       "platform": "fb",
-      "follows": 3,
-      "unfollows": 5
+      "follows": 2,
+      "unfollows": 3,
+      "project": "donut"
     },
     {
       "date": "2026-09-18",
       "platform": "ig",
-      "follows": 1,
-      "unfollows": 1
+      "follows": 10,
+      "unfollows": 0,
+      "project": "donut"
     },
     {
       "date": "2026-09-19",
       "platform": "fb",
-      "follows": 2,
-      "unfollows": 5
+      "follows": 1,
+      "unfollows": 4,
+      "project": "donut"
     },
     {
       "date": "2026-09-19",
       "platform": "ig",
       "follows": 0,
-      "unfollows": 2
+      "unfollows": 2,
+      "project": "donut"
     },
     {
       "date": "2026-09-20",
       "platform": "fb",
-      "follows": 4,
-      "unfollows": 4
+      "follows": 1,
+      "unfollows": 0,
+      "project": "donut"
     },
     {
       "date": "2026-09-20",
       "platform": "ig",
-      "follows": 0,
-      "unfollows": 1
+      "follows": 6,
+      "unfollows": 1,
+      "project": "donut"
     },
     {
       "date": "2026-09-21",
       "platform": "fb",
-      "follows": 4,
-      "unfollows": 3
+      "follows": 5,
+      "unfollows": 3,
+      "project": "donut"
     },
     {
       "date": "2026-09-21",
       "platform": "ig",
-      "follows": 1,
-      "unfollows": 1
+      "follows": 13,
+      "unfollows": 0,
+      "project": "donut"
     },
     {
       "date": "2026-09-22",
       "platform": "fb",
-      "follows": 4,
-      "unfollows": 10
+      "follows": 1,
+      "unfollows": 6,
+      "project": "donut"
     },
     {
       "date": "2026-09-22",
       "platform": "ig",
-      "follows": 1,
-      "unfollows": 2
+      "follows": 4,
+      "unfollows": 1,
+      "project": "donut"
     },
     {
       "date": "2026-09-23",
       "platform": "fb",
-      "follows": 4,
-      "unfollows": 11
+      "follows": 0,
+      "unfollows": 1,
+      "project": "donut"
     },
     {
       "date": "2026-09-23",
       "platform": "ig",
       "follows": 1,
-      "unfollows": 2
+      "unfollows": 1,
+      "project": "donut"
     },
     {
       "date": "2026-09-24",
       "platform": "fb",
-      "follows": 2,
-      "unfollows": 2
+      "follows": 0,
+      "unfollows": 4,
+      "project": "donut"
     },
     {
       "date": "2026-09-24",
       "platform": "ig",
-      "follows": 0,
-      "unfollows": 1
+      "follows": 1,
+      "unfollows": 1,
+      "project": "donut"
     },
     {
       "date": "2026-09-25",
       "platform": "fb",
-      "follows": 4,
-      "unfollows": 7
+      "follows": 1,
+      "unfollows": 1,
+      "project": "donut"
     },
     {
       "date": "2026-09-25",
       "platform": "ig",
-      "follows": 2,
-      "unfollows": 3
+      "follows": 4,
+      "unfollows": 1,
+      "project": "donut"
     },
     {
       "date": "2026-09-26",
-      "platform": "fb",
-      "follows": 6,
-      "unfollows": 10
-    },
-    {
-      "date": "2026-09-26",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 2
-    },
-    {
-      "date": "2026-09-27",
-      "platform": "fb",
-      "follows": 6,
-      "unfollows": 8
-    },
-    {
-      "date": "2026-09-27",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 0
-    },
-    {
-      "date": "2026-09-28",
-      "platform": "fb",
-      "follows": 5,
-      "unfollows": 5
-    },
-    {
-      "date": "2026-09-28",
-      "platform": "ig",
-      "follows": 1,
-      "unfollows": 1
-    },
-    {
-      "date": "2026-09-29",
-      "platform": "fb",
-      "follows": 5,
-      "unfollows": 3
-    },
-    {
-      "date": "2026-09-29",
-      "platform": "ig",
-      "follows": 4,
-      "unfollows": 1
-    },
-    {
-      "date": "2026-09-30",
-      "platform": "fb",
-      "follows": 6,
-      "unfollows": 5
-    },
-    {
-      "date": "2026-09-30",
-      "platform": "ig",
-      "follows": 4,
-      "unfollows": 0
-    },
-    {
-      "date": "2026-10-01",
-      "platform": "fb",
-      "follows": 2,
-      "unfollows": 6
-    },
-    {
-      "date": "2026-10-01",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 0
-    },
-    {
-      "date": "2026-10-02",
-      "platform": "fb",
-      "follows": 4,
-      "unfollows": 13
-    },
-    {
-      "date": "2026-10-02",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 0
-    },
-    {
-      "date": "2026-10-03",
-      "platform": "fb",
-      "follows": 6,
-      "unfollows": 7
-    },
-    {
-      "date": "2026-10-03",
-      "platform": "ig",
-      "follows": 0,
-      "unfollows": 2
-    },
-    {
-      "date": "2026-10-04",
-      "platform": "fb",
-      "follows": 2,
-      "unfollows": 3
-    },
-    {
-      "date": "2026-10-04",
-      "platform": "ig",
-      "follows": 1,
-      "unfollows": 0
-    },
-    {
-      "date": "2026-10-05",
-      "platform": "fb",
-      "follows": 6,
-      "unfollows": 11
-    },
-    {
-      "date": "2026-10-05",
-      "platform": "ig",
-      "follows": 1,
-      "unfollows": 0
-    },
-    {
-      "date": "2026-10-06",
       "platform": "fb",
       "follows": 3,
-      "unfollows": 6
+      "unfollows": 2,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-26",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-27",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 3,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-27",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-28",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-28",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-29",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-29",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-30",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 4,
+      "project": "donut"
+    },
+    {
+      "date": "2026-09-30",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-10-01",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-10-01",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-10-02",
+      "platform": "fb",
+      "follows": 7,
+      "unfollows": 2,
+      "project": "donut"
+    },
+    {
+      "date": "2026-10-02",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-10-03",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-10-03",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-10-04",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "donut"
+    },
+    {
+      "date": "2026-10-04",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "donut"
+    },
+    {
+      "date": "2026-10-05",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 5,
+      "project": "donut"
+    },
+    {
+      "date": "2026-10-05",
+      "platform": "ig",
+      "follows": 4,
+      "unfollows": 0,
+      "project": "donut"
+    },
+    {
+      "date": "2026-10-06",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 2,
+      "project": "donut"
     },
     {
       "date": "2026-10-06",
       "platform": "ig",
-      "follows": 0,
-      "unfollows": 0
+      "follows": 1,
+      "unfollows": 3,
+      "project": "donut"
     },
     {
       "date": "2026-10-07",
       "platform": "fb",
-      "follows": 4,
-      "unfollows": 5
+      "follows": 14,
+      "unfollows": 0,
+      "project": "donut"
     },
     {
       "date": "2026-10-07",
       "platform": "ig",
       "follows": null,
-      "unfollows": null
+      "unfollows": null,
+      "project": "donut"
+    },
+    {
+      "date": "2026-08-01",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 6,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-01",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 4,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-02",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-02",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-03",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-03",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-04",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-04",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-05",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-05",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-06",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-06",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-07",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 4,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-07",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-08",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-08",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-09",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-09",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-10",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-10",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-11",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-11",
+      "platform": "ig",
+      "follows": 22,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-12",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-12",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-13",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 6,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-13",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-14",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-14",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-15",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-15",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-16",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-16",
+      "platform": "ig",
+      "follows": 19,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-17",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-17",
+      "platform": "ig",
+      "follows": 107,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-18",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-18",
+      "platform": "ig",
+      "follows": 91,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-19",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 7,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-19",
+      "platform": "ig",
+      "follows": 91,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-20",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-20",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-21",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-21",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-22",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-22",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-23",
+      "platform": "fb",
+      "follows": 8,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-23",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-24",
+      "platform": "fb",
+      "follows": 50,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-24",
+      "platform": "ig",
+      "follows": 13,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-25",
+      "platform": "fb",
+      "follows": 15,
+      "unfollows": 5,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-25",
+      "platform": "ig",
+      "follows": 37,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-26",
+      "platform": "fb",
+      "follows": 8,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-26",
+      "platform": "ig",
+      "follows": 41,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-27",
+      "platform": "fb",
+      "follows": 311,
+      "unfollows": 12,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-27",
+      "platform": "ig",
+      "follows": 11,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-28",
+      "platform": "fb",
+      "follows": 7,
+      "unfollows": 15,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-28",
+      "platform": "ig",
+      "follows": 18,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-29",
+      "platform": "fb",
+      "follows": 9,
+      "unfollows": 7,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-29",
+      "platform": "ig",
+      "follows": 40,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-30",
+      "platform": "fb",
+      "follows": 99,
+      "unfollows": 8,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-30",
+      "platform": "ig",
+      "follows": 21,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-31",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 6,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-31",
+      "platform": "ig",
+      "follows": 10,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-01",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 5,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-01",
+      "platform": "ig",
+      "follows": 17,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-02",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-02",
+      "platform": "ig",
+      "follows": 18,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-03",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 6,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-03",
+      "platform": "ig",
+      "follows": 13,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-04",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 4,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-04",
+      "platform": "ig",
+      "follows": 10,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-05",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-05",
+      "platform": "ig",
+      "follows": 13,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-06",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-06",
+      "platform": "ig",
+      "follows": 7,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-07",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-07",
+      "platform": "ig",
+      "follows": 12,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-08",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-08",
+      "platform": "ig",
+      "follows": 7,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-09",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-09",
+      "platform": "ig",
+      "follows": 11,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-10",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-10",
+      "platform": "ig",
+      "follows": 9,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-11",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 6,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-11",
+      "platform": "ig",
+      "follows": 18,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-12",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-12",
+      "platform": "ig",
+      "follows": 4,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-13",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 4,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-13",
+      "platform": "ig",
+      "follows": 17,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-14",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 7,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-14",
+      "platform": "ig",
+      "follows": 7,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-15",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-15",
+      "platform": "ig",
+      "follows": 14,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-16",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-16",
+      "platform": "ig",
+      "follows": 9,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-17",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-17",
+      "platform": "ig",
+      "follows": 13,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-18",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-18",
+      "platform": "ig",
+      "follows": 11,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-19",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 4,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-19",
+      "platform": "ig",
+      "follows": 11,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-20",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-20",
+      "platform": "ig",
+      "follows": 8,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-21",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-21",
+      "platform": "ig",
+      "follows": 14,
+      "unfollows": 4,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-22",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-22",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-23",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 4,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-23",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-24",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-24",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-25",
+      "platform": "fb",
+      "follows": 11,
+      "unfollows": 5,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-25",
+      "platform": "ig",
+      "follows": 13,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-26",
+      "platform": "fb",
+      "follows": 22,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-26",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-27",
+      "platform": "fb",
+      "follows": 10,
+      "unfollows": 6,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-27",
+      "platform": "ig",
+      "follows": 17,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-28",
+      "platform": "fb",
+      "follows": 23,
+      "unfollows": 4,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-28",
+      "platform": "ig",
+      "follows": 32,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-29",
+      "platform": "fb",
+      "follows": 29,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-29",
+      "platform": "ig",
+      "follows": 38,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-30",
+      "platform": "fb",
+      "follows": 33,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-09-30",
+      "platform": "ig",
+      "follows": 9,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-10-01",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-10-01",
+      "platform": "ig",
+      "follows": 6,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-10-02",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 5,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-10-02",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-10-03",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-10-03",
+      "platform": "ig",
+      "follows": 37,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-10-04",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-10-04",
+      "platform": "ig",
+      "follows": 37,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-10-05",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-10-05",
+      "platform": "ig",
+      "follows": 40,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-10-06",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-10-06",
+      "platform": "ig",
+      "follows": 24,
+      "unfollows": 3,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-10-07",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 2,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-10-07",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-08-01",
+      "platform": "fb",
+      "follows": 27,
+      "unfollows": 24,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-01",
+      "platform": "ig",
+      "follows": 17,
+      "unfollows": 23,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-02",
+      "platform": "fb",
+      "follows": 20,
+      "unfollows": 21,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-02",
+      "platform": "ig",
+      "follows": 20,
+      "unfollows": 20,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-03",
+      "platform": "fb",
+      "follows": 29,
+      "unfollows": 21,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-03",
+      "platform": "ig",
+      "follows": 21,
+      "unfollows": 23,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-04",
+      "platform": "fb",
+      "follows": 52,
+      "unfollows": 34,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-04",
+      "platform": "ig",
+      "follows": 18,
+      "unfollows": 23,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-05",
+      "platform": "fb",
+      "follows": 41,
+      "unfollows": 24,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-05",
+      "platform": "ig",
+      "follows": 23,
+      "unfollows": 23,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-06",
+      "platform": "fb",
+      "follows": 46,
+      "unfollows": 26,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-06",
+      "platform": "ig",
+      "follows": 24,
+      "unfollows": 19,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-07",
+      "platform": "fb",
+      "follows": 62,
+      "unfollows": 24,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-07",
+      "platform": "ig",
+      "follows": 38,
+      "unfollows": 16,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-08",
+      "platform": "fb",
+      "follows": 68,
+      "unfollows": 31,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-08",
+      "platform": "ig",
+      "follows": 26,
+      "unfollows": 19,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-09",
+      "platform": "fb",
+      "follows": 44,
+      "unfollows": 33,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-09",
+      "platform": "ig",
+      "follows": 13,
+      "unfollows": 15,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-10",
+      "platform": "fb",
+      "follows": 38,
+      "unfollows": 33,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-10",
+      "platform": "ig",
+      "follows": 27,
+      "unfollows": 14,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-11",
+      "platform": "fb",
+      "follows": 49,
+      "unfollows": 38,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-11",
+      "platform": "ig",
+      "follows": 23,
+      "unfollows": 21,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-12",
+      "platform": "fb",
+      "follows": 47,
+      "unfollows": 27,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-12",
+      "platform": "ig",
+      "follows": 23,
+      "unfollows": 22,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-13",
+      "platform": "fb",
+      "follows": 64,
+      "unfollows": 21,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-13",
+      "platform": "ig",
+      "follows": 21,
+      "unfollows": 27,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-14",
+      "platform": "fb",
+      "follows": 68,
+      "unfollows": 21,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-14",
+      "platform": "ig",
+      "follows": 33,
+      "unfollows": 26,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-15",
+      "platform": "fb",
+      "follows": 70,
+      "unfollows": 21,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-15",
+      "platform": "ig",
+      "follows": 25,
+      "unfollows": 30,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-16",
+      "platform": "fb",
+      "follows": 39,
+      "unfollows": 27,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-16",
+      "platform": "ig",
+      "follows": 23,
+      "unfollows": 18,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-17",
+      "platform": "fb",
+      "follows": 50,
+      "unfollows": 27,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-17",
+      "platform": "ig",
+      "follows": 17,
+      "unfollows": 22,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-18",
+      "platform": "fb",
+      "follows": 44,
+      "unfollows": 24,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-18",
+      "platform": "ig",
+      "follows": 16,
+      "unfollows": 27,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-19",
+      "platform": "fb",
+      "follows": 69,
+      "unfollows": 28,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-19",
+      "platform": "ig",
+      "follows": 54,
+      "unfollows": 22,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-20",
+      "platform": "fb",
+      "follows": 63,
+      "unfollows": 34,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-20",
+      "platform": "ig",
+      "follows": 33,
+      "unfollows": 17,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-21",
+      "platform": "fb",
+      "follows": 298,
+      "unfollows": 47,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-21",
+      "platform": "ig",
+      "follows": 21,
+      "unfollows": 16,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-22",
+      "platform": "fb",
+      "follows": 126,
+      "unfollows": 42,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-22",
+      "platform": "ig",
+      "follows": 27,
+      "unfollows": 22,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-23",
+      "platform": "fb",
+      "follows": 69,
+      "unfollows": 24,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-23",
+      "platform": "ig",
+      "follows": 32,
+      "unfollows": 10,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-24",
+      "platform": "fb",
+      "follows": 26,
+      "unfollows": 27,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-24",
+      "platform": "ig",
+      "follows": 50,
+      "unfollows": 21,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-25",
+      "platform": "fb",
+      "follows": 40,
+      "unfollows": 31,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-25",
+      "platform": "ig",
+      "follows": 29,
+      "unfollows": 31,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-26",
+      "platform": "fb",
+      "follows": 32,
+      "unfollows": 26,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-26",
+      "platform": "ig",
+      "follows": 20,
+      "unfollows": 23,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-27",
+      "platform": "fb",
+      "follows": 40,
+      "unfollows": 24,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-27",
+      "platform": "ig",
+      "follows": 27,
+      "unfollows": 26,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-28",
+      "platform": "fb",
+      "follows": 41,
+      "unfollows": 27,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-28",
+      "platform": "ig",
+      "follows": 24,
+      "unfollows": 24,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-29",
+      "platform": "fb",
+      "follows": 50,
+      "unfollows": 32,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-29",
+      "platform": "ig",
+      "follows": 20,
+      "unfollows": 17,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-30",
+      "platform": "fb",
+      "follows": 53,
+      "unfollows": 32,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-30",
+      "platform": "ig",
+      "follows": 25,
+      "unfollows": 24,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-31",
+      "platform": "fb",
+      "follows": 23,
+      "unfollows": 19,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-31",
+      "platform": "ig",
+      "follows": 26,
+      "unfollows": 18,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-01",
+      "platform": "fb",
+      "follows": 20,
+      "unfollows": 22,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-01",
+      "platform": "ig",
+      "follows": 23,
+      "unfollows": 20,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-02",
+      "platform": "fb",
+      "follows": 18,
+      "unfollows": 28,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-02",
+      "platform": "ig",
+      "follows": 31,
+      "unfollows": 20,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-03",
+      "platform": "fb",
+      "follows": 17,
+      "unfollows": 20,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-03",
+      "platform": "ig",
+      "follows": 20,
+      "unfollows": 20,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-04",
+      "platform": "fb",
+      "follows": 20,
+      "unfollows": 19,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-04",
+      "platform": "ig",
+      "follows": 22,
+      "unfollows": 9,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-05",
+      "platform": "fb",
+      "follows": 26,
+      "unfollows": 26,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-05",
+      "platform": "ig",
+      "follows": 24,
+      "unfollows": 21,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-06",
+      "platform": "fb",
+      "follows": 20,
+      "unfollows": 19,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-06",
+      "platform": "ig",
+      "follows": 18,
+      "unfollows": 21,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-07",
+      "platform": "fb",
+      "follows": 29,
+      "unfollows": 23,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-07",
+      "platform": "ig",
+      "follows": 21,
+      "unfollows": 21,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-08",
+      "platform": "fb",
+      "follows": 32,
+      "unfollows": 16,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-08",
+      "platform": "ig",
+      "follows": 22,
+      "unfollows": 29,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-09",
+      "platform": "fb",
+      "follows": 18,
+      "unfollows": 15,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-09",
+      "platform": "ig",
+      "follows": 17,
+      "unfollows": 18,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-10",
+      "platform": "fb",
+      "follows": 29,
+      "unfollows": 24,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-10",
+      "platform": "ig",
+      "follows": 19,
+      "unfollows": 18,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-11",
+      "platform": "fb",
+      "follows": 33,
+      "unfollows": 25,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-11",
+      "platform": "ig",
+      "follows": 15,
+      "unfollows": 18,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-12",
+      "platform": "fb",
+      "follows": 49,
+      "unfollows": 29,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-12",
+      "platform": "ig",
+      "follows": 21,
+      "unfollows": 18,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-13",
+      "platform": "fb",
+      "follows": 40,
+      "unfollows": 22,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-13",
+      "platform": "ig",
+      "follows": 19,
+      "unfollows": 11,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-14",
+      "platform": "fb",
+      "follows": 26,
+      "unfollows": 31,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-14",
+      "platform": "ig",
+      "follows": 17,
+      "unfollows": 17,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-15",
+      "platform": "fb",
+      "follows": 34,
+      "unfollows": 20,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-15",
+      "platform": "ig",
+      "follows": 28,
+      "unfollows": 19,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-16",
+      "platform": "fb",
+      "follows": 68,
+      "unfollows": 31,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-16",
+      "platform": "ig",
+      "follows": 50,
+      "unfollows": 17,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-17",
+      "platform": "fb",
+      "follows": 27,
+      "unfollows": 30,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-17",
+      "platform": "ig",
+      "follows": 15,
+      "unfollows": 12,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-18",
+      "platform": "fb",
+      "follows": 45,
+      "unfollows": 27,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-18",
+      "platform": "ig",
+      "follows": 17,
+      "unfollows": 12,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-19",
+      "platform": "fb",
+      "follows": 37,
+      "unfollows": 18,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-19",
+      "platform": "ig",
+      "follows": 15,
+      "unfollows": 23,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-20",
+      "platform": "fb",
+      "follows": 37,
+      "unfollows": 24,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-20",
+      "platform": "ig",
+      "follows": 18,
+      "unfollows": 27,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-21",
+      "platform": "fb",
+      "follows": 44,
+      "unfollows": 23,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-21",
+      "platform": "ig",
+      "follows": 20,
+      "unfollows": 19,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-22",
+      "platform": "fb",
+      "follows": 34,
+      "unfollows": 26,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-22",
+      "platform": "ig",
+      "follows": 24,
+      "unfollows": 23,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-23",
+      "platform": "fb",
+      "follows": 60,
+      "unfollows": 27,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-23",
+      "platform": "ig",
+      "follows": 14,
+      "unfollows": 17,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-24",
+      "platform": "fb",
+      "follows": 31,
+      "unfollows": 26,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-24",
+      "platform": "ig",
+      "follows": 20,
+      "unfollows": 17,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-25",
+      "platform": "fb",
+      "follows": 44,
+      "unfollows": 22,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-25",
+      "platform": "ig",
+      "follows": 33,
+      "unfollows": 16,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-26",
+      "platform": "fb",
+      "follows": 19,
+      "unfollows": 18,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-26",
+      "platform": "ig",
+      "follows": 24,
+      "unfollows": 22,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-27",
+      "platform": "fb",
+      "follows": 31,
+      "unfollows": 27,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-27",
+      "platform": "ig",
+      "follows": 24,
+      "unfollows": 21,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-28",
+      "platform": "fb",
+      "follows": 29,
+      "unfollows": 23,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-28",
+      "platform": "ig",
+      "follows": 20,
+      "unfollows": 22,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-29",
+      "platform": "fb",
+      "follows": 31,
+      "unfollows": 21,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-29",
+      "platform": "ig",
+      "follows": 25,
+      "unfollows": 17,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-30",
+      "platform": "fb",
+      "follows": 23,
+      "unfollows": 23,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-09-30",
+      "platform": "ig",
+      "follows": 17,
+      "unfollows": 22,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-10-01",
+      "platform": "fb",
+      "follows": 36,
+      "unfollows": 22,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-10-01",
+      "platform": "ig",
+      "follows": 20,
+      "unfollows": 16,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-10-02",
+      "platform": "fb",
+      "follows": 22,
+      "unfollows": 20,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-10-02",
+      "platform": "ig",
+      "follows": 19,
+      "unfollows": 26,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-10-03",
+      "platform": "fb",
+      "follows": 31,
+      "unfollows": 36,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-10-03",
+      "platform": "ig",
+      "follows": 25,
+      "unfollows": 26,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-10-04",
+      "platform": "fb",
+      "follows": 19,
+      "unfollows": 23,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-10-04",
+      "platform": "ig",
+      "follows": 20,
+      "unfollows": 18,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-10-05",
+      "platform": "fb",
+      "follows": 19,
+      "unfollows": 22,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-10-05",
+      "platform": "ig",
+      "follows": 23,
+      "unfollows": 25,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-10-06",
+      "platform": "fb",
+      "follows": 20,
+      "unfollows": 33,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-10-06",
+      "platform": "ig",
+      "follows": 21,
+      "unfollows": 22,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-10-07",
+      "platform": "fb",
+      "follows": 36,
+      "unfollows": 26,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-10-07",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-08-01",
+      "platform": "fb",
+      "follows": 29,
+      "unfollows": 10,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-01",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-02",
+      "platform": "fb",
+      "follows": 29,
+      "unfollows": 16,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-02",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-03",
+      "platform": "fb",
+      "follows": 24,
+      "unfollows": 6,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-03",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 4,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-04",
+      "platform": "fb",
+      "follows": 27,
+      "unfollows": 7,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-04",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-05",
+      "platform": "fb",
+      "follows": 31,
+      "unfollows": 8,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-05",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-06",
+      "platform": "fb",
+      "follows": 164,
+      "unfollows": 12,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-06",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 4,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-07",
+      "platform": "fb",
+      "follows": 51,
+      "unfollows": 12,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-07",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-08",
+      "platform": "fb",
+      "follows": 64,
+      "unfollows": 10,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-08",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-09",
+      "platform": "fb",
+      "follows": 69,
+      "unfollows": 13,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-09",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-10",
+      "platform": "fb",
+      "follows": 21,
+      "unfollows": 11,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-10",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-11",
+      "platform": "fb",
+      "follows": 26,
+      "unfollows": 24,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-11",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 6,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-12",
+      "platform": "fb",
+      "follows": 16,
+      "unfollows": 7,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-12",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-13",
+      "platform": "fb",
+      "follows": 33,
+      "unfollows": 12,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-13",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-14",
+      "platform": "fb",
+      "follows": 40,
+      "unfollows": 14,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-14",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-15",
+      "platform": "fb",
+      "follows": 25,
+      "unfollows": 6,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-15",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-16",
+      "platform": "fb",
+      "follows": 22,
+      "unfollows": 9,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-16",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-17",
+      "platform": "fb",
+      "follows": 29,
+      "unfollows": 15,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-17",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 4,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-18",
+      "platform": "fb",
+      "follows": 18,
+      "unfollows": 10,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-18",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-19",
+      "platform": "fb",
+      "follows": 87,
+      "unfollows": 19,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-19",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 4,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-20",
+      "platform": "fb",
+      "follows": 41,
+      "unfollows": 19,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-20",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 3,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-21",
+      "platform": "fb",
+      "follows": 18,
+      "unfollows": 14,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-21",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-22",
+      "platform": "fb",
+      "follows": 20,
+      "unfollows": 16,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-22",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-23",
+      "platform": "fb",
+      "follows": 24,
+      "unfollows": 14,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-23",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 2,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-24",
+      "platform": "fb",
+      "follows": 29,
+      "unfollows": 10,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-24",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-25",
+      "platform": "fb",
+      "follows": 21,
+      "unfollows": 13,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-25",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 7,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-26",
+      "platform": "fb",
+      "follows": 14,
+      "unfollows": 6,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-26",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 2,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-27",
+      "platform": "fb",
+      "follows": 19,
+      "unfollows": 8,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-27",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-28",
+      "platform": "fb",
+      "follows": 20,
+      "unfollows": 10,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-28",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 2,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-29",
+      "platform": "fb",
+      "follows": 23,
+      "unfollows": 5,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-29",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-30",
+      "platform": "fb",
+      "follows": 27,
+      "unfollows": 10,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-30",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-31",
+      "platform": "fb",
+      "follows": 30,
+      "unfollows": 7,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-31",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-01",
+      "platform": "fb",
+      "follows": 25,
+      "unfollows": 17,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-01",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 3,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-02",
+      "platform": "fb",
+      "follows": 14,
+      "unfollows": 12,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-02",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-03",
+      "platform": "fb",
+      "follows": 30,
+      "unfollows": 12,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-03",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-04",
+      "platform": "fb",
+      "follows": 20,
+      "unfollows": 6,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-04",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 3,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-05",
+      "platform": "fb",
+      "follows": 33,
+      "unfollows": 13,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-05",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-06",
+      "platform": "fb",
+      "follows": 31,
+      "unfollows": 15,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-06",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-07",
+      "platform": "fb",
+      "follows": 23,
+      "unfollows": 4,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-07",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-08",
+      "platform": "fb",
+      "follows": 85,
+      "unfollows": 7,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-08",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-09",
+      "platform": "fb",
+      "follows": 135,
+      "unfollows": 16,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-09",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-10",
+      "platform": "fb",
+      "follows": 80,
+      "unfollows": 11,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-10",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-11",
+      "platform": "fb",
+      "follows": 36,
+      "unfollows": 14,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-11",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-12",
+      "platform": "fb",
+      "follows": 24,
+      "unfollows": 13,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-12",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-13",
+      "platform": "fb",
+      "follows": 27,
+      "unfollows": 13,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-13",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-14",
+      "platform": "fb",
+      "follows": 44,
+      "unfollows": 8,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-14",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-15",
+      "platform": "fb",
+      "follows": 116,
+      "unfollows": 19,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-15",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-16",
+      "platform": "fb",
+      "follows": 32,
+      "unfollows": 24,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-16",
+      "platform": "ig",
+      "follows": 3,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-17",
+      "platform": "fb",
+      "follows": 23,
+      "unfollows": 10,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-17",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-18",
+      "platform": "fb",
+      "follows": 16,
+      "unfollows": 14,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-18",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 3,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-19",
+      "platform": "fb",
+      "follows": 392,
+      "unfollows": 122,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-19",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-20",
+      "platform": "fb",
+      "follows": 27,
+      "unfollows": 20,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-20",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-21",
+      "platform": "fb",
+      "follows": 35,
+      "unfollows": 20,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-21",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 3,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-22",
+      "platform": "fb",
+      "follows": 21,
+      "unfollows": 15,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-22",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-23",
+      "platform": "fb",
+      "follows": 14,
+      "unfollows": 14,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-23",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-24",
+      "platform": "fb",
+      "follows": 13,
+      "unfollows": 13,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-24",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-25",
+      "platform": "fb",
+      "follows": 22,
+      "unfollows": 12,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-25",
+      "platform": "ig",
+      "follows": 3,
+      "unfollows": 3,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-26",
+      "platform": "fb",
+      "follows": 17,
+      "unfollows": 10,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-26",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 5,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-27",
+      "platform": "fb",
+      "follows": 23,
+      "unfollows": 12,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-27",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-28",
+      "platform": "fb",
+      "follows": 17,
+      "unfollows": 13,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-28",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-29",
+      "platform": "fb",
+      "follows": 19,
+      "unfollows": 8,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-29",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-30",
+      "platform": "fb",
+      "follows": 26,
+      "unfollows": 12,
+      "project": "panther"
+    },
+    {
+      "date": "2026-09-30",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-10-01",
+      "platform": "fb",
+      "follows": 20,
+      "unfollows": 15,
+      "project": "panther"
+    },
+    {
+      "date": "2026-10-01",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "panther"
+    },
+    {
+      "date": "2026-10-02",
+      "platform": "fb",
+      "follows": 24,
+      "unfollows": 8,
+      "project": "panther"
+    },
+    {
+      "date": "2026-10-02",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "panther"
+    },
+    {
+      "date": "2026-10-03",
+      "platform": "fb",
+      "follows": 27,
+      "unfollows": 17,
+      "project": "panther"
+    },
+    {
+      "date": "2026-10-03",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "panther"
+    },
+    {
+      "date": "2026-10-04",
+      "platform": "fb",
+      "follows": 22,
+      "unfollows": 15,
+      "project": "panther"
+    },
+    {
+      "date": "2026-10-04",
+      "platform": "ig",
+      "follows": 3,
+      "unfollows": 2,
+      "project": "panther"
+    },
+    {
+      "date": "2026-10-05",
+      "platform": "fb",
+      "follows": 43,
+      "unfollows": 8,
+      "project": "panther"
+    },
+    {
+      "date": "2026-10-05",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "panther"
+    },
+    {
+      "date": "2026-10-06",
+      "platform": "fb",
+      "follows": 18,
+      "unfollows": 9,
+      "project": "panther"
+    },
+    {
+      "date": "2026-10-06",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "panther"
+    },
+    {
+      "date": "2026-10-07",
+      "platform": "fb",
+      "follows": 15,
+      "unfollows": 7,
+      "project": "panther"
+    },
+    {
+      "date": "2026-10-07",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "panther"
+    },
+    {
+      "date": "2026-08-01",
+      "platform": "fb",
+      "follows": 129,
+      "unfollows": 10,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-01",
+      "platform": "ig",
+      "follows": 70,
+      "unfollows": 15,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-02",
+      "platform": "fb",
+      "follows": 73,
+      "unfollows": 15,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-02",
+      "platform": "ig",
+      "follows": 89,
+      "unfollows": 10,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-03",
+      "platform": "fb",
+      "follows": 74,
+      "unfollows": 18,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-03",
+      "platform": "ig",
+      "follows": 77,
+      "unfollows": 15,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-04",
+      "platform": "fb",
+      "follows": 81,
+      "unfollows": 14,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-04",
+      "platform": "ig",
+      "follows": 74,
+      "unfollows": 11,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-05",
+      "platform": "fb",
+      "follows": 69,
+      "unfollows": 13,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-05",
+      "platform": "ig",
+      "follows": 64,
+      "unfollows": 10,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-06",
+      "platform": "fb",
+      "follows": 94,
+      "unfollows": 13,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-06",
+      "platform": "ig",
+      "follows": 59,
+      "unfollows": 12,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-07",
+      "platform": "fb",
+      "follows": 90,
+      "unfollows": 18,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-07",
+      "platform": "ig",
+      "follows": 51,
+      "unfollows": 17,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-08",
+      "platform": "fb",
+      "follows": 122,
+      "unfollows": 18,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-08",
+      "platform": "ig",
+      "follows": 90,
+      "unfollows": 13,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-09",
+      "platform": "fb",
+      "follows": 89,
+      "unfollows": 28,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-09",
+      "platform": "ig",
+      "follows": 83,
+      "unfollows": 11,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-10",
+      "platform": "fb",
+      "follows": 87,
+      "unfollows": 22,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-10",
+      "platform": "ig",
+      "follows": 80,
+      "unfollows": 13,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-11",
+      "platform": "fb",
+      "follows": 80,
+      "unfollows": 18,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-11",
+      "platform": "ig",
+      "follows": 68,
+      "unfollows": 18,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-12",
+      "platform": "fb",
+      "follows": 55,
+      "unfollows": 13,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-12",
+      "platform": "ig",
+      "follows": 69,
+      "unfollows": 17,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-13",
+      "platform": "fb",
+      "follows": 68,
+      "unfollows": 23,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-13",
+      "platform": "ig",
+      "follows": 135,
+      "unfollows": 17,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-14",
+      "platform": "fb",
+      "follows": 71,
+      "unfollows": 16,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-14",
+      "platform": "ig",
+      "follows": 110,
+      "unfollows": 18,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-15",
+      "platform": "fb",
+      "follows": 170,
+      "unfollows": 23,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-15",
+      "platform": "ig",
+      "follows": 125,
+      "unfollows": 19,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-16",
+      "platform": "fb",
+      "follows": 107,
+      "unfollows": 56,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-16",
+      "platform": "ig",
+      "follows": 111,
+      "unfollows": 68,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-17",
+      "platform": "fb",
+      "follows": 91,
+      "unfollows": 15,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-17",
+      "platform": "ig",
+      "follows": 93,
+      "unfollows": 17,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-18",
+      "platform": "fb",
+      "follows": 94,
+      "unfollows": 19,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-18",
+      "platform": "ig",
+      "follows": 72,
+      "unfollows": 21,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-19",
+      "platform": "fb",
+      "follows": 101,
+      "unfollows": 19,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-19",
+      "platform": "ig",
+      "follows": 105,
+      "unfollows": 12,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-20",
+      "platform": "fb",
+      "follows": 102,
+      "unfollows": 45,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-20",
+      "platform": "ig",
+      "follows": 93,
+      "unfollows": 14,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-21",
+      "platform": "fb",
+      "follows": 88,
+      "unfollows": 18,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-21",
+      "platform": "ig",
+      "follows": 86,
+      "unfollows": 13,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-22",
+      "platform": "fb",
+      "follows": 104,
+      "unfollows": 21,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-22",
+      "platform": "ig",
+      "follows": 127,
+      "unfollows": 16,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-23",
+      "platform": "fb",
+      "follows": 121,
+      "unfollows": 21,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-23",
+      "platform": "ig",
+      "follows": 105,
+      "unfollows": 12,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-24",
+      "platform": "fb",
+      "follows": 105,
+      "unfollows": 17,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-24",
+      "platform": "ig",
+      "follows": 92,
+      "unfollows": 8,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-25",
+      "platform": "fb",
+      "follows": 106,
+      "unfollows": 18,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-25",
+      "platform": "ig",
+      "follows": 80,
+      "unfollows": 16,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-26",
+      "platform": "fb",
+      "follows": 104,
+      "unfollows": 26,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-26",
+      "platform": "ig",
+      "follows": 106,
+      "unfollows": 13,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-27",
+      "platform": "fb",
+      "follows": 85,
+      "unfollows": 22,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-27",
+      "platform": "ig",
+      "follows": 87,
+      "unfollows": 10,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-28",
+      "platform": "fb",
+      "follows": 103,
+      "unfollows": 19,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-28",
+      "platform": "ig",
+      "follows": 124,
+      "unfollows": 22,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-29",
+      "platform": "fb",
+      "follows": 139,
+      "unfollows": 14,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-29",
+      "platform": "ig",
+      "follows": 148,
+      "unfollows": 14,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-30",
+      "platform": "fb",
+      "follows": 108,
+      "unfollows": 21,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-30",
+      "platform": "ig",
+      "follows": 102,
+      "unfollows": 22,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-31",
+      "platform": "fb",
+      "follows": 79,
+      "unfollows": 11,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-31",
+      "platform": "ig",
+      "follows": 77,
+      "unfollows": 9,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-01",
+      "platform": "fb",
+      "follows": 72,
+      "unfollows": 13,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-01",
+      "platform": "ig",
+      "follows": 70,
+      "unfollows": 18,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-02",
+      "platform": "fb",
+      "follows": 54,
+      "unfollows": 13,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-02",
+      "platform": "ig",
+      "follows": 71,
+      "unfollows": 15,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-03",
+      "platform": "fb",
+      "follows": 59,
+      "unfollows": 16,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-03",
+      "platform": "ig",
+      "follows": 145,
+      "unfollows": 16,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-04",
+      "platform": "fb",
+      "follows": 59,
+      "unfollows": 15,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-04",
+      "platform": "ig",
+      "follows": 81,
+      "unfollows": 20,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-05",
+      "platform": "fb",
+      "follows": 83,
+      "unfollows": 10,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-05",
+      "platform": "ig",
+      "follows": 82,
+      "unfollows": 14,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-06",
+      "platform": "fb",
+      "follows": 57,
+      "unfollows": 9,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-06",
+      "platform": "ig",
+      "follows": 54,
+      "unfollows": 8,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-07",
+      "platform": "fb",
+      "follows": 57,
+      "unfollows": 10,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-07",
+      "platform": "ig",
+      "follows": 68,
+      "unfollows": 18,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-08",
+      "platform": "fb",
+      "follows": 90,
+      "unfollows": 13,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-08",
+      "platform": "ig",
+      "follows": 69,
+      "unfollows": 5,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-09",
+      "platform": "fb",
+      "follows": 72,
+      "unfollows": 16,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-09",
+      "platform": "ig",
+      "follows": 52,
+      "unfollows": 8,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-10",
+      "platform": "fb",
+      "follows": 143,
+      "unfollows": 17,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-10",
+      "platform": "ig",
+      "follows": 42,
+      "unfollows": 8,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-11",
+      "platform": "fb",
+      "follows": 166,
+      "unfollows": 16,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-11",
+      "platform": "ig",
+      "follows": 90,
+      "unfollows": 12,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-12",
+      "platform": "fb",
+      "follows": 152,
+      "unfollows": 18,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-12",
+      "platform": "ig",
+      "follows": 97,
+      "unfollows": 24,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-13",
+      "platform": "fb",
+      "follows": 123,
+      "unfollows": 11,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-13",
+      "platform": "ig",
+      "follows": 96,
+      "unfollows": 10,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-14",
+      "platform": "fb",
+      "follows": 114,
+      "unfollows": 17,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-14",
+      "platform": "ig",
+      "follows": 70,
+      "unfollows": 12,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-15",
+      "platform": "fb",
+      "follows": 88,
+      "unfollows": 10,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-15",
+      "platform": "ig",
+      "follows": 58,
+      "unfollows": 8,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-16",
+      "platform": "fb",
+      "follows": 91,
+      "unfollows": 18,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-16",
+      "platform": "ig",
+      "follows": 51,
+      "unfollows": 14,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-17",
+      "platform": "fb",
+      "follows": 117,
+      "unfollows": 25,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-17",
+      "platform": "ig",
+      "follows": 70,
+      "unfollows": 21,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-18",
+      "platform": "fb",
+      "follows": 100,
+      "unfollows": 16,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-18",
+      "platform": "ig",
+      "follows": 71,
+      "unfollows": 14,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-19",
+      "platform": "fb",
+      "follows": 143,
+      "unfollows": 22,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-19",
+      "platform": "ig",
+      "follows": 99,
+      "unfollows": 22,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-20",
+      "platform": "fb",
+      "follows": 113,
+      "unfollows": 23,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-20",
+      "platform": "ig",
+      "follows": 73,
+      "unfollows": 30,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-21",
+      "platform": "fb",
+      "follows": 91,
+      "unfollows": 10,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-21",
+      "platform": "ig",
+      "follows": 57,
+      "unfollows": 18,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-22",
+      "platform": "fb",
+      "follows": 90,
+      "unfollows": 15,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-22",
+      "platform": "ig",
+      "follows": 51,
+      "unfollows": 18,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-23",
+      "platform": "fb",
+      "follows": 102,
+      "unfollows": 7,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-23",
+      "platform": "ig",
+      "follows": 64,
+      "unfollows": 13,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-24",
+      "platform": "fb",
+      "follows": 153,
+      "unfollows": 20,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-24",
+      "platform": "ig",
+      "follows": 68,
+      "unfollows": 14,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-25",
+      "platform": "fb",
+      "follows": 101,
+      "unfollows": 15,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-25",
+      "platform": "ig",
+      "follows": 76,
+      "unfollows": 23,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-26",
+      "platform": "fb",
+      "follows": 80,
+      "unfollows": 13,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-26",
+      "platform": "ig",
+      "follows": 67,
+      "unfollows": 10,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-27",
+      "platform": "fb",
+      "follows": 113,
+      "unfollows": 14,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-27",
+      "platform": "ig",
+      "follows": 83,
+      "unfollows": 17,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-28",
+      "platform": "fb",
+      "follows": 87,
+      "unfollows": 16,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-28",
+      "platform": "ig",
+      "follows": 63,
+      "unfollows": 15,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-29",
+      "platform": "fb",
+      "follows": 55,
+      "unfollows": 14,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-29",
+      "platform": "ig",
+      "follows": 42,
+      "unfollows": 6,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-30",
+      "platform": "fb",
+      "follows": 81,
+      "unfollows": 14,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-09-30",
+      "platform": "ig",
+      "follows": 61,
+      "unfollows": 9,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-10-01",
+      "platform": "fb",
+      "follows": 80,
+      "unfollows": 12,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-10-01",
+      "platform": "ig",
+      "follows": 58,
+      "unfollows": 10,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-10-02",
+      "platform": "fb",
+      "follows": 95,
+      "unfollows": 17,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-10-02",
+      "platform": "ig",
+      "follows": 73,
+      "unfollows": 23,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-10-03",
+      "platform": "fb",
+      "follows": 111,
+      "unfollows": 22,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-10-03",
+      "platform": "ig",
+      "follows": 73,
+      "unfollows": 20,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-10-04",
+      "platform": "fb",
+      "follows": 90,
+      "unfollows": 14,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-10-04",
+      "platform": "ig",
+      "follows": 67,
+      "unfollows": 13,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-10-05",
+      "platform": "fb",
+      "follows": 76,
+      "unfollows": 13,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-10-05",
+      "platform": "ig",
+      "follows": 66,
+      "unfollows": 14,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-10-06",
+      "platform": "fb",
+      "follows": 67,
+      "unfollows": 11,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-10-06",
+      "platform": "ig",
+      "follows": 51,
+      "unfollows": 14,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-10-07",
+      "platform": "fb",
+      "follows": 62,
+      "unfollows": 17,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-10-07",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-08-01",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 2,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-01",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-02",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 2,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-02",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-03",
+      "platform": "fb",
+      "follows": 7,
+      "unfollows": 2,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-03",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-04",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 1,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-04",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-05",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-05",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-06",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-06",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-07",
+      "platform": "fb",
+      "follows": 7,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-07",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-08",
+      "platform": "fb",
+      "follows": 7,
+      "unfollows": 6,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-08",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-09",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-09",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-10",
+      "platform": "fb",
+      "follows": 8,
+      "unfollows": 1,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-10",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-11",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-11",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-12",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-12",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-13",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 4,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-13",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-14",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 0,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-14",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-15",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-15",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-16",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-16",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-17",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-17",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-18",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-18",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-19",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 5,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-19",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-20",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 2,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-20",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-21",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-21",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-22",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 2,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-22",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-23",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-23",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-24",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 4,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-24",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-25",
+      "platform": "fb",
+      "follows": 9,
+      "unfollows": 2,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-25",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-26",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-26",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-27",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 2,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-27",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-28",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 1,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-28",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-29",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-29",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-30",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-30",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-31",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 4,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-31",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-01",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-01",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-02",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 4,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-02",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-03",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 4,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-03",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-04",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-04",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-05",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-05",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-06",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-06",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-07",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-07",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-08",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-08",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-09",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 6,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-09",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-10",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 1,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-10",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-11",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 5,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-11",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-12",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 0,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-12",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-13",
+      "platform": "fb",
+      "follows": 8,
+      "unfollows": 2,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-13",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-14",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 5,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-14",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-15",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-15",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-16",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-16",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-17",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 5,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-17",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-18",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-18",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-19",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-19",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-20",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 4,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-20",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-21",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-21",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-22",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-22",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-23",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 2,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-23",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-24",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 1,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-24",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-25",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 2,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-25",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-26",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-26",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-27",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-27",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-28",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 2,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-28",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-29",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-29",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-30",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 5,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-09-30",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-10-01",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-10-01",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-10-02",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-10-02",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-10-03",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 4,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-10-03",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-10-04",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 4,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-10-04",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-10-05",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 5,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-10-05",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-10-06",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 6,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-10-06",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-10-07",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 5,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-10-07",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-08-01",
+      "platform": "fb",
+      "follows": 15,
+      "unfollows": 6,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-01",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-02",
+      "platform": "fb",
+      "follows": 12,
+      "unfollows": 10,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-02",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-03",
+      "platform": "fb",
+      "follows": 64,
+      "unfollows": 8,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-03",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-04",
+      "platform": "fb",
+      "follows": 22,
+      "unfollows": 9,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-04",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-05",
+      "platform": "fb",
+      "follows": 19,
+      "unfollows": 4,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-05",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-06",
+      "platform": "fb",
+      "follows": 16,
+      "unfollows": 8,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-06",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-07",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 8,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-07",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-08",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 6,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-08",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-09",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 14,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-09",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-10",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 17,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-10",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-11",
+      "platform": "fb",
+      "follows": 114,
+      "unfollows": 12,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-11",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-12",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 14,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-12",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-13",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 10,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-13",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 4,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-14",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 4,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-14",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-15",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 5,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-15",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-16",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 8,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-16",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-17",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 7,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-17",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 3,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-18",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 4,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-18",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-19",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 9,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-19",
+      "platform": "ig",
+      "follows": 3,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-20",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 13,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-20",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-21",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 11,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-21",
+      "platform": "ig",
+      "follows": 3,
+      "unfollows": 5,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-22",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 4,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-22",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-23",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 4,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-23",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-24",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 11,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-24",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-25",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 9,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-25",
+      "platform": "ig",
+      "follows": 3,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-26",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 6,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-26",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-27",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 4,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-27",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 4,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-28",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 4,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-28",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-29",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 8,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-29",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-30",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 5,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-30",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-31",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-08-31",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-01",
+      "platform": "fb",
+      "follows": 8,
+      "unfollows": 10,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-01",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-02",
+      "platform": "fb",
+      "follows": 14,
+      "unfollows": 7,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-02",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-03",
+      "platform": "fb",
+      "follows": 9,
+      "unfollows": 5,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-03",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-04",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 3,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-04",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-05",
+      "platform": "fb",
+      "follows": 8,
+      "unfollows": 3,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-05",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-06",
+      "platform": "fb",
+      "follows": 8,
+      "unfollows": 6,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-06",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-07",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 9,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-07",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-08",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 8,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-08",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-09",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 20,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-09",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-10",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 4,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-10",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 4,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-11",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-11",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-12",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-12",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-13",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 9,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-13",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-14",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 5,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-14",
+      "platform": "ig",
+      "follows": 3,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-15",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 3,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-15",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 4,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-16",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 9,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-16",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-17",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 4,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-17",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-18",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 5,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-18",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-19",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 5,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-19",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-20",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 4,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-20",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-21",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 3,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-21",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-22",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 10,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-22",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-23",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 11,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-23",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-24",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-24",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-25",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 7,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-25",
+      "platform": "ig",
+      "follows": 2,
+      "unfollows": 3,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-26",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 10,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-26",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-27",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 8,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-27",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-28",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 5,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-28",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-29",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 3,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-29",
+      "platform": "ig",
+      "follows": 4,
+      "unfollows": 1,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-30",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 5,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-09-30",
+      "platform": "ig",
+      "follows": 4,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-10-01",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 6,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-10-01",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-10-02",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 13,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-10-02",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-10-03",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 7,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-10-03",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 2,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-10-04",
+      "platform": "fb",
+      "follows": 2,
+      "unfollows": 3,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-10-04",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-10-05",
+      "platform": "fb",
+      "follows": 6,
+      "unfollows": 11,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-10-05",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-10-06",
+      "platform": "fb",
+      "follows": 3,
+      "unfollows": 6,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-10-06",
+      "platform": "ig",
+      "follows": 0,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-10-07",
+      "platform": "fb",
+      "follows": 4,
+      "unfollows": 5,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-10-07",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "tmd"
     }
   ],
-  "updated_at": "2026-10-08T16:19:09.695008+08:00",
+  "updated_at": "2026-10-08T16:37:04.039186+08:00",
   "reporting_windows": {
     "fb": "Meta daily buckets",
     "ig": "Asia/Taipei calendar day"
+  },
+  "version": 2,
+  "project_status": {
+    "tmd": {
+      "updated_at": "2026-10-08T16:35:26.807498+08:00",
+      "last_attempt": "2026-10-08T16:35:26.807498+08:00",
+      "error": null
+    },
+    "mjstar31": {
+      "updated_at": "2026-10-08T16:35:43.314729+08:00",
+      "last_attempt": "2026-10-08T16:35:43.314729+08:00",
+      "error": null
+    },
+    "donut": {
+      "updated_at": "2026-10-08T16:36:00.025086+08:00",
+      "last_attempt": "2026-10-08T16:36:00.025086+08:00",
+      "error": null
+    },
+    "panther": {
+      "updated_at": "2026-10-08T16:36:15.619976+08:00",
+      "last_attempt": "2026-10-08T16:36:15.619976+08:00",
+      "error": null
+    },
+    "partygo": {
+      "updated_at": "2026-10-08T16:36:31.181732+08:00",
+      "last_attempt": "2026-10-08T16:36:31.181732+08:00",
+      "error": null
+    },
+    "slam888": {
+      "updated_at": "2026-10-08T16:36:47.192043+08:00",
+      "last_attempt": "2026-10-08T16:36:47.192043+08:00",
+      "error": null
+    },
+    "hoyeah": {
+      "updated_at": "2026-10-08T16:37:04.039186+08:00",
+      "last_attempt": "2026-10-08T16:37:04.039186+08:00",
+      "error": null
+    }
   }
 }

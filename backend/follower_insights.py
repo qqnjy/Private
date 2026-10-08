@@ -6,6 +6,19 @@ from pathlib import Path
 
 DATA_PATH = Path(__file__).parent / 'data' / 'follower_daily.json'
 TAIPEI = timezone(timedelta(hours=8))
+PROJECTS = [
+    {'key': 'tmd', 'name': '滿貫大亨', 'page_id': '244504085653567'},
+    {'key': 'mjstar31', 'name': '明星3缺1', 'page_id': '285546094839900'},
+    {'key': 'donut', 'name': '競技麻將2', 'page_id': '323273157717210'},
+    {'key': 'panther', 'name': '金好運', 'page_id': '1784471515125001'},
+    {'key': 'partygo', 'name': '玩星派對', 'page_id': '107262232363722'},
+    {'key': 'slam888', 'name': '大滿貫', 'page_id': '306343012746356'},
+    {'key': 'hoyeah', 'name': '金猴爺', 'page_id': '612956795508104'},
+]
+
+
+def project_choices():
+    return [{'key': p['key'], 'name': p['name']} for p in PROJECTS]
 
 
 def fb_daily_rows(payload):
@@ -52,7 +65,10 @@ def summarize(rows):
             'is_complete': bool(rows) and complete == len(rows)}
 
 
-def monthly_report(snapshot, month, today=None):
+def monthly_report(snapshot, month, today=None, project='tmd'):
+    selected = next((p for p in PROJECTS if p['key'] == project), None)
+    if not selected:
+        raise ValueError('未知專案')
     today = today or datetime.now(TAIPEI).date()
     start = date.fromisoformat(month + '-01')
     if start > today:
@@ -62,7 +78,7 @@ def monthly_report(snapshot, month, today=None):
     previous = start - timedelta(days=1)
     previous_start = previous.replace(day=1)
     previous_count = min(count, previous.day)
-    lookup = {(r['platform'], r['date']): r for r in snapshot.get('rows', [])}
+    lookup = {(r['platform'], r['date']): r for r in snapshot.get('rows', []) if r.get('project', 'tmd') == project}
     def days(platform, first, n):
         out = []
         for offset in range(n):
@@ -87,7 +103,10 @@ def monthly_report(snapshot, month, today=None):
         platforms[platform] = {'rows': rows, 'summary': current, 'previous': prior,
                                'change': change, 'comparison_current': summarize(comparable_rows),
                                'previous_period': {'start': previous_start.isoformat(), 'end': prev_rows[-1]['date'] if prev_rows else None}}
-    return {'brand': '滿貫大亨', 'month': month, 'updated_at': snapshot.get('updated_at'),
+    status = snapshot.get('project_status', {}).get(project, {})
+    updated_at = status.get('updated_at') or (snapshot.get('updated_at') if project == 'tmd' and not snapshot.get('project_status') else None)
+    return {'brand': selected['name'], 'project_key': project, 'projects': project_choices(),
+            'collection_error': status.get('error'), 'month': month, 'updated_at': updated_at,
             'period': {'start': start.isoformat(), 'end': end.isoformat() if count else None},
             'platforms': platforms,
             'notes': ['FB 依 Meta 每日區間；IG 依台灣時間每日區間。跨平台及後台比較請先對齊口徑。',
@@ -95,7 +114,7 @@ def monthly_report(snapshot, month, today=None):
                       '本月只列昨日以前的資料；缺值不當作 0，資料不完整時不計淨變化與月比較。']}
 
 
-def load_month(month):
+def load_month(month, project='tmd'):
     if not DATA_PATH.exists():
         raise FileNotFoundError('追蹤增減資料尚未建立')
-    return monthly_report(json.loads(DATA_PATH.read_text(encoding='utf-8')), month)
+    return monthly_report(json.loads(DATA_PATH.read_text(encoding='utf-8')), month, project=project)

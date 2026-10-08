@@ -39,7 +39,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add backend/data/follower_daily.json
           if ! git diff --cached --quiet; then
-            git commit -m "Update TMD daily follower flow snapshot"
+            git commit -m "Update project daily follower flow snapshots"
             git pull --rebase origin main
             git push origin HEAD:main
           fi

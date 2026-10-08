@@ -1,6 +1,6 @@
-# 滿貫每日追蹤增減
+# 各專案每日追蹤增減
 
-- 網頁：`/followers`；查詢：`GET /api/followers/month?month=2026-09`。
+- 網頁：`/followers`；查詢：`GET /api/followers/month?month=2026-09&project=tmd`。
 - FB：`page_daily_follows`、`page_daily_unfollows`；日期是 Meta 區間結束時間的前一日。
 - IG：每日台灣時間 00:00 至次日 00:00，以 `follows_and_unfollows` / `follow_type` 的 FOLLOWER、NON_FOLLOWER 分項取得。
 - API 值為平台回報數量，不能當成追蹤總數快照差，也不能歸因於當日某篇貼文。
@@ -13,3 +13,6 @@
 
 本機回補：在 backend 執行 `python collect_follower_insights.py --start 2026-08-01 --end 2026-10-07`。
 驗證：`python -m unittest test_follower_insights -v`。
+
+專案選單包含滿貫、明星3缺1、競技麻將2、金好運、玩星派對、大滿貫、金猴爺台版。使用固定粉專 ID，避免同名粉專混用。
+資料以 project/platform/date 為唯一鍵；舊版滿貫資料自動遷移。各專案個別保留更新時間，失敗專案保留舊資料並顯示狀態，不阻擋其他專案更新。

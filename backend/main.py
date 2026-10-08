@@ -39,10 +39,10 @@ app.add_middleware(
 )
 
 @app.get("/api/followers/month")
-def api_follower_month(month: str = Query(..., pattern=r"^\d{4}-\d{2}$")):
+def api_follower_month(month: str = Query(..., pattern=r"^\d{4}-\d{2}$"), project: str = "tmd"):
     from follower_insights import load_month
     try:
-        return load_month(month)
+        return load_month(month, project)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from None
     except FileNotFoundError:

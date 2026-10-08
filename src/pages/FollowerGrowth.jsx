@@ -9,6 +9,8 @@ const signed = (value) => value == null ? '無法比較' : `${value > 0 ? '+' : 
 export default function FollowerGrowth() {
   const [month, setMonth] = useState(taipeiMonth);
   const [platform, setPlatform] = useState('fb');
+  const [project, setProject] = useState('tmd');
+  const [projects, setProjects] = useState([{ key: 'tmd', name: '滿貫大亨' }]);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -22,10 +24,11 @@ export default function FollowerGrowth() {
       setError('');
       setData(null);
       try {
-        const response = await fetch(`${API_BASE}/followers/month?month=${encodeURIComponent(month)}`, { signal: controller.signal });
+        const response = await fetch(`${API_BASE}/followers/month?month=${encodeURIComponent(month)}&project=${encodeURIComponent(project)}`, { signal: controller.signal });
         const payload = await response.json();
         if (!response.ok) throw new Error(typeof payload.detail === 'string' ? payload.detail : '資料暫時無法載入');
         setData(payload);
+        if (payload.projects) setProjects(payload.projects);
       } catch (e) {
         if (e.name !== 'AbortError') setError(e.message || '資料暫時無法載入');
       } finally {
@@ -34,9 +37,10 @@ export default function FollowerGrowth() {
     }
     load();
     return () => controller.abort();
-  }, [month, retry]);
+  }, [month, project, retry]);
 
-  const report = data?.platforms?.[platform];
+  const report = data?.project_key === project ? data?.platforms?.[platform] : null;
+  const projectName = projects.find((p) => p.key === project)?.name || '社群';
   const summary = report?.summary;
   const card = 'bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-5';
   const cards = [
@@ -49,10 +53,15 @@ export default function FollowerGrowth() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-[var(--text-primary)]">滿貫大亨｜追蹤增減</h2>
+          <h2 className="text-3xl font-bold text-[var(--text-primary)]">{projectName}｜追蹤增減</h2>
           <p className="mt-2 text-[var(--text-secondary)]">分開看新增與流失，作為內容規劃與每月檢討的依據。</p>
         </div>
         <div className="flex flex-wrap gap-3">
+          <label className="text-sm text-[var(--text-secondary)]">專案
+            <select aria-label="選擇專案" value={project} onChange={(e) => setProject(e.target.value)} className="block mt-1 px-3 py-2 rounded-lg bg-[var(--bg-card)] border border-[var(--border-color)] text-[var(--text-primary)]">
+              {projects.map((p) => <option key={p.key} value={p.key}>{p.name}</option>)}
+            </select>
+          </label>
           <label className="text-sm text-[var(--text-secondary)]">月份
             <input aria-label="選擇月份" type="month" value={month} max={taipeiMonth()} onChange={(e) => setMonth(e.target.value)} className="block mt-1 px-3 py-2 rounded-lg bg-[var(--bg-card)] border border-[var(--border-color)] text-[var(--text-primary)]" />
           </label>
@@ -67,6 +76,7 @@ export default function FollowerGrowth() {
       {loading && <div role="status" className={card}>載入追蹤增減資料中…</div>}
       {error && <div role="alert" className={`${card} text-red-400`}>{error}。請稍後重新載入。</div>}
       {report && <>
+        {data.collection_error && <p role="status" className="text-sm text-amber-400">本專案最近一次更新未完成，顯示既有資料：{data.collection_error}</p>}
         <div className="text-sm text-[var(--text-secondary)] space-y-1">
           <p>統計區間：{data.period.start} 至 {data.period.end || '本月尚無已結束的每日區間'}</p>
           <p>資料更新：{data.updated_at ? new Date(data.updated_at).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' }) : '未取得'}（台灣時間） · 完整資料 {summary.complete_days}／{summary.expected_days} 天</p>

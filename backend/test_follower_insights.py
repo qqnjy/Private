@@ -34,6 +34,22 @@ class FollowerInsightsTests(unittest.TestCase):
         self.assertEqual(report['comparison_current']['expected_days'], 28)
         self.assertEqual(report['change']['follows'], 0)
 
+    def test_project_isolation_for_same_platform_and_date(self):
+        snapshot = {'rows': [
+            {'date': '2026-09-01', 'platform': 'fb', 'follows': 3, 'unfollows': 1},
+            {'project': 'donut', 'date': '2026-09-01', 'platform': 'fb', 'follows': 20, 'unfollows': 2},
+        ], 'project_status': {'donut': {'updated_at': '2026-10-08T16:00:00+08:00'}}}
+        tmd = monthly_report(snapshot, '2026-09', date(2026, 10, 8))
+        donut = monthly_report(snapshot, '2026-09', date(2026, 10, 8), project='donut')
+        self.assertEqual(tmd['platforms']['fb']['rows'][0]['follows'], 3)
+        self.assertEqual(donut['platforms']['fb']['rows'][0]['follows'], 20)
+        self.assertEqual(donut['brand'], '競技麻將2')
+        self.assertEqual(donut['updated_at'], '2026-10-08T16:00:00+08:00')
+
+    def test_unknown_project_is_rejected(self):
+        with self.assertRaises(ValueError):
+            monthly_report({}, '2026-09', project='unknown')
+
     def test_future_month_is_rejected(self):
         with self.assertRaises(ValueError):
             monthly_report({}, '2026-11', date(2026, 10, 8))
