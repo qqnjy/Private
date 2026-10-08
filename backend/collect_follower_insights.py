@@ -65,7 +65,7 @@ def collect(start=None, end=None):
                 'since': cursor.isoformat(), 'until': (stop + timedelta(days=1)).isoformat()})
             now = datetime.now(TAIPEI)
             for metric in payload.get('data', []):
-                metric['values'] = [v for v in metric.get('values', []) if datetime.fromisoformat(v['end_time']) <= now]
+                metric['values'] = [v for v in metric.get('values', []) if datetime.strptime(v['end_time'], '%Y-%m-%dT%H:%M:%S%z') <= now]
             for row in fb_daily_rows(payload):
                 if start.isoformat() <= row['date'] <= end.isoformat():
                     merge(row)

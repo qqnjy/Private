@@ -16,7 +16,7 @@ def fb_daily_rows(payload):
             continue
         for item in metric.get('values', []):
             # Meta closes these daily buckets on the following calendar day.
-            day = (datetime.fromisoformat(item['end_time']) - timedelta(days=1)).date().isoformat()
+            day = (datetime.strptime(item['end_time'], '%Y-%m-%dT%H:%M:%S%z') - timedelta(days=1)).date().isoformat()
             rows.setdefault(day, {'date': day, 'platform': 'fb', 'follows': None, 'unfollows': None})[field] = item.get('value')
     return list(rows.values())
 
