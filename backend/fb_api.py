@@ -669,3 +669,191 @@ def baseline_summary(brand: str, week_start: str, week_end: str) -> str:
     lines.append("  注意：單週差異可能來自檔期或題材，尚不足以歸因於行事曆或 GEO；"
                  "GEO 的搜尋收錄與引用無法由社群數據驗證，不得宣稱成效。")
     return "\n".join(lines)
+
+
+_WEEKDAYS = "一二三四五六日"
+
+_THEME_KEYWORDS = {
+    "抽獎／贈獎": ("抽獎", "抽出", "得獎", "送出", "紅鑽", "好禮", "獎品"),
+    "留言互動": ("留言", "你最早", "你會嗎", "舉手", "告訴我", "選出", "猜"),
+    "時事／節慶": ("中秋", "國慶", "連假", "開學", "鬼門", "母親節", "新年", "媽祖"),
+    "直播／主播": ("直播", "主播", "班表", "晚上8點", "晚上 8 點"),
+    "教學／冷知識": ("英語", "知識", "教你", "怎樣才可以"),
+}
+
+# Prizes you can hold in your hand vs in-game currency.
+_PHYSICAL_PRIZE = ("零錢包", "抱枕", "旗子", "實體", "娃娃", "周邊")
+_VIRTUAL_PRIZE = ("紅鑽", "鑽石", "金幣", "點數", "兌換碼")
+
+_MIN_EFFECTIVE = 10   # below this a slice is noise, and the report must say so
+
+
+def posting_pattern_summary(brand: str, before_date: str | None = None) -> str:
+    """Long-run posting patterns, which a single week cannot show.
+
+    The weekly report only ever sees its own seven days, so it kept recommending
+    generic things like "優化內容形式". Weekday, time slot, theme and prize type
+    only separate over months of posts, and those are what the schedule is
+    actually built from.
+    """
+    from models import supabase
+    from datetime import timedelta
+
+    try:
+        rows = supabase.table("posts").select("*") \
+            .eq("brand_name", brand).eq("platform", "fb").execute().data or []
+    except Exception:
+        return ""
+    if before_date:
+        rows = [p for p in rows if p.get("created_at", "")[:10] <= before_date]
+    if len(rows) < 30:
+        return ""
+
+    def taipei(p):
+        return datetime.fromisoformat(p["created_at"].replace("Z", "+00:00")) + timedelta(hours=8)
+
+    def views(p):
+        m = p.get("metrics") or {}
+        return m.get("total_views") or m.get("video_views") or 0
+
+    def eng(p):
+        return (p.get("metrics") or {}).get("engagement") or 0
+
+    def slice_line(label, posts):
+        eff = [p for p in posts if views(p)]
+        if not posts:
+            return f"  {label}：0 則（區間內未發文）"
+        if not eff:
+            return f"  {label}：{len(posts)} 則，觀看數尚待取得，互動率無法計算"
+        rate = sum(eng(p) / views(p) * 100 for p in eff) / len(eff)
+        warn = "，樣本偏少僅供參考" if len(eff) < _MIN_EFFECTIVE else ""
+        return (f"  {label}：{len(posts)} 則（有觀看數 {len(eff)} 則），"
+                f"平均互動率 {rate:.2f}%{warn}")
+
+    lines = [f"【FB 長期檔期型態（{len(rows)} 則，{min(taipei(p) for p in rows).date()} 起）】",
+             "  ※ 以下為跨週累積型態，用來支撐「後續規劃」的排程建議；"
+             "括號中的「有觀看數」是有效樣本數，樣本偏少者不可當作結論。"]
+
+    by_wd = {d: [] for d in _WEEKDAYS}
+    for p in rows:
+        by_wd[_WEEKDAYS[taipei(p).weekday()]].append(p)
+    lines.append(" ─ 依星期 ─")
+    lines += [slice_line(f"週{d}", by_wd[d]) for d in _WEEKDAYS]
+
+    slots = {"09-11 早": [], "12-14 午": [], "15-18 下午": [], "19-21 晚": [], "其他時段": []}
+    for p in rows:
+        h = taipei(p).hour
+        key = ("09-11 早" if 9 <= h < 12 else "12-14 午" if 12 <= h < 15
+               else "15-18 下午" if 15 <= h < 19 else "19-21 晚" if 19 <= h < 22 else "其他時段")
+        slots[key].append(p)
+    lines.append(" ─ 依發布時段（台灣時間）─")
+    lines += [slice_line(k, v) for k, v in slots.items() if v]
+
+    lines.append(" ─ 依題材（關鍵字比對，一則可能落入多個題材，不可加總）─")
+    for name, kws in _THEME_KEYWORDS.items():
+        lines.append(slice_line(name, [p for p in rows
+                                       if any(k in (p.get("message") or "") for k in kws)]))
+
+    def prize_block(label, kws):
+        ps = [p for p in rows if any(k in (p.get("message") or "") for k in kws)
+              and any(k in (p.get("message") or "") for k in _THEME_KEYWORDS["抽獎／贈獎"])]
+        if not ps:
+            return None
+        best = max(ps, key=eng)
+        es = sorted((eng(p) for p in ps), reverse=True)
+        return (f"  {label}：{len(ps)} 則，最高互動 {es[0]}，前三名 {es[:3]}，"
+                f"代表作「{_clean_title(best.get('message') or '', 18)}」")
+
+    is_draw = lambda p: any(k in (p.get("message") or "")
+                            for k in _THEME_KEYWORDS["抽獎／贈獎"])
+    phys = [p for p in rows if is_draw(p)
+            and any(k in (p.get("message") or "") for k in _PHYSICAL_PRIZE)]
+    virt = [p for p in rows if is_draw(p)
+            and any(k in (p.get("message") or "") for k in _VIRTUAL_PRIZE)]
+
+    pb = [b for b in (prize_block("實體獎品", _PHYSICAL_PRIZE),
+                      prize_block("遊戲內獎品", _VIRTUAL_PRIZE)) if b]
+    if len(pb) == 2:
+        lines.append(" ─ 抽獎獎品類型 ─")
+        lines += pb
+
+    gaps = _gap_lines(rows, taipei, views, eng, by_wd, phys, virt)
+    if gaps:
+        lines.append(" ─ 排程落差（請在「後續規劃」中引用，每一點都要提到）─")
+        lines += [f"  {i}. {g}" for i, g in enumerate(gaps, 1)]
+
+    return "\n".join(lines)
+
+
+def _gap_lines(rows, taipei, views, eng, by_wd, phys, virt) -> list:
+    """The conclusions a reader should draw from the pattern tables.
+
+    Kept separate because the report inserts these verbatim: asked to summarise
+    them the model dropped two of three and inverted the third.
+    """
+    gaps = []
+    rated = [(d, by_wd[d], [p for p in by_wd[d] if views(p)]) for d in _WEEKDAYS]
+    scored = [(d, posts, sum(eng(p) / views(p) * 100 for p in eff) / len(eff))
+              for d, posts, eff in rated if len(eff) >= _MIN_EFFECTIVE]
+    empty = [d for d, posts, _ in rated if not posts]
+    if empty:
+        gaps.append(f"週{'、週'.join(empty)}在統計區間內完全沒有發文，是未被使用的檔期。")
+    if len(scored) >= 2:
+        worst = min(scored, key=lambda x: x[2])
+        best = max(scored, key=lambda x: x[2])
+        gaps.append(
+            f"週{worst[0]}平均互動率最低（{worst[2]:.2f}%）卻排了 {len(worst[1])} 則；"
+            f"週{best[0]}最高（{best[2]:.2f}%）排了 {len(best[1])} 則。"
+            "發文量與互動率並不一致，排程有調整空間。"
+        )
+    if phys and virt:
+        pe, ve = max(eng(p) for p in phys), max(eng(p) for p in virt)
+        if ve:
+            gaps.append(
+                f"抽獎獎品以實體效果較佳：實體獎品最高互動 {pe}，遊戲內獎品最高 {ve}，"
+                f"相差 {pe / ve:.1f} 倍（實體 {len(phys)} 則、遊戲內 {len(virt)} 則，"
+                "樣本皆偏少，僅供參考）。"
+            )
+    return gaps
+
+
+def scheduling_gap_lines(brand: str, before_date: str | None = None) -> list:
+    """Scheduling gaps on their own, for insertion straight into the outline."""
+    from collections import defaultdict
+    from datetime import timedelta
+    from models import supabase
+
+    try:
+        rows = supabase.table("posts").select("*") \
+            .eq("brand_name", brand).eq("platform", "fb").execute().data or []
+    except Exception:
+        return []
+    if before_date:
+        rows = [p for p in rows if p.get("created_at", "")[:10] <= before_date]
+    if len(rows) < 30:
+        return []
+
+    def taipei(p):
+        return datetime.fromisoformat(p["created_at"].replace("Z", "+00:00")) + timedelta(hours=8)
+
+    def views(p):
+        m = p.get("metrics") or {}
+        return m.get("total_views") or m.get("video_views") or 0
+
+    def eng(p):
+        return (p.get("metrics") or {}).get("engagement") or 0
+
+    by_wd = defaultdict(list)
+    for d in _WEEKDAYS:
+        by_wd[d] = []
+    for p in rows:
+        by_wd[_WEEKDAYS[taipei(p).weekday()]].append(p)
+
+    def is_draw(p):
+        return any(k in (p.get("message") or "") for k in _THEME_KEYWORDS["抽獎／贈獎"])
+
+    phys = [p for p in rows if is_draw(p)
+            and any(k in (p.get("message") or "") for k in _PHYSICAL_PRIZE)]
+    virt = [p for p in rows if is_draw(p)
+            and any(k in (p.get("message") or "") for k in _VIRTUAL_PRIZE)]
+    return _gap_lines(rows, taipei, views, eng, by_wd, phys, virt)

@@ -494,10 +494,12 @@ def api_generate_report(req: ReportRequestExt):
             return weekly
 
         notes = req.notes or ""
+        SEP = chr(10) * 2
         if req.start_date and req.end_date:
             try:
                 from fb_api import (top_posts_summary, wow_summary,
-                                    fan_trend_summary, baseline_summary)
+                                    fan_trend_summary, baseline_summary,
+                                    posting_pattern_summary)
                 from posts_repo import get_week_summary
                 weekly = _ensure_week_cached(req.brand_name, req.start_date, req.end_date)
                 prev_ws = prev_we = None
@@ -551,6 +553,15 @@ def api_generate_report(req: ReportRequestExt):
                 except Exception as bl_err:
                     print(f"baseline summary failed: {bl_err}")
 
+                # Weekday / time slot / theme / prize type only separate over
+                # months, so a single week's data cannot surface them.
+                try:
+                    pat = posting_pattern_summary(req.brand_name, req.end_date)
+                    if pat:
+                        notes = (notes + SEP if notes else "") + pat
+                except Exception as pat_err:
+                    print(f"posting pattern failed: {pat_err}")
+
                 summary = top_posts_summary(weekly, top_n=5)
                 if summary:
                     notes = (notes + "\n\n" if notes else "") + summary
@@ -563,6 +574,23 @@ def api_generate_report(req: ReportRequestExt):
         )
         outline = result.get("outline", "")
         slides = result.get("slides")
+
+        # The scheduling gaps are inserted verbatim rather than left to the LLM.
+        # Asked to summarise them it dropped two of three and inverted the third
+        # ("週日互動率最低" when 週日 has no posts at all), and this section goes
+        # to the ops team.
+        try:
+            from fb_api import scheduling_gap_lines
+            gaps = scheduling_gap_lines(req.brand_name, req.end_date) if req.end_date else []
+            if gaps and outline:
+                block = ("二之一、 排程觀察（依長期數據自動計算）\n"
+                         + "\n".join(f"•\t{g}" for g in gaps)
+                         + "\n\n")
+                marker = "三、 後續規劃"
+                outline = (outline.replace(marker, block + marker, 1)
+                           if marker in outline else outline + "\n\n" + block.rstrip())
+        except Exception as gap_err:
+            print(f"scheduling gap block failed: {gap_err}")
 
         # Persist for next time — but only if the outline is clean text.
         # Avoid caching outlines that look like raw JSON / parse failures.

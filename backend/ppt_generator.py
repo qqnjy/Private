@@ -592,6 +592,9 @@ def build_ppt(brand_name: str, week_range: str, slides_data: dict) -> bytes:
         ws, we = [s.strip() for s in week_range.split(" ~ ", 1)]
         _add_acquisition_slide(prs, brand_name, ws, we)
 
+    if " ~ " in week_range:
+        _add_schedule_slide(prs, brand_name, week_range.split(" ~ ", 1)[1].strip())
+
     _add_plans_slide(prs, slides_data or {})
     _add_closing_slide(prs)
 
@@ -688,3 +691,33 @@ def _add_acquisition_slide(prs, brand_name, week_start, week_end):
         para.font.size = Pt(12)
         para.font.color.rgb = TEXT_DARK
         para.space_after = Pt(6)
+
+
+def _add_schedule_slide(prs, brand_name, week_end):
+    """Slide: scheduling gaps from the long-run data."""
+    try:
+        from fb_api import scheduling_gap_lines
+        gaps = scheduling_gap_lines(brand_name, week_end)
+    except Exception:
+        return
+    if not gaps:
+        return
+
+    slide = prs.slides.add_slide(prs.slide_layouts[LAYOUT_BLANK])
+    _remove_placeholder(slide, PH_TITLE)
+    _add_slide_title(slide, "排程觀察　長期檔期型態")
+
+    box = slide.shapes.add_textbox(Inches(0.70), Inches(1.40), Inches(8.60), Inches(3.60))
+    tf = box.text_frame
+    tf.word_wrap = True
+    for i, g in enumerate(gaps):
+        para = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+        para.text = "• " + g
+        para.font.size = Pt(14)
+        para.font.color.rgb = TEXT_DARK
+        para.space_after = Pt(14)
+    tail = tf.add_paragraph()
+    tail.text = "※ 依 FB 歷史貼文自動計算；排程與題材決策由社群端負責，此頁僅提供數據依據。"
+    tail.font.size = Pt(10)
+    tail.font.color.rgb = TEXT_MUTED
+    tail.space_before = Pt(10)
