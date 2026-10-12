@@ -1,0 +1,43 @@
+{
+  "brand": "滿貫大亨",
+  "reason": "社群發文行事曆與 GEO 文案自 2026-10-12（第42週）起導入，此為導入前基準",
+  "weeks": [
+    "W38",
+    "W39",
+    "W40",
+    "W41"
+  ],
+  "period": {
+    "start": "2026-09-14",
+    "end": "2026-10-11"
+  },
+  "frozen_at": "2026-10-12",
+  "platforms": {
+    "fb": {
+      "weeks": 4,
+      "posts": 28,
+      "posts_per_week": 7.0,
+      "views_total": 162018,
+      "views_per_week": 40504.5,
+      "views_median": 3521,
+      "engagement_total": 936,
+      "engagement_per_week": 234.0,
+      "engagement_median": 16,
+      "comments_total": 321,
+      "interaction_rate": 0.58
+    },
+    "ig": {
+      "weeks": 4,
+      "posts": 17,
+      "posts_per_week": 4.2,
+      "views_total": 3298,
+      "views_per_week": 824.5,
+      "views_median": 179,
+      "engagement_total": 22,
+      "engagement_per_week": 5.5,
+      "engagement_median": 0,
+      "comments_total": 0,
+      "interaction_rate": 0.67
+    }
+  }
+}

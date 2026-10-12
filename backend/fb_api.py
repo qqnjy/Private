@@ -594,3 +594,78 @@ def top_posts_summary(weekly: dict, top_n: int = 5) -> str:
                 + (f"、互動 {m['total_interactions']}" if m.get("total_interactions") else "")
             )
     return "\n".join(lines)
+
+
+BASELINE_PATH = os.path.join(os.path.dirname(__file__), "data", "calendar_baseline.json")
+
+
+def baseline_summary(brand: str, week_start: str, week_end: str) -> str:
+    """This week against the frozen pre-calendar baseline.
+
+    The posting calendar and GEO copy went live on 2026-10-12, and the question
+    the ops team asked is whether they lift performance. That needs a fixed
+    comparison period — a rolling window would absorb the very change we are
+    trying to see — so the baseline is frozen in calendar_baseline.json.
+    """
+    import json as _json
+    from datetime import date as _date
+
+    if not os.path.exists(BASELINE_PATH):
+        return ""
+    try:
+        with open(BASELINE_PATH, encoding="utf-8") as fh:
+            bl = _json.load(fh)
+    except Exception:
+        return ""
+    # Baseline brand only, and only for weeks after the baseline period.
+    if bl.get("brand") != brand or week_start <= bl.get("period", {}).get("end", ""):
+        return ""
+
+    from posts_repo import get_cached_posts
+
+    cached = get_cached_posts(brand, week_start, week_end) or {}
+    week_over = _date.today().isoformat() > week_end
+
+    lines = [
+        "【行事曆／GEO 導入後對照】",
+        f"  基準期：{bl['period']['start']} ~ {bl['period']['end']}"
+        f"（{'、'.join(bl['weeks'])}，導入前 {bl['platforms']['fb']['weeks']} 週平均）",
+    ]
+    if not week_over:
+        lines.append("  本週尚未結束，以下僅為進度參考，不可寫成單週成效或成長率。")
+
+    def compare(now, was):
+        # A zero means the manual view counts have not been patched in yet, not
+        # that nobody watched — never turn that into a -100%.
+        if not now:
+            return f"尚待取得（基準週均 {was:,}）"
+        if not was or not week_over:
+            return f"{now:,}（基準週均 {was:,}）"
+        return f"{now:,}（基準週均 {was:,}，{(now - was) / was * 100:+.1f}%）"
+
+    for plat, label in (("fb", "FB"), ("ig", "IG")):
+        base = bl["platforms"].get(plat) or {}
+        posts = cached.get(plat) or []
+        if not posts or not base:
+            lines.append(f"  {label}：本週尚無貼文資料，尚待取得")
+            continue
+        views = sum((p.get("total_views") or p.get("video_views") or 0) if plat == "fb"
+                    else (p.get("views") or 0) for p in posts)
+        eng = sum(p.get("engagement") or 0 for p in posts)
+        lines.append(
+            f"  {label}：發文 {len(posts)} 篇（基準週均 {base['posts_per_week']} 篇）；"
+            f"觀看 {compare(views, base['views_per_week'])}；"
+            f"互動 {compare(eng, base['engagement_per_week'])}"
+        )
+        rate = eng / views * 100 if views else None
+        if rate and base.get("interaction_rate") and week_over:
+            d = (rate - base["interaction_rate"]) / base["interaction_rate"] * 100
+            lines.append(f"      互動率 {rate:.2f}%（基準 {base['interaction_rate']}%，{d:+.1f}%）")
+        elif rate:
+            lines.append(f"      互動率 {rate:.2f}%（基準 {base['interaction_rate']}%）")
+        else:
+            lines.append("      互動率：觀看數尚待取得，暫不計算")
+
+    lines.append("  注意：單週差異可能來自檔期或題材，尚不足以歸因於行事曆或 GEO；"
+                 "GEO 的搜尋收錄與引用無法由社群數據驗證，不得宣稱成效。")
+    return "\n".join(lines)

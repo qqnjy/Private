@@ -496,7 +496,8 @@ def api_generate_report(req: ReportRequestExt):
         notes = req.notes or ""
         if req.start_date and req.end_date:
             try:
-                from fb_api import top_posts_summary, wow_summary, fan_trend_summary
+                from fb_api import (top_posts_summary, wow_summary,
+                                    fan_trend_summary, baseline_summary)
                 from posts_repo import get_week_summary
                 weekly = _ensure_week_cached(req.brand_name, req.start_date, req.end_date)
                 prev_ws = prev_we = None
@@ -541,6 +542,14 @@ def api_generate_report(req: ReportRequestExt):
                         notes = (notes + "\n\n" if notes else "") + acq
                 except Exception as acq_err:
                     print(f"acquisition summary failed: {acq_err}")
+
+                # Did the posting calendar / GEO copy move anything?
+                try:
+                    bl = baseline_summary(req.brand_name, req.start_date, req.end_date)
+                    if bl:
+                        notes = (notes + "\n\n" if notes else "") + bl
+                except Exception as bl_err:
+                    print(f"baseline summary failed: {bl_err}")
 
                 summary = top_posts_summary(weekly, top_n=5)
                 if summary:
