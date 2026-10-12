@@ -531,6 +531,17 @@ def api_generate_report(req: ReportRequestExt):
                 except Exception as trend_err:
                     print(f"fan trend failed: {trend_err}")
 
+                # Gross follows/unfollows + cross-brand benchmark. The report is
+                # read by the ops team, so it has to distinguish a churn problem
+                # from an acquisition one.
+                try:
+                    from follower_insights import acquisition_summary
+                    acq = acquisition_summary(req.brand_name, req.start_date, req.end_date)
+                    if acq:
+                        notes = (notes + "\n\n" if notes else "") + acq
+                except Exception as acq_err:
+                    print(f"acquisition summary failed: {acq_err}")
+
                 summary = top_posts_summary(weekly, top_n=5)
                 if summary:
                     notes = (notes + "\n\n" if notes else "") + summary

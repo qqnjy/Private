@@ -4,6 +4,7 @@ Token is read from FB_GRAPH_TOKEN in .env. Posts/insights data is normalized int
 a shared shape so frontend and AI prompt logic can stay agnostic of platform.
 """
 import os
+import re
 from datetime import datetime
 from typing import Optional
 from functools import lru_cache
@@ -376,6 +377,23 @@ def fetch_weekly_posts(brand_name: str, start_date: str, end_date: str) -> dict:
     }
 
 
+_EMOJI_RE = re.compile(
+    "[\U0001F000-\U0001FAFF\U00002190-\U000021FF\U00002300-\U000027BF"
+    "\U00002B00-\U00002BFF\U0000FE00-\U0000FE0F\U0001F1E6-\U0001F1FF]+"
+)
+
+
+def _clean_title(text: str, limit: int) -> str:
+    """Post title for the prompt, with emoji removed.
+
+    The model translates stray emoji into words — 🚕 has come back as the
+    Turkish "araç" and the German "Fahr" in the middle of a Chinese report.
+    Dropping them costs nothing, since the titles are quoted as plain text.
+    """
+    t = _EMOJI_RE.sub("", str(text or "")).replace("\n", " ")
+    return re.sub(r"\s{2,}", " ", t).strip()[:limit]
+
+
 def _type_breakdown(posts: list, views_key, label: str) -> list:
     """Views vs engagement split by post type.
 
@@ -416,7 +434,7 @@ def _top_by_engagement(posts: list, top_n: int, label: str) -> list:
     week_eng = sum(p.get("engagement") or 0 for p in posts)
     lines = [f"【{label} 互動最高貼文】（比率均已算好，請直接引用，不要自行計算）"]
     for i, p in enumerate(ranked, 1):
-        msg = (p.get("message") or p.get("live_title") or "(無文字)")[:60].replace("\n", " ")
+        msg = _clean_title(p.get("message") or p.get("live_title") or "(無文字)", 60)
         views = p.get("total_views") or p.get("video_views") or 0
         eng = p.get("engagement") or 0
         com = p.get("comments") or 0
@@ -541,7 +559,7 @@ def top_posts_summary(weekly: dict, top_n: int = 5) -> str:
         lines.append("")
         lines.append("【FB TOP 貼文（影片按觀看數排序）】")
         for i, p in enumerate(fb[:top_n], 1):
-            msg = (p["message"] or p.get("live_title") or "(無文字)")[:80].replace("\n", " ")
+            msg = _clean_title(p["message"] or p.get("live_title") or "(無文字)", 80)
             tag = "🔴 直播" if p.get("is_live") else f"[{p.get('post_type') or '其他'}]"
             parts = [f"  {i}. {tag} {msg}".strip()]
             metric_bits = []
@@ -568,7 +586,7 @@ def top_posts_summary(weekly: dict, top_n: int = 5) -> str:
         lines.append("")
         lines.append("【IG TOP 貼文（按觀看次數排序）】")
         for i, m in enumerate(ig[:top_n], 1):
-            msg = (m["message"] or "(無文字)")[:80].replace("\n", " ")
+            msg = _clean_title(m["message"] or "(無文字)", 80)
             lines.append(
                 f"  {i}. [{m.get('post_type') or '其他'}] {msg} — 觀看 {m.get('views') or '?'}"
                 f"、觸及 {m.get('reach') or '?'}、讚 {m['likes']}、留言 {m['comments']}"

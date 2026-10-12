@@ -118,3 +118,71 @@ def load_month(month, project='tmd'):
     if not DATA_PATH.exists():
         raise FileNotFoundError('追蹤增減資料尚未建立')
     return monthly_report(json.loads(DATA_PATH.read_text(encoding='utf-8')), month, project=project)
+
+
+def _week_rows(rows, project, platform, start, end):
+    return [r for r in rows
+            if r.get('project') == project and r.get('platform') == platform
+            and start <= r.get('date', '') <= end]
+
+
+def acquisition_summary(brand_name, week_start, week_end):
+    """Gross follows/unfollows for the week, with the other brands as benchmark.
+
+    The weekly report goes to the ops team, and the point it has to make is that
+    a net follower loss here is an acquisition problem, not a churn problem —
+    which only the gross split can show. Rates are normalised by follower base
+    so a 45k page and an 880k page can sit in the same table.
+    """
+    if not DATA_PATH.exists():
+        return ''
+    try:
+        snapshot = json.loads(DATA_PATH.read_text(encoding='utf-8'))
+    except Exception:
+        return ''
+    rows = snapshot.get('rows') or []
+    me = next((p for p in PROJECTS if p['name'] == brand_name), None)
+    if not me:
+        return ''
+
+    from fb_api import get_historical_fans
+
+    def totals(project, platform):
+        wk = _week_rows(rows, project, platform, week_start, week_end)
+        f = [r['follows'] for r in wk if r.get('follows') is not None]
+        u = [r['unfollows'] for r in wk if r.get('unfollows') is not None]
+        if not f and not u:
+            return None
+        return {'follows': sum(f), 'unfollows': sum(u), 'days': len(wk)}
+
+    lines = []
+    for platform, label in (('fb', 'FB'), ('ig', 'IG')):
+        t = totals(me['key'], platform)
+        if not t:
+            continue
+        net = t['follows'] - t['unfollows']
+        lines.append(
+            f"【{label} 本週追蹤增減（真實進出，非淨值）】\n"
+            f"  新增追蹤 {t['follows']:,} 人、退追 {t['unfollows']:,} 人、淨 {net:+,} 人"
+            f"（{t['days']} 天資料）"
+        )
+
+    bench = []
+    for p in PROJECTS:
+        t = totals(p['key'], 'fb')
+        base = get_historical_fans(p['name'], 'fb', week_end)
+        if not t or not base:
+            continue
+        bench.append((p['name'], base, t['follows'], t['unfollows'],
+                      t['follows'] / base * 100, t['unfollows'] / base * 100))
+    if len(bench) > 1:
+        lines.append("")
+        lines.append("【各專案 FB 新增／退追對比（本週，率＝人數÷粉絲基數）】")
+        for n, b, f, u, fr, ur in sorted(bench, key=lambda r: -r[4]):
+            mark = "  ← 本專案" if n == brand_name else ""
+            lines.append(
+                f"  {n}：基數 {b:,}，新增 {f:,}（{fr:.3f}%）、退追 {u:,}（{ur:.3f}%）{mark}"
+            )
+        lines.append("  解讀重點：退追率若與其他專案相近，粉絲淨減的原因就不是內容不受歡迎，"
+                     "而是新增追蹤太少（缺乏遊戲內導流等進水來源）。")
+    return "\n".join(lines)

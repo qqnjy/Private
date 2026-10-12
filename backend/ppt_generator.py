@@ -40,6 +40,7 @@ ROW_ALT = RGBColor(0xF8, 0xF9, 0xFA)
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 GROWTH_UP = RGBColor(0xE7, 0x4C, 0x3C)   # red — Chinese convention: up = red
 GROWTH_DOWN = RGBColor(0x27, 0xAE, 0x60)  # green — down = green
+ACCENT_BG = RGBColor(0xFF, 0xF4, 0xE0)    # highlight for this brand's own row
 
 
 # ---------- helpers ----------
@@ -587,6 +588,10 @@ def build_ppt(brand_name: str, week_range: str, slides_data: dict) -> bytes:
     )
     _add_top5_slide(prs, "Instagram", ig_posts, "ig")
 
+    if " ~ " in week_range:
+        ws, we = [s.strip() for s in week_range.split(" ~ ", 1)]
+        _add_acquisition_slide(prs, brand_name, ws, we)
+
     _add_plans_slide(prs, slides_data or {})
     _add_closing_slide(prs)
 
@@ -594,3 +599,92 @@ def build_ppt(brand_name: str, week_range: str, slides_data: dict) -> bytes:
     prs.save(bio)
     bio.seek(0)
     return bio.read()
+
+
+def _add_acquisition_slide(prs, brand_name, week_start, week_end):
+    """Slide: gross follows vs unfollows, benchmarked against the other brands.
+
+    This deck goes to the ops team, and the ask is in-game traffic. The case
+    only lands when they can see that this brand's churn is normal and the gap
+    is entirely on the acquisition side, so the numbers are computed here rather
+    than paraphrased by the model.
+    """
+    try:
+        from follower_insights import PROJECTS, DATA_PATH, _week_rows
+        from fb_api import get_historical_fans
+        import json as _json
+    except Exception:
+        return
+    if not DATA_PATH.exists():
+        return
+    try:
+        rows = (_json.loads(DATA_PATH.read_text(encoding="utf-8")) or {}).get("rows") or []
+    except Exception:
+        return
+
+    stats = []
+    for p in PROJECTS:
+        wk = _week_rows(rows, p["key"], "fb", week_start, week_end)
+        f = sum(r["follows"] for r in wk if r.get("follows") is not None)
+        u = sum(r["unfollows"] for r in wk if r.get("unfollows") is not None)
+        base = get_historical_fans(p["name"], "fb", week_end)
+        if not base or (not f and not u):
+            continue
+        stats.append((p["name"], base, f, u, f / base * 100, u / base * 100))
+    if len(stats) < 2:
+        return
+    stats.sort(key=lambda r: -r[4])
+
+    slide = prs.slides.add_slide(prs.slide_layouts[LAYOUT_BLANK])
+    _remove_placeholder(slide, PH_TITLE)
+    _add_slide_title(slide, "FB 追蹤增減　各專案對比")
+
+    cols_def = [("專案", Inches(1.60)), ("粉絲基數", Inches(1.30)),
+                ("新增追蹤", Inches(1.10)), ("新增率", Inches(1.10)),
+                ("退追", Inches(1.00)), ("退追率", Inches(1.10)),
+                ("淨變化", Inches(1.10))]
+    total_w = sum(c[1] for c in cols_def)
+    left = (Inches(10.0) - total_w) // 2
+    tbl = slide.shapes.add_table(len(stats) + 1, len(cols_def),
+                                 left, Inches(1.30), total_w, Inches(0.40)).table
+    for i, (_, w) in enumerate(cols_def):
+        tbl.columns[i].width = w
+    for c, (label, _) in enumerate(cols_def):
+        _set_cell(tbl.cell(0, c), label, size=11, bold=True, color=WHITE, bg=HEADER_GOLD)
+    tbl.rows[0].height = Inches(0.34)
+
+    for r, (name, base, f, u, fr, ur) in enumerate(stats, 1):
+        mine = name == brand_name
+        bg = ACCENT_BG if mine else None
+        tbl.rows[r].height = Inches(0.34)
+        for c, text in enumerate([name, f"{base:,}", f"{f:,}", f"{fr:.3f}%",
+                                  f"{u:,}", f"{ur:.3f}%", f"{f - u:+,}"]):
+            _set_cell(tbl.cell(r, c), text, size=10, bold=mine,
+                      color=BRAND_RED if mine else TEXT_DARK, bg=bg)
+
+    me = next((s for s in stats if s[0] == brand_name), None)
+    best = stats[0]
+    notes = []
+    if me:
+        rank_churn = sorted(stats, key=lambda s: s[5]).index(me) + 1
+        notes.append(
+            f"{brand_name}退追率 {me[5]:.3f}%，在 {len(stats)} 個專案中排第 {rank_churn} 低"
+            "——流失屬正常水準，不是內容不受歡迎。"
+        )
+        if best[0] != brand_name and me[4]:
+            notes.append(
+                f"差距在新增：{best[0]}新增率 {best[4]:.3f}%，是{brand_name} {me[4]:.3f}% 的 "
+                f"{best[4] / me[4]:.0f} 倍。"
+            )
+        notes.append(f"{best[0]}的追蹤數主要來自遊戲內導流，建議{brand_name}比照導入。")
+
+    box = slide.shapes.add_textbox(left, Inches(1.30) + Inches(0.34) * (len(stats) + 1) + Inches(0.25),
+                                   total_w, Inches(1.40))
+    tf = box.text_frame
+    tf.word_wrap = True
+    for i, n in enumerate(notes):
+        para = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+        para.text = "• " + n
+        para.font.size = Pt(12)
+        para.font.color.rgb = TEXT_DARK
+        para.space_after = Pt(6)
