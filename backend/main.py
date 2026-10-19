@@ -499,6 +499,7 @@ def api_generate_report(req: ReportRequestExt):
             try:
                 from fb_api import (top_posts_summary, wow_summary,
                                     fan_trend_summary, baseline_summary,
+                                    platform_overlap_summary,
                                     posting_pattern_summary)
                 from posts_repo import get_week_summary
                 weekly = _ensure_week_cached(req.brand_name, req.start_date, req.end_date)
@@ -561,6 +562,13 @@ def api_generate_report(req: ReportRequestExt):
                         notes = (notes + SEP if notes else "") + pat
                 except Exception as pat_err:
                     print(f"posting pattern failed: {pat_err}")
+
+                try:
+                    ov = platform_overlap_summary(req.brand_name, req.start_date, req.end_date)
+                    if ov:
+                        notes = (notes + SEP if notes else "") + ov
+                except Exception as ov_err:
+                    print(f"platform overlap failed: {ov_err}")
 
                 summary = top_posts_summary(weekly, top_n=5)
                 if summary:

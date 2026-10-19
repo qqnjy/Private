@@ -871,3 +871,44 @@ def scheduling_gap_lines(brand: str, before_date: str | None = None) -> list:
     virt = [p for p in rows if is_draw(p)
             and any(k in (p.get("message") or "") for k in _VIRTUAL_PRIZE)]
     return _gap_lines(rows, taipei, views, eng, by_wd, phys, virt)
+
+
+def platform_overlap_summary(brand: str, week_start: str, week_end: str) -> str:
+    """How much of this week's IG content is reused from FB.
+
+    Earlier weeks really were all FB material, and the model kept repeating
+    "受 FB 同步素材影響" after IG went to its own schedule. Measure it instead.
+    """
+    import re as _re
+    from difflib import SequenceMatcher
+    from posts_repo import get_cached_posts
+
+    cached = get_cached_posts(brand, week_start, week_end) or {}
+    fb, ig = cached.get("fb") or [], cached.get("ig") or []
+    if not ig:
+        return ""
+
+    def norm(s):
+        return _re.sub(r"[#＃\s\W]+", "", s or "")[:120]
+
+    lines = ["【IG 內容來源（文案相似度比對，非人工判斷）】"]
+    reused = 0
+    for m in sorted(ig, key=lambda x: x["created_at"]):
+        best, src = 0.0, None
+        for p in fb:
+            r = SequenceMatcher(None, norm(m.get("message")), norm(p.get("message"))).ratio()
+            if r > best:
+                best, src = r, p
+        title = _clean_title(m.get("message") or "(無文字)", 22)
+        if best >= 0.5:
+            reused += 1
+            lines.append(f"  {m['created_at'][:10]} {title} → 與 FB {src['created_at'][:10]} "
+                         f"文案相似 {best:.0%}，屬同步素材")
+        else:
+            lines.append(f"  {m['created_at'][:10]} {title} → IG 原生（與 FB 最高相似度僅 {best:.0%}）")
+    lines.append(
+        f"  小結：本週 IG {len(ig)} 篇中，{reused} 篇為 FB 同步素材、{len(ig) - reused} 篇為 IG 原生。"
+        + ("**IG 已採獨立排程，不可再寫成「全為 FB 同步素材」或把表現歸因於同步。**"
+           if reused == 0 else "")
+    )
+    return "\n".join(lines)
