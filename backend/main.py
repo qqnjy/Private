@@ -570,6 +570,17 @@ def api_generate_report(req: ReportRequestExt):
                 except Exception as ov_err:
                     print(f"platform overlap failed: {ov_err}")
 
+                # GEO is only observable through the manual AI-answer audit;
+                # surface the latest round so the report stops saying only
+                # that nothing can be verified.
+                try:
+                    from geo_audit_summary import load as _geo_load, summarise as _geo_sum
+                    _rows, _qs = _geo_load()
+                    if _rows:
+                        notes = (notes + SEP if notes else "") + _geo_sum(_rows, _qs)
+                except Exception as geo_err:
+                    print(f"geo audit summary failed: {geo_err}")
+
                 summary = top_posts_summary(weekly, top_n=5)
                 if summary:
                     notes = (notes + "\n\n" if notes else "") + summary
