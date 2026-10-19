@@ -21,11 +21,11 @@ def load():
     path = AUDIT_DIR / "巡檢記錄.csv"
     if not path.exists():
         return [], {}
-    rows = [r for r in csv.DictReader(path.open(encoding="utf-8")) if r.get("date")]
+    rows = [r for r in csv.DictReader(path.open(encoding="utf-8-sig")) if r.get("date")]
     questions = {}
     qpath = AUDIT_DIR / "題目清單.csv"
     if qpath.exists():
-        questions = {r["question_id"]: r for r in csv.DictReader(qpath.open(encoding="utf-8"))}
+        questions = {r["question_id"]: r for r in csv.DictReader(qpath.open(encoding="utf-8-sig"))}
     return rows, questions
 
 
