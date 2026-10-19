@@ -649,13 +649,27 @@ def baseline_summary(brand: str, week_start: str, week_end: str) -> str:
         if not posts or not base:
             lines.append(f"  {label}：本週尚無貼文資料，尚待取得")
             continue
-        views = sum((p.get("total_views") or p.get("video_views") or 0) if plat == "fb"
-                    else (p.get("views") or 0) for p in posts)
+        per_post = [(p.get("total_views") or p.get("video_views") or 0) if plat == "fb"
+                    else (p.get("views") or 0) for p in posts]
+        views = sum(per_post)
+        missing = sum(1 for v in per_post if not v)
         eng = sum(p.get("engagement") or 0 for p in posts)
+        # A partial view total compared against a full-week baseline reads as a
+        # collapse that did not happen, so withhold it until every post has one.
+        if missing:
+            views_txt = (f"{len(posts) - missing}/{len(posts)} 篇有觀看數，"
+                         f"合計未完整，尚待取得（基準週均 {base['views_per_week']:,}）")
+            views = 0
+        else:
+            views_txt = compare(views, base["views_per_week"])
         lines.append(
             f"  {label}：發文 {len(posts)} 篇（基準週均 {base['posts_per_week']} 篇）；"
-            f"觀看 {compare(views, base['views_per_week'])}；"
+            f"觀看 {views_txt}；"
             f"互動 {compare(eng, base['engagement_per_week'])}"
+            f"；每篇平均互動 {eng / len(posts):.1f}"
+            f"（基準 {base['engagement_per_week'] / base['posts_per_week']:.1f}"
+            + (f"，{(eng / len(posts) - base['engagement_per_week'] / base['posts_per_week']) / (base['engagement_per_week'] / base['posts_per_week']) * 100:+.1f}%）"
+               if week_over and base.get("posts_per_week") else "）")
         )
         rate = eng / views * 100 if views else None
         if rate and base.get("interaction_rate") and week_over:

@@ -579,11 +579,26 @@ def api_generate_report(req: ReportRequestExt):
         # Asked to summarise them it dropped two of three and inverted the third
         # ("週日互動率最低" when 週日 has no posts at all), and this section goes
         # to the ops team.
+        # Same reason as the gaps below: the model kept omitting this section
+        # entirely, and it is the one the ops team asked for.
+        try:
+            from fb_api import baseline_summary as _bls
+            bl_txt = _bls(req.brand_name, req.start_date, req.end_date) if req.end_date else ""
+            if bl_txt and outline and "行事曆" not in outline:
+                body = [l.strip() for l in bl_txt.split("\n")[1:] if l.strip()]
+                block = ("二之一、 行事曆／GEO 導入後對照（依凍結基準自動計算）\n"
+                         + "\n".join(f"•\t{l}" for l in body) + "\n\n")
+                marker = "三、 後續規劃"
+                outline = (outline.replace(marker, block + marker, 1)
+                           if marker in outline else outline + "\n\n" + block.rstrip())
+        except Exception as bl_err:
+            print(f"baseline block failed: {bl_err}")
+
         try:
             from fb_api import scheduling_gap_lines
             gaps = scheduling_gap_lines(req.brand_name, req.end_date) if req.end_date else []
             if gaps and outline:
-                block = ("二之一、 排程觀察（依長期數據自動計算）\n"
+                block = ("二之二、 排程觀察（依長期數據自動計算）\n"
                          + "\n".join(f"•\t{g}" for g in gaps)
                          + "\n\n")
                 marker = "三、 後續規劃"
