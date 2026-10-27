@@ -600,6 +600,21 @@ def api_generate_report(req: ReportRequestExt):
         # to the ops team.
         # Same reason as the gaps below: the model kept omitting this section
         # entirely, and it is the one the ops team asked for.
+        # Third section the model keeps dropping; insert it rather than ask.
+        try:
+            from geo_audit_summary import load as _gl, summarise as _gs
+            _r, _q = _gl()
+            if _r and outline:
+                nl = chr(10)
+                body = [l.strip() for l in _gs(_r, _q).split(nl)[1:] if l.strip()]
+                blk = ("二之三、 GEO AI 答案巡檢（人工巡檢，無痕未登入）" + nl
+                       + nl.join("•\t" + l for l in body) + nl * 2)
+                mk = "三、 後續規劃"
+                outline = (outline.replace(mk, blk + mk, 1) if mk in outline
+                           else outline + nl * 2 + blk.rstrip())
+        except Exception as e:
+            print(f"geo block failed: {e}")
+
         try:
             from fb_api import baseline_summary as _bls
             bl_txt = _bls(req.brand_name, req.start_date, req.end_date) if req.end_date else ""

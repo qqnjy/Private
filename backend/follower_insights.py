@@ -126,6 +126,11 @@ def _week_rows(rows, project, platform, start, end):
             and start <= r.get('date', '') <= end]
 
 
+def _prev_day(d):
+    from datetime import date as _d, timedelta as _t
+    return (_d.fromisoformat(d) - _t(days=1)).isoformat()
+
+
 def acquisition_summary(brand_name, week_start, week_end):
     """Gross follows/unfollows for the week, with the other brands as benchmark.
 
@@ -161,11 +166,33 @@ def acquisition_summary(brand_name, week_start, week_end):
         if not t:
             continue
         net = t['follows'] - t['unfollows']
-        lines.append(
-            f"【{label} 本週追蹤增減（真實進出，非淨值）】\n"
-            f"  新增追蹤 {t['follows']:,} 人、退追 {t['unfollows']:,} 人、淨 {net:+,} 人"
-            f"（{t['days']} 天資料）"
-        )
+        block = (f"【{label} 本週追蹤增減（真實進出，非淨值）】\n"
+                 f"  新增追蹤 {t['follows']:,} 人、退追 {t['unfollows']:,} 人、淨 {net:+,} 人"
+                 f"（{t['days']} 天資料）")
+        # Cross-check against the scraped follower count. Meta's daily buckets
+        # occasionally absorb several days at once — every brand spiked on
+        # 2026-10-25 — and a gross net that contradicts the actual change must
+        # not be reported as though it were sound.
+        before = get_historical_fans(brand_name, platform, _prev_day(week_start))
+        after = get_historical_fans(brand_name, platform, week_end)
+        if before and after:
+            actual = after - before
+            if abs(net - actual) > max(10, abs(actual) * 0.5):
+                block += (f"\n  ※ 本週粉絲數實際變化為 {actual:+,} 人（{before:,} → {after:,}），"
+                          f"與上列淨值相差 {net - actual:+,}。兩者口徑不同：新增／退追是當日發生數，"
+                          f"粉絲數是當日快照，週末或週界的變動常落在下一次快照才反映。"
+                          f"對外引用粉絲增減請以粉絲數為準。")
+        week_rows_ = _week_rows(rows, me['key'], platform, week_start, week_end)
+        daily = sorted((r.get('follows') or 0) for r in week_rows_)
+        if len(daily) >= 4:
+            mid = daily[len(daily) // 2]
+            if daily[-1] > max(5, mid * 5):
+                peak = max(week_rows_, key=lambda r: r.get('follows') or 0)
+                block += (f"\n  ※ 單日新增高峰 {daily[-1]:,} 人（{peak['date']}），"
+                          f"為當週中位數 {mid:,} 的數倍。這類高峰通常有外部成因"
+                          f"（線下活動、擺攤、廣告投放、KOL 合作等），"
+                          f"**撰寫報告前務必確認當天發生了什麼**，不可逕自當成資料異常或自然成長。")
+        lines.append(block)
 
     bench = []
     for p in PROJECTS:
