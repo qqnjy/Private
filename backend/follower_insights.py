@@ -29,12 +29,11 @@ def fb_daily_rows(payload):
             continue
         for item in metric.get('values', []):
             # Meta closes these daily buckets on the following calendar day,
-            # in the PAGE's own timezone (US Pacific for these pages) — not
-            # Taipei. A Taiwan event therefore lands one row earlier than its
-            # Taiwan date, and these dates do not line up with the IG rows,
-            # which are cut on Taipei day boundaries. Left as Meta reports it:
-            # a Pacific day straddles two Taiwan days, so there is no exact
-            # mapping to shift it by.
+            # and end_time is UTC — so a row's date is a UTC day, running from
+            # 08:00 Taipei that date to 08:00 Taipei the next. The IG rows are
+            # cut on Taipei boundaries instead, leaving the two platforms eight
+            # hours apart. Left as Meta reports it: a UTC day straddles two
+            # Taiwan days, so no shift makes it exact.
             day = (datetime.strptime(item['end_time'], '%Y-%m-%dT%H:%M:%S%z') - timedelta(days=1)).date().isoformat()
             rows.setdefault(day, {'date': day, 'platform': 'fb', 'follows': None, 'unfollows': None})[field] = item.get('value')
     return list(rows.values())
@@ -199,8 +198,9 @@ def acquisition_summary(brand_name, week_start, week_end):
                           f"（線下活動、擺攤、廣告投放、KOL 合作等），"
                           f"**撰寫報告前務必確認當天發生了什麼**，不可逕自當成資料異常或自然成長。")
         if platform == "fb":
-            block += ("\n  ※ FB 每日日期為粉專時區（美國）之日界，較台灣日期約晚一天，"
-                      "且與 IG（台北日界）不同步。對照台灣的活動日期時請往後推一天。")
+            block += ("\n  ※ FB 每日日期為 UTC 日界：該列涵蓋台灣時間當日 08:00 至隔日 08:00。"
+                      "IG 則以台北日界切分，兩者相差 8 小時。對照台灣的活動時，"
+                      "當日 08:00 前發生的變動會落在前一列。")
         lines.append(block)
 
     bench = []
