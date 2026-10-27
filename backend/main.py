@@ -609,7 +609,7 @@ def api_generate_report(req: ReportRequestExt):
             if _a and outline:
                 nl = chr(10)
                 body = [l.strip() for l in _a.split("【各專案")[0].split(nl) if l.strip()]
-                blk = ("二之四、 追蹤增減拆解（Facebook 每日新增／退追，系統自動計算）" + nl
+                blk = ("二之一、 追蹤增減拆解（Facebook 每日新增／退追，系統自動計算）" + nl
                        + nl.join("•	" + l for l in body) + nl * 2)
                 mk = "三、 後續規劃"
                 outline = (outline.replace(mk, blk + mk, 1) if mk in outline
@@ -624,7 +624,7 @@ def api_generate_report(req: ReportRequestExt):
             if _r and outline:
                 nl = chr(10)
                 body = [l.strip() for l in _gs(_r, _q).split(nl)[1:] if l.strip()]
-                blk = ("二之三、 GEO AI 答案巡檢（人工巡檢，無痕未登入）" + nl
+                blk = ("二之二、 GEO AI 答案巡檢（人工巡檢，無痕未登入）" + nl
                        + nl.join("•\t" + l for l in body) + nl * 2)
                 mk = "三、 後續規劃"
                 outline = (outline.replace(mk, blk + mk, 1) if mk in outline
@@ -637,7 +637,7 @@ def api_generate_report(req: ReportRequestExt):
             bl_txt = _bls(req.brand_name, req.start_date, req.end_date) if req.end_date else ""
             if bl_txt and outline and "行事曆" not in outline:
                 body = [l.strip() for l in bl_txt.split("\n")[1:] if l.strip()]
-                block = ("二之一、 行事曆／GEO 導入後對照（依凍結基準自動計算）\n"
+                block = ("二之三、 行事曆／GEO 導入後對照（依凍結基準自動計算）\n"
                          + "\n".join(f"•\t{l}" for l in body) + "\n\n")
                 marker = "三、 後續規劃"
                 outline = (outline.replace(marker, block + marker, 1)
@@ -649,7 +649,7 @@ def api_generate_report(req: ReportRequestExt):
             from fb_api import scheduling_gap_lines
             gaps = scheduling_gap_lines(req.brand_name, req.end_date) if req.end_date else []
             if gaps and outline:
-                block = ("二之二、 排程觀察（依長期數據自動計算）\n"
+                block = ("二之四、 排程觀察（依長期數據自動計算）\n"
                          + "\n".join(f"•\t{g}" for g in gaps)
                          + "\n\n")
                 marker = "三、 後續規劃"

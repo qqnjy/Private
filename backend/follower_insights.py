@@ -28,7 +28,13 @@ def fb_daily_rows(payload):
         if not field:
             continue
         for item in metric.get('values', []):
-            # Meta closes these daily buckets on the following calendar day.
+            # Meta closes these daily buckets on the following calendar day,
+            # in the PAGE's own timezone (US Pacific for these pages) — not
+            # Taipei. A Taiwan event therefore lands one row earlier than its
+            # Taiwan date, and these dates do not line up with the IG rows,
+            # which are cut on Taipei day boundaries. Left as Meta reports it:
+            # a Pacific day straddles two Taiwan days, so there is no exact
+            # mapping to shift it by.
             day = (datetime.strptime(item['end_time'], '%Y-%m-%dT%H:%M:%S%z') - timedelta(days=1)).date().isoformat()
             rows.setdefault(day, {'date': day, 'platform': 'fb', 'follows': None, 'unfollows': None})[field] = item.get('value')
     return list(rows.values())
@@ -192,6 +198,9 @@ def acquisition_summary(brand_name, week_start, week_end):
                           f"為當週中位數 {mid:,} 的數倍。這類高峰通常有外部成因"
                           f"（線下活動、擺攤、廣告投放、KOL 合作等），"
                           f"**撰寫報告前務必確認當天發生了什麼**，不可逕自當成資料異常或自然成長。")
+        if platform == "fb":
+            block += ("\n  ※ FB 每日日期為粉專時區（美國）之日界，較台灣日期約晚一天，"
+                      "且與 IG（台北日界）不同步。對照台灣的活動日期時請往後推一天。")
         lines.append(block)
 
     bench = []
