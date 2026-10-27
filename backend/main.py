@@ -600,6 +600,23 @@ def api_generate_report(req: ReportRequestExt):
         # to the ops team.
         # Same reason as the gaps below: the model kept omitting this section
         # entirely, and it is the one the ops team asked for.
+        # Gross follows/unfollows are inserted verbatim: asked to write them the
+        # model twice back-solved them from the follower delta and invented the
+        # split (新增 0／退追 55, then 新增 100／退追 155).
+        try:
+            from follower_insights import acquisition_summary as _acq
+            _a = _acq(req.brand_name, req.start_date, req.end_date) if req.end_date else ""
+            if _a and outline:
+                nl = chr(10)
+                body = [l.strip() for l in _a.split("【各專案")[0].split(nl) if l.strip()]
+                blk = ("二之四、 追蹤增減拆解（Facebook 每日新增／退追，系統自動計算）" + nl
+                       + nl.join("•	" + l for l in body) + nl * 2)
+                mk = "三、 後續規劃"
+                outline = (outline.replace(mk, blk + mk, 1) if mk in outline
+                           else outline + nl * 2 + blk.rstrip())
+        except Exception as e:
+            print(f"acquisition block failed: {e}")
+
         # Third section the model keeps dropping; insert it rather than ask.
         try:
             from geo_audit_summary import load as _gl, summarise as _gs

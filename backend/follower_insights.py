@@ -181,7 +181,7 @@ def acquisition_summary(brand_name, week_start, week_end):
                 block += (f"\n  ※ 本週粉絲數實際變化為 {actual:+,} 人（{before:,} → {after:,}），"
                           f"與上列淨值相差 {net - actual:+,}。兩者口徑不同：新增／退追是當日發生數，"
                           f"粉絲數是當日快照，週末或週界的變動常落在下一次快照才反映。"
-                          f"對外引用粉絲增減請以粉絲數為準。")
+                          f"對外引用**淨增減**請以粉絲數為準；**新增與退追的人數仍以本表為準，不可改寫或自行推算**。")
         week_rows_ = _week_rows(rows, me['key'], platform, week_start, week_end)
         daily = sorted((r.get('follows') or 0) for r in week_rows_)
         if len(daily) >= 4:
