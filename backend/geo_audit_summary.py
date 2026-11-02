@@ -76,10 +76,20 @@ def summarise(rows, questions, month=None):
     else:
         lines.append("  首次巡檢，尚無對比基準；至少累積三個月才看趨勢。")
 
+    # The notes carry the useful detail, but they are long and this block goes
+    # into an email — keep the headline of each and cap the list.
     notes = [r["note"] for r in cur if r.get("note")]
     if notes:
+        seen, trimmed = set(), []
+        for n in notes:
+            head = n.split("。")[0].strip()
+            if head and head not in seen:
+                seen.add(head)
+                trimmed.append(head if len(head) <= 60 else head[:60] + "…")
         lines.append("  值得注意：")
-        lines += [f"    - {n}" for n in dict.fromkeys(notes)]
+        lines += [f"    - {n}" for n in trimmed[:4]]
+        if len(trimmed) > 4:
+            lines.append(f"    （另有 {len(trimmed) - 4} 則，詳見 GEO巡檢/巡檢記錄.csv）")
 
     lines.append("  說明：rank 空白代表未被提及，不計為最差名次；單月結果會因模型更新跳動。")
     return "\n".join(lines)

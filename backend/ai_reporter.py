@@ -259,3 +259,23 @@ if __name__ == "__main__":
     '''
     res = generate_weekly_report("測試專案", mock_notes, 120, -5, 10)
     print(json.dumps(res, ensure_ascii=False, indent=2))
+
+
+# Terms the model keeps producing despite the prompt forbidding them. Fixing
+# the text is reliable; asking the model again is not.
+_TERM_FIXES = {
+    "短視頻": "短影音", "視頻": "影片", "粉絲量": "粉絲數", "點贊": "按讚",
+    "流量主": "版主", "內卷": "競爭過度", "賦能": "強化", "抓手": "施力點",
+    "悬念": "懸念", "悬": "懸", "互动": "互動", "内容": "內容", "点击": "點擊",
+    "尽管": "儘管", "较低": "較低", "透过": "透過", "数据": "數據", "优质": "優質",
+    "赛车": "跑車", "户": "戶", "击": "擊", "营销": "行銷",
+}
+
+
+def normalise_terms(text: str) -> str:
+    """Replace mainland vocabulary and stray simplified characters."""
+    if not text:
+        return text
+    for bad, good in _TERM_FIXES.items():
+        text = text.replace(bad, good)
+    return text

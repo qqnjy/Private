@@ -591,7 +591,8 @@ def api_generate_report(req: ReportRequestExt):
             req.brand_name, notes,
             req.followers_growth_fb, req.followers_growth_ig, req.followers_growth_threads,
         )
-        outline = result.get("outline", "")
+        from ai_reporter import normalise_terms
+        outline = normalise_terms(result.get("outline", ""))
         slides = result.get("slides")
 
         # The scheduling gaps are inserted verbatim rather than left to the LLM.
