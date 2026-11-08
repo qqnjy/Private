@@ -1368,6 +1368,20 @@
     {
       "date": "2026-11-06",
       "platform": "ig",
+      "follows": 45,
+      "unfollows": 6,
+      "project": "donut"
+    },
+    {
+      "date": "2026-11-07",
+      "platform": "fb",
+      "follows": 7,
+      "unfollows": 3,
+      "project": "donut"
+    },
+    {
+      "date": "2026-11-07",
+      "platform": "ig",
       "follows": null,
       "unfollows": null,
       "project": "donut"
@@ -2739,6 +2753,20 @@
     },
     {
       "date": "2026-11-06",
+      "platform": "ig",
+      "follows": 16,
+      "unfollows": 0,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-11-07",
+      "platform": "fb",
+      "follows": 0,
+      "unfollows": 1,
+      "project": "hoyeah"
+    },
+    {
+      "date": "2026-11-07",
       "platform": "ig",
       "follows": null,
       "unfollows": null,
@@ -4112,6 +4140,20 @@
     {
       "date": "2026-11-06",
       "platform": "ig",
+      "follows": 38,
+      "unfollows": 21,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-11-07",
+      "platform": "fb",
+      "follows": 25,
+      "unfollows": 33,
+      "project": "mjstar31"
+    },
+    {
+      "date": "2026-11-07",
+      "platform": "ig",
       "follows": null,
       "unfollows": null,
       "project": "mjstar31"
@@ -5483,6 +5525,20 @@
     },
     {
       "date": "2026-11-06",
+      "platform": "ig",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "panther"
+    },
+    {
+      "date": "2026-11-07",
+      "platform": "fb",
+      "follows": 48,
+      "unfollows": 18,
+      "project": "panther"
+    },
+    {
+      "date": "2026-11-07",
       "platform": "ig",
       "follows": null,
       "unfollows": null,
@@ -6856,6 +6912,20 @@
     {
       "date": "2026-11-06",
       "platform": "ig",
+      "follows": 51,
+      "unfollows": 15,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-11-07",
+      "platform": "fb",
+      "follows": 107,
+      "unfollows": 25,
+      "project": "partygo"
+    },
+    {
+      "date": "2026-11-07",
+      "platform": "ig",
       "follows": null,
       "unfollows": null,
       "project": "partygo"
@@ -8233,6 +8303,20 @@
       "project": "slam888"
     },
     {
+      "date": "2026-11-07",
+      "platform": "fb",
+      "follows": 1,
+      "unfollows": 3,
+      "project": "slam888"
+    },
+    {
+      "date": "2026-11-07",
+      "platform": "ig",
+      "follows": null,
+      "unfollows": null,
+      "project": "slam888"
+    },
+    {
       "date": "2026-08-01",
       "platform": "fb",
       "follows": 15,
@@ -9600,12 +9684,26 @@
     {
       "date": "2026-11-06",
       "platform": "ig",
+      "follows": 1,
+      "unfollows": 0,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-11-07",
+      "platform": "fb",
+      "follows": 5,
+      "unfollows": 6,
+      "project": "tmd"
+    },
+    {
+      "date": "2026-11-07",
+      "platform": "ig",
       "follows": null,
       "unfollows": null,
       "project": "tmd"
     }
   ],
-  "updated_at": "2026-11-07T22:41:35.245441+08:00",
+  "updated_at": "2026-11-08T22:47:02.897253+08:00",
   "reporting_windows": {
     "fb": "Meta daily buckets",
     "ig": "Asia/Taipei calendar day"
@@ -9613,38 +9711,38 @@
   "version": 2,
   "project_status": {
     "tmd": {
-      "updated_at": "2026-11-07T22:41:28.029678+08:00",
-      "last_attempt": "2026-11-07T22:41:28.029678+08:00",
+      "updated_at": "2026-11-08T22:46:57.635917+08:00",
+      "last_attempt": "2026-11-08T22:46:57.635917+08:00",
       "error": null
     },
     "mjstar31": {
-      "updated_at": "2026-11-07T22:41:29.068078+08:00",
-      "last_attempt": "2026-11-07T22:41:29.068078+08:00",
+      "updated_at": "2026-11-08T22:46:58.534963+08:00",
+      "last_attempt": "2026-11-08T22:46:58.534963+08:00",
       "error": null
     },
     "donut": {
-      "updated_at": "2026-11-07T22:41:30.001678+08:00",
-      "last_attempt": "2026-11-07T22:41:30.001678+08:00",
+      "updated_at": "2026-11-08T22:46:59.278528+08:00",
+      "last_attempt": "2026-11-08T22:46:59.278528+08:00",
       "error": null
     },
     "panther": {
-      "updated_at": "2026-11-07T22:41:30.958819+08:00",
-      "last_attempt": "2026-11-07T22:41:30.958819+08:00",
+      "updated_at": "2026-11-08T22:47:00.194057+08:00",
+      "last_attempt": "2026-11-08T22:47:00.194057+08:00",
       "error": null
     },
     "partygo": {
-      "updated_at": "2026-11-07T22:41:33.008373+08:00",
-      "last_attempt": "2026-11-07T22:41:33.008373+08:00",
+      "updated_at": "2026-11-08T22:47:01.176527+08:00",
+      "last_attempt": "2026-11-08T22:47:01.176527+08:00",
       "error": null
     },
     "slam888": {
-      "updated_at": "2026-11-07T22:41:34.205918+08:00",
-      "last_attempt": "2026-11-07T22:41:34.205918+08:00",
+      "updated_at": "2026-11-08T22:47:01.932230+08:00",
+      "last_attempt": "2026-11-08T22:47:01.932230+08:00",
       "error": null
     },
     "hoyeah": {
-      "updated_at": "2026-11-07T22:41:35.245366+08:00",
-      "last_attempt": "2026-11-07T22:41:35.245366+08:00",
+      "updated_at": "2026-11-08T22:47:02.897203+08:00",
+      "last_attempt": "2026-11-08T22:47:02.897203+08:00",
       "error": null
     }
   }
