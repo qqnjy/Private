@@ -5,7 +5,7 @@ a shared shape so frontend and AI prompt logic can stay agnostic of platform.
 """
 import os
 import re
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from typing import Optional
 from functools import lru_cache
 import httpx
@@ -356,6 +356,21 @@ def fetch_brand_meta(brand_name: str) -> dict:
     }
 
 
+_TAIPEI = timezone(timedelta(hours=8))
+
+
+def _taipei_date(created_at: str) -> str:
+    """Publish date in Taiwan time. Graph returns UTC, so a post made before
+    08:00 Taipei falls on the previous UTC date; comparing raw strings would
+    put it in the wrong week."""
+    if not created_at:
+        return ""
+    try:
+        return datetime.fromisoformat(str(created_at).replace("Z", "+00:00")).astimezone(_TAIPEI).date().isoformat()
+    except ValueError:
+        return str(created_at)[:10]
+
+
 def fetch_weekly_posts(brand_name: str, start_date: str, end_date: str) -> dict:
     """Fetch FB + IG posts for the given brand within [start_date, end_date]."""
     page = find_page_by_brand(brand_name)
@@ -367,7 +382,13 @@ def fetch_weekly_posts(brand_name: str, start_date: str, end_date: str) -> dict:
     # End of day for "until"
     until_ts = int(datetime.strptime(end_date, "%Y-%m-%d").timestamp()) + 86400 - 1
 
-    fb_posts = fetch_fb_posts(page["page_id"], page["page_token"], start_date, end_date) if page.get("page_token") else []
+    # Graph reads `until` as the instant 00:00 on that date, so passing the last
+    # day of the week silently drops every post made on it — the IG branch below
+    # already compensates with +86400. Ask for one day more, then cut the extra
+    # day back off using the Taipei date the post is actually published on.
+    fb_until = (datetime.strptime(end_date, "%Y-%m-%d") + timedelta(days=1)).strftime("%Y-%m-%d")
+    fb_posts = fetch_fb_posts(page["page_id"], page["page_token"], start_date, fb_until) if page.get("page_token") else []
+    fb_posts = [p for p in fb_posts if start_date <= _taipei_date(p.get("created_at")) <= end_date]
     ig_media = fetch_ig_media(page["ig_user_id"], since_ts, until_ts) if page.get("ig_user_id") else []
 
     return {
